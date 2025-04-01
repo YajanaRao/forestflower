@@ -3,11 +3,11 @@
 A fork of [everforest](https://github.com/neanias/everforest-nvim) colour
 scheme with customization.
 
-### Day
+### 🌇 Day
 
 ![forestflower color scheme day](https://github.com/user-attachments/assets/574421f6-99fc-4a60-8e46-d98b0cfa5ba4)
 
-### Night
+### 🌆 Night
 
 ![forestflower color scheme night](https://github.com/user-attachments/assets/cd286988-be8c-4566-b69d-da824afdb6fb)
 
