@@ -1,4 +1,4 @@
-# Forest Flower
+# 🎴 Forest Flower
 
 A fork of [everforest](https://github.com/neanias/everforest-nvim) colour
 scheme with customization.
@@ -14,46 +14,48 @@ scheme with customization.
 
 _All screenshots taken from [my personal config](https://github.com/YajanaRao/kickstart.nvim)_
 
-## Features
+## ✨ Features
 
 - 100% Lua, supports Treesitter & LSP
 - Vim terminal colours
 - **Lualine** theme
 
-## Installation
+## 📦 Installation
 
 Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 require("lazy").setup({
-  "neanias/everforest-nvim",
+  "YajanaRao/forestflower",
   version = false,
   lazy = false,
   priority = 1000, -- make sure to load this before all the other start plugins
   -- Optional; default configuration will be used if setup isn't called.
   config = function()
-    require("everforest").setup({
-      -- Your config here
-    })
+    require('forestflower').setup {
+        flavour = 'night',
+        italics = true,
+    }
+    vim.cmd.colorscheme 'forestflower'
   end,
 })
 ```
 
-## Usage
+## 🛸 Usage
 
 ```viml
 " In VimL
 
 " This has both light & dark modes to match your background setting.
-colorscheme everforest
+colorscheme forestflower
 ```
 
 ```lua
 -- In Lua
-vim.cmd([[colorscheme everforest]])
+vim.cmd([[colorscheme forestflower]])
 
 -- Alternatively
-require("everforest").load()
+require("forestflower").load()
 ```
 
 To enable the everforest theme for LuaLine, you can specify it as such:
@@ -62,168 +64,11 @@ To enable the everforest theme for LuaLine, you can specify it as such:
 require("lualine").setup({
   options = {
     -- ... other configuration
-    theme = "everforest", -- Can also be "auto" to detect automatically.
+    theme = "forestflower", -- Can also be "auto" to detect automatically.
   }
 })
 ```
 
-### LspSaga information
-
-Please note that LspSaga uses `Diagnostic{Warning,Error,Info,Hint}` highlight
-groups to define its borders for diagnostic pop-ups, especially in
-`diagnostic_jump_{next,prev}`. As discussed in the [Sonokai
-repo](https://github.com/sainnhe/sonokai/issues/87), this is not a good idea
-and there is no plan to change core highlights for one plugin.
-
-**To prevent the problem of squiggly lines in LspSaga diagnostic windows,
-please set the `diagnostic.border_follow` configuration option to `false`.**
-
-## Configuration
-
-> Configuration options aren't as comprehensive as the original everforest
-> theme yet.
-
-This colour scheme has a light and a dark mode which are configured using the
-vim background setting: `:set background=light` or `vim.o.background=dark` as
-appropriate.
-
-<details>
-    <summary>The default configuration used by the colour scheme</summary>
-
-```lua
-require("everforest").setup({
-  ---Controls the "hardness" of the background. Options are "soft", "medium" or "hard".
-  ---Default is "medium".
-  background = "medium",
-  ---How much of the background should be transparent. 2 will have more UI
-  ---components be transparent (e.g. status line background)
-  transparent_background_level = 0,
-  ---Whether italics should be used for keywords and more.
-  italics = false,
-  ---Disable italic fonts for comments. Comments are in italics by default, set
-  ---this to `true` to make them _not_ italic!
-  disable_italic_comments = false,
-  ---By default, the colour of the sign column background is the same as the as normal text
-  ---background, but you can use a grey background by setting this to `"grey"`.
-  sign_column_background = "none",
-  ---The contrast of line numbers, indent lines, etc. Options are `"high"` or
-  ---`"low"` (default).
-  ui_contrast = "low",
-  ---Dim inactive windows. Only works in Neovim. Can look a bit weird with Telescope.
-  ---
-  ---When this option is used in conjunction with show_eob set to `false`, the
-  ---end of the buffer will only be hidden inside the active window. Inside
-  ---inactive windows, the end of buffer filler characters will be visible in
-  ---dimmed symbols. This is due to the way Vim and Neovim handle `EndOfBuffer`.
-  dim_inactive_windows = false,
-  ---Some plugins support highlighting error/warning/info/hint texts, by
-  ---default these texts are only underlined, but you can use this option to
-  ---also highlight the background of them.
-  diagnostic_text_highlight = false,
-  ---Which colour the diagnostic text should be. Options are `"grey"` or `"coloured"` (default)
-  diagnostic_virtual_text = "coloured",
-  ---Some plugins support highlighting error/warning/info/hint lines, but this
-  ---feature is disabled by default in this colour scheme.
-  diagnostic_line_highlight = false,
-  ---By default, this color scheme won't colour the foreground of |spell|, instead
-  ---colored under curls will be used. If you also want to colour the foreground,
-  ---set this option to `true`.
-  spell_foreground = false,
-  ---Whether to show the EndOfBuffer highlight.
-  show_eob = true,
-  ---Style used to make floating windows stand out from other windows. `"bright"`
-  ---makes the background of these windows lighter than |hl-Normal|, whereas
-  ---`"dim"` makes it darker.
-  ---
-  ---Floating windows include for instance diagnostic pop-ups, scrollable
-  ---documentation windows from completion engines, overlay windows from
-  ---installers, etc.
-  ---
-  ---NB: This is only significant for dark backgrounds as the light palettes
-  ---have the same colour for both values in the switch.
-  float_style = "bright",
-  ---Inlay hints are special markers that are displayed inline with the code to
-  ---provide you with additional information. You can use this option to customize
-  ---the background color of inlay hints.
-  ---
-  ---Options are `"none"` or `"dimmed"`.
-  inlay_hints_background = "none",
-  ---You can override specific highlights to use other groups or a hex colour.
-  ---This function will be called with the highlights and colour palette tables.
-  ---@param highlight_groups Highlights
-  ---@param palette Palette
-  on_highlights = function(highlight_groups, palette) end,
-  ---You can override colours in the palette to use different hex colours.
-  ---This function will be called once the base and background colours have
-  ---been mixed on the palette.
-  ---@param palette Palette
-  colours_override = function(palette) end,
-})
-```
-
-</details>
-
-## Overriding Highlight Groups
-
-To find all possible palette colours, please see [`colours.lua`](lua/everforest/colours.lua).
-
-For example, you could override the Diagnostic group of highlights to remove
-the undercurl:
-
-```lua
-require("everforest").setup({
-  on_highlights = function(hl, palette)
-    hl.DiagnosticError = { fg = palette.none, bg = palette.none, sp = palette.red }
-    hl.DiagnosticWarn = { fg = palette.none, bg = palette.none, sp = palette.yellow }
-    hl.DiagnosticInfo = { fg = palette.none, bg = palette.none, sp = palette.blue }
-    hl.DiagnosticHint = { fg = palette.none, bg = palette.none, sp = palette.green }
-  end,
-})
-```
-
-If you want to tweak or amend an existing highlight group you **need to add the
-colours that aren't changing as well as your new styles**. This is because the
-highlights defined in the `on_highlights` method will _override_ the default
-highlights.
-
-Here's an example of adding a **bold** styling to the `TSBoolean` highlight group:
-
-```lua
-require("everforest").setup({
-  on_highlights = function(hl, palette)
-    -- The default highlights for TSBoolean is linked to `Purple` which is fg
-    -- purple and bg none. If we want to just add a bold style to the existing,
-    -- we need to have the existing *and* the bold style. (We could link to
-    -- `PurpleBold` here otherwise.)
-    hl.TSBoolean = { fg = palette.purple, bg = palette.none, bold = true }
-  end,
-})
-```
-
-To clear any highlight groups, simply set them to `{}`:
-
-```lua
-require("everforest").setup({
-  on_highlights = function(hl, palette)
-    hl.TSDanger = {}
-  end,
-})
-```
-
-## Overriding colours in the palette
-
-To find the existing palette colours, please see [`colours.lua`](lua/everforest/colours.lua).
-
-For instance, if you use a dark background and want to use a darker hue for red,
-you could use the following configuration:
-
-```lua
-require("everforest").setup({
-  colours_override = function (palette)
-    palette.red = "#b86466"
-  end
-})
-```
 
 ## Plugin support
 
