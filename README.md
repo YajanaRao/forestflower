@@ -22,18 +22,18 @@ _All screenshots taken from [my personal config](https://github.com/YajanaRao/ki
 Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
-require("lazy").setup({
-  "neanias/everforest-nvim",
-  version = false,
-  lazy = false,
-  priority = 1000, -- make sure to load this before all the other start plugins
-  -- Optional; default configuration will be used if setup isn't called.
-  config = function()
-    require("everforest").setup({
-      -- Your config here
-    })
-  end,
-})
+  {
+    'YajanaRao/forestflower',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require('forestflower').setup {
+        flavour = 'night',
+        italics = true,
+      }
+      vim.cmd.colorscheme 'forestflower'
+    end,
+  }
 ```
 
 ## Usage
@@ -47,10 +47,10 @@ colorscheme everforest
 
 ```lua
 -- In Lua
-vim.cmd([[colorscheme everforest]])
+vim.cmd([[colorscheme forestflower]])
 
 -- Alternatively
-require("everforest").load()
+require("forestflower").load()
 ```
 
 To enable the everforest theme for LuaLine, you can specify it as such:
@@ -59,7 +59,7 @@ To enable the everforest theme for LuaLine, you can specify it as such:
 require("lualine").setup({
   options = {
     -- ... other configuration
-    theme = "everforest", -- Can also be "auto" to detect automatically.
+    theme = "forestflower", -- Can also be "auto" to detect automatically.
   }
 })
 ```
