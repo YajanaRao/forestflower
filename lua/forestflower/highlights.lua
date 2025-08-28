@@ -116,11 +116,11 @@ highlights.generate_syntax = function(palette, options)
     TermCursor = { link = "Cursor" },
     TermCursorNC = { link = "Cursor" },
     ErrorMsg = syntax_entry(palette.red, palette.none, { styles.bold, styles.underline }),
-    WinSeparator = { link = "VertSplit" },
-    Folded = syntax_entry(palette.grey1, transparency_respecting_colour(palette.bg1)),
+    WinSeparator = syntax_entry(palette.none, palette.none),
+    Folded = syntax_entry(palette.grey1, transparency_respecting_colour(palette.bg2)),
     FoldColumn = syntax_entry(
       (options.sign_column_background == "grey" and palette.grey2) or palette.bg5,
-      sign_column_respecting_colour(palette.bg1)
+      sign_column_respecting_colour(palette.bg2)
     ),
     SignColumn = syntax_entry(palette.fg, sign_column_respecting_colour(palette.bg1)),
     IncSearch = syntax_entry(palette.bg0, palette.red),
@@ -134,23 +134,25 @@ highlights.generate_syntax = function(palette, options)
     MoreMsg = syntax_entry(palette.yellow, palette.none, { styles.bold }),
     NonText = syntax_entry(palette.bg4, palette.none),
     Normal = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0)),
-    NormalFloat = syntax_entry(palette.fg, (options.float_style == "bright" and palette.bg2) or palette.bg_dim),
-    FloatBorder = syntax_entry(palette.grey1, (options.float_style == "bright" and palette.bg2) or palette.bg_dim),
+    NormalFloat = syntax_entry(palette.fg, (options.float_style == "bright" and palette.bg1) or palette.bg0),
+    FloatBorder = syntax_entry(palette.none, palette.none),
     FloatTitle = syntax_entry(
-      palette.grey1,
-      (options.float_style == "bright" and palette.bg2) or palette.bg_dim,
+      palette.green,
+      (options.float_style == "bright" and palette.bg1) or palette.bg0,
       { styles.bold }
     ),
     NormalNC = syntax_entry(
       palette.fg,
       transparency_respecting_colour((options.dim_inactive_windows and palette.bg_dim) or palette.bg0)
     ),
-    Pmenu = syntax_entry(palette.fg, palette.bg2),
-    PmenuSbar = syntax_entry(palette.none, palette.bg2),
-    PmenuSel = syntax_entry(palette.bg0, palette.statusline1),
-    PmenuThumb = syntax_entry(palette.none, palette.grey0),
+    Pmenu = syntax_entry(palette.fg, palette.bg1),
+    PmenuSbar = syntax_entry(palette.none, palette.bg1),
+    PmenuSel = syntax_entry(palette.bg0, palette.green, { styles.bold }),
+    PmenuThumb = syntax_entry(palette.none, palette.grey1),
     Question = syntax_entry(palette.yellow, palette.none),
-    QuickFixLine = syntax_entry(palette.purple, palette.none, { styles.bold }),
+    QuickFixLine = syntax_entry(palette.green, palette.bg1, { styles.bold }),
+    -- Location list enhancement
+    LocList = syntax_entry(palette.fg, palette.bg1),
     Search = syntax_entry(palette.bg0, palette.green),
     SpecialKey = syntax_entry(palette.yellow, palette.none),
     SpellBad = syntax_entry(
@@ -177,17 +179,17 @@ highlights.generate_syntax = function(palette, options)
       { styles.undercurl },
       palette.purple
     ),
-    StatusLine = syntax_entry(palette.grey1, options.transparent_background_level == 2 and palette.none or palette.bg2),
+    StatusLine = syntax_entry(palette.green, options.transparent_background_level == 2 and palette.none or palette.bg1),
     StatusLineNC = syntax_entry(
       options.transparent_background_level == 2 and palette.grey0 or palette.grey1,
-      options.transparent_background_level == 2 and palette.none or palette.bg1
+      options.transparent_background_level == 2 and palette.none or palette.bg0
     ),
-    TabLine = syntax_entry(palette.grey2, palette.bg3),
+    TabLine = syntax_entry(palette.grey1, palette.bg1),
     TabLineFill = syntax_entry(
-      palette.grey1,
-      options.transparent_background_level == 2 and palette.none or palette.bg1
+      palette.grey0,
+      options.transparent_background_level == 2 and palette.none or palette.bg0
     ),
-    TabLineSel = syntax_entry(palette.bg0, palette.statusline1),
+    TabLineSel = syntax_entry(palette.bg0, palette.green, { styles.bold }),
     Title = syntax_entry(palette.orange, palette.none, { styles.bold }),
     Visual = syntax_entry(palette.none, palette.bg_visual),
     VisualNOS = syntax_entry(palette.none, palette.bg_visual),
@@ -195,16 +197,16 @@ highlights.generate_syntax = function(palette, options)
     Whitespace = syntax_entry(palette.bg4, palette.none),
     WildMenu = { link = "PmenuSel" },
     WinBar = syntax_entry(
-      palette.grey1,
-      options.transparent_background_level == 2 and palette.none or palette.bg2,
+      palette.green,
+      options.transparent_background_level == 2 and palette.none or palette.bg1,
       { styles.bold }
     ),
     WinBarNC = syntax_entry(
       options.transparent_background_level == 2 and palette.grey0 or palette.grey1,
-      options.transparent_background_level == 2 and palette.none or palette.bg1
+      options.transparent_background_level == 2 and palette.none or palette.bg0
     ),
     Terminal = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg0)),
-    ToolbarLine = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg2)),
+    ToolbarLine = syntax_entry(palette.fg, transparency_respecting_colour(palette.bg1)),
 
     StatusLineTerm = syntax_entry(
       palette.grey1,
@@ -214,7 +216,7 @@ highlights.generate_syntax = function(palette, options)
       options.transparent_background_level == 2 and palette.grey0 or palette.grey1,
       options.transparent_background_level == 2 and palette.none or palette.bg0
     ),
-    VertSplit = syntax_entry(palette.bg4, (options.dim_inactive_windows and palette.bg_dim) or palette.none),
+    VertSplit = syntax_entry(palette.none, palette.none),
 
     Debug = syntax_entry(palette.orange, palette.none),
     debugPC = syntax_entry(palette.bg0, palette.green),
@@ -1149,10 +1151,10 @@ highlights.generate_syntax = function(palette, options)
     BufTabLineFill = { link = "TabLineFill" },
 
     -- folke/which-key.nvim
-    WhichKey = { link = "Red" },
+    WhichKey = { link = "Green" },
     WhichKeyDesc = { link = "Blue" },
-    WhichKeyFloat = syntax_entry(palette.none, palette.bg1),
-    WhichKeyGroup = { link = "Yellow" },
+    WhichKeyFloat = syntax_entry(palette.fg, palette.bg1),
+    WhichKeyGroup = { link = "Green" },
     WhichKeySeparator = { link = "Green" },
     WhichKeyValue = syntax_entry(palette.fg, palette.none),
 
@@ -1196,25 +1198,31 @@ highlights.generate_syntax = function(palette, options)
     CmpItemKind = { link = "Yellow" },
 
     -- folke/trouble.nvim
+    TroubleNormal = syntax_entry(palette.fg, palette.bg1),
     TroubleText = { link = "Fg" },
     TroubleSource = { link = "Grey" },
     TroubleCode = { link = "Grey" },
 
     -- nvim-telescope/telescope.nvim
     TelescopeMatching = syntax_entry(palette.green, palette.none, { styles.bold }),
-    TelescopeBorder = { link = "Grey" },
-    TelescopePromptPrefix = { link = "Orange" },
-    TelescopeSelection = { link = "DiffAdd" },
+    TelescopeBorder = syntax_entry(palette.none, palette.none),
+    TelescopePromptPrefix = { link = "Green" },
+    TelescopeSelection = syntax_entry(palette.none, palette.bg2, { styles.bold }),
+    TelescopeNormal = syntax_entry(palette.fg, palette.bg1),
+    TelescopePromptNormal = syntax_entry(palette.fg, palette.bg1),
+    TelescopeResultsNormal = syntax_entry(palette.fg, palette.bg0),
+    TelescopePreviewNormal = syntax_entry(palette.fg, palette.bg1),
 
     -- ighagwan/fzf-lua
-    FzfLuaBorder = { link = "Grey" },
+    FzfLuaNormal = syntax_entry(palette.fg, palette.bg1),
+    FzfLuaBorder = syntax_entry(palette.none, palette.none),
 
     -- folke/snacks.nvim {{{
-    SnacksPicker = { link = "Normal" },
-    SnacksPickerBorder = { link = "Grey" },
-    SnacksPickerTitle = { link = "Title" },
+    SnacksPicker = syntax_entry(palette.fg, palette.bg1),
+    SnacksPickerBorder = { link = "FloatBorder" },
+    SnacksPickerTitle = syntax_entry(palette.green, palette.bg1, { styles.bold }),
     SnacksPickerFooter = { link = "SnacksPickerTitle" },
-    SnacksPickerPrompt = { link = "Orange" },
+    SnacksPickerPrompt = syntax_entry(palette.fg, palette.bg1),
     SnacksPickerInputCursorLine = { link = "Normal" },
     SnacksPickerListCursorLine = { link = "DiffAdd" },
     SnacksPickerMatch = syntax_entry(palette.green, palette.none, { styles.bold }),
@@ -1223,6 +1231,8 @@ highlights.generate_syntax = function(palette, options)
     SnacksPickerBufFlags = { link = "Grey" },
     SnacksPickerSelected = { link = "Aqua" },
     SnacksPickerKeymapRhs = { link = "Grey" },
+    SnacksPickerPreviewBorder = { link = "FloatBorder" },
+    SnacksInputBorder = { link = "FloatBorder" },
     -- }}}
 
     -- lewis6991/gitsigns.nvim
@@ -1396,6 +1406,20 @@ highlights.generate_syntax = function(palette, options)
     -- b0o/incline.nvim
     InclineNormalNC = syntax_entry(palette.grey1, palette.bg2),
 
+    -- Custom panel enhancements for dark black theme
+    -- Side panel backgrounds (minimal difference)
+    SidePanel = syntax_entry(palette.fg, palette.bg1),
+    SidePanelNC = syntax_entry(palette.grey1, palette.bg0),
+    
+    -- Terminal panels with dark backgrounds  
+    TerminalPanel = syntax_entry(palette.fg, palette.bg0),
+    
+    -- Bottom panel separation (subtle)
+    BottomPanel = syntax_entry(palette.fg, palette.bg1),
+    
+    -- Enhanced borders for section separation (green, no bold)
+    PanelBorder = syntax_entry(palette.green, palette.none),
+    
     -- echasnovski/mini.nvim
     MiniAnimateCursor = syntax_entry(palette.none, palette.none, { styles.reverse, styles.nocombine }),
     MiniFilesFile = syntax_entry(palette.fg, palette.none),
@@ -1604,9 +1628,10 @@ highlights.generate_syntax = function(palette, options)
     DirvishArg = { link = "Yellow" },
 
     -- https://github.com/kyazdani42/nvim-tree.lua
+    NvimTreeNormal = syntax_entry(palette.fg, palette.bg1),
     NvimTreeSymlink = { link = "Fg" },
     NvimTreeFolderName = { link = "Green" },
-    NvimTreeRootFolder = { link = "Grey" },
+    NvimTreeRootFolder = syntax_entry(palette.green, palette.bg1, { styles.bold }),
     NvimTreeFolderIcon = { link = "Orange" },
     NvimTreeEmptyFolderName = { link = "Green" },
     NvimTreeOpenedFolderName = { link = "Green" },
@@ -1628,7 +1653,8 @@ highlights.generate_syntax = function(palette, options)
     NvimTreeLspDiagnosticsHint = { link = "GreenSign" },
 
     -- nvim-neo-tree/neo-tree.nvim
-    NeoTreeDirectoryIcon = { link = "Orange" },
+    NeoTreeNormal = syntax_entry(palette.fg, palette.bg1),
+    NeoTreeDirectoryIcon = { link = "Green" },
     NeoTreeGitAdded = { link = "Green" },
     NeoTreeGitConflict = { link = "Yellow" },
     NeoTreeGitDeleted = { link = "Red" },
@@ -1639,9 +1665,9 @@ highlights.generate_syntax = function(palette, options)
     NeoTreeGitStaged = { link = "Purple" },
     NeoTreeDimText = { link = "Grey" },
     NeoTreeIndentMarker = { link = "NonText" },
-    NeoTreeNormalNC = { link = "NeoTreeNormal" },
+    NeoTreeNormalNC = syntax_entry(palette.fg, palette.bg0),
     NeoTreeSignColumn = { link = "NeoTreeNormal" },
-    NeoTreeRootName = { link = "Title" },
+    NeoTreeRootName = syntax_entry(palette.green, palette.bg1, { styles.bold }),
 
     -- https://github.com/lambdalisue/fern.vim
     FernMarkedLine = { link = "Purple" },
