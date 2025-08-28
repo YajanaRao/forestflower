@@ -1218,11 +1218,11 @@ highlights.generate_syntax = function(palette, options)
     FzfLuaBorder = syntax_entry(palette.none, palette.none),
 
     -- folke/snacks.nvim {{{
-    SnacksPicker = syntax_entry(palette.fg, palette.bg1),
-    SnacksPickerBorder = { link = "FloatBorder" },
-    SnacksPickerTitle = syntax_entry(palette.green, palette.bg1, { styles.bold }),
+    SnacksPicker = syntax_entry(palette.fg, palette.bg0),
+    SnacksPickerBorder = syntax_entry(palette.none, palette.none),
+    SnacksPickerTitle = syntax_entry(palette.green, palette.none, { styles.bold }),
     SnacksPickerFooter = { link = "SnacksPickerTitle" },
-    SnacksPickerPrompt = syntax_entry(palette.fg, palette.bg1),
+    SnacksPickerPrompt = syntax_entry(palette.fg, palette.bg0),
     SnacksPickerInputCursorLine = { link = "Normal" },
     SnacksPickerListCursorLine = { link = "DiffAdd" },
     SnacksPickerMatch = syntax_entry(palette.green, palette.none, { styles.bold }),
@@ -1231,8 +1231,8 @@ highlights.generate_syntax = function(palette, options)
     SnacksPickerBufFlags = { link = "Grey" },
     SnacksPickerSelected = { link = "Aqua" },
     SnacksPickerKeymapRhs = { link = "Grey" },
-    SnacksPickerPreviewBorder = { link = "FloatBorder" },
-    SnacksInputBorder = { link = "FloatBorder" },
+    SnacksPickerPreviewBorder = syntax_entry(palette.none, palette.none),
+    SnacksInputBorder = syntax_entry(palette.none, palette.none),
     -- }}}
 
     -- lewis6991/gitsigns.nvim
