@@ -123,8 +123,8 @@ highlights.generate_syntax = function(palette, options)
       sign_column_respecting_colour(palette.bg2)
     ),
     SignColumn = syntax_entry(palette.fg, sign_column_respecting_colour(palette.bg1)),
-     -- Make IncSearch readable on black without heavy fill
-     IncSearch = syntax_entry(palette.bg0, palette.yellow),
+    -- Make IncSearch readable on black without heavy fill
+    IncSearch = syntax_entry(palette.bg0, palette.yellow),
     Substitute = syntax_entry(palette.bg0, palette.yellow),
     LineNr = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
     LineNrAbove = syntax_entry(set_colour_based_on_ui_contrast(palette.bg5, palette.grey0), palette.none),
@@ -143,26 +143,22 @@ highlights.generate_syntax = function(palette, options)
       options.transparent_background_level > 0 and palette.none
         or ((options.float_style == "bright" and palette.bg1) or palette.bg0)
     ),
-     FloatTitle = syntax_entry(
-      palette.green,
-      palette.none,
-      { styles.bold }
-    ),
+    FloatTitle = syntax_entry(palette.green, palette.none, { styles.bold }),
     NormalNC = syntax_entry(
       palette.fg,
       transparency_respecting_colour((options.dim_inactive_windows and palette.bg_dim) or palette.bg0)
     ),
     Pmenu = syntax_entry(palette.fg, palette.bg1),
     PmenuSbar = syntax_entry(palette.none, palette.bg1),
-     -- Softer selection on black: subtle bg, green fg
-     PmenuSel = syntax_entry(palette.green, palette.bg2, { styles.bold }),
+    -- Softer selection on black: subtle bg, green fg
+    PmenuSel = syntax_entry(palette.green, palette.bg2, { styles.bold }),
     PmenuThumb = syntax_entry(palette.none, palette.grey1),
     Question = syntax_entry(palette.yellow, palette.none),
     QuickFixLine = syntax_entry(palette.green, palette.bg1, { styles.bold }),
     -- Location list enhancement
     LocList = syntax_entry(palette.fg, palette.bg1),
-     -- Softer search highlight: green text on tinted bg
-     Search = syntax_entry(palette.green, palette.bg2),
+    -- Softer search highlight: green text on tinted bg
+    Search = syntax_entry(palette.green, palette.bg2),
     SpecialKey = syntax_entry(palette.yellow, palette.none),
     SpellBad = syntax_entry(
       options.spell_foreground and palette.red or palette.none,
@@ -199,8 +195,8 @@ highlights.generate_syntax = function(palette, options)
       options.transparent_background_level == 2 and palette.none or palette.bg0
     ),
     TabLineSel = syntax_entry(palette.bg0, palette.green, { styles.bold }),
-     -- Titles: keep text-only, no bars
-     Title = syntax_entry(palette.orange, palette.none, { styles.bold }),
+    -- Titles: keep text-only, no bars
+    Title = syntax_entry(palette.orange, palette.none, { styles.bold }),
     Visual = syntax_entry(palette.none, palette.bg_visual),
     VisualNOS = syntax_entry(palette.none, palette.bg_visual),
     WarningMsg = syntax_entry(palette.yellow, palette.none, { styles.bold }),
@@ -461,10 +457,10 @@ highlights.generate_syntax = function(palette, options)
     TSEmphasis = syntax_entry(palette.none, palette.none, { styles.italic }),
     TSUnderline = syntax_entry(palette.none, palette.none, { styles.underline }),
     TSStrike = syntax_entry(palette.none, palette.none, { styles.strikethrough }),
-     -- Avoid solid accent bars; use subtle tint
-     TSNote = syntax_entry(palette.green, palette.bg2, { styles.bold }),
-     TSWarning = syntax_entry(palette.yellow, palette.bg2, { styles.bold }),
-     TSDanger = syntax_entry(palette.red, palette.bg2, { styles.bold }),
+    -- Avoid solid accent bars; use subtle tint
+    TSNote = syntax_entry(palette.green, palette.bg2, { styles.bold }),
+    TSWarning = syntax_entry(palette.yellow, palette.bg2, { styles.bold }),
+    TSDanger = syntax_entry(palette.red, palette.bg2, { styles.bold }),
     TSAnnotation = { link = "Purple" },
     TSAttribute = { link = "Purple" },
     TSBoolean = { link = "Purple" },
@@ -1218,7 +1214,7 @@ highlights.generate_syntax = function(palette, options)
     TelescopeMatching = syntax_entry(palette.green, palette.none, { styles.bold }),
     TelescopeBorder = { link = "FloatBorder" },
     TelescopePromptPrefix = { link = "Green" },
-     TelescopeSelection = syntax_entry(palette.green, palette.bg2, { styles.bold }),
+    TelescopeSelection = syntax_entry(palette.green, palette.bg2, { styles.bold }),
     TelescopeNormal = syntax_entry(palette.fg, palette.bg1),
     TelescopePromptNormal = syntax_entry(palette.fg, palette.bg1),
     TelescopeResultsNormal = syntax_entry(palette.fg, palette.bg0),
@@ -1423,16 +1419,16 @@ highlights.generate_syntax = function(palette, options)
     -- Side panel backgrounds (minimal difference)
     SidePanel = syntax_entry(palette.fg, palette.bg1),
     SidePanelNC = syntax_entry(palette.grey1, palette.bg0),
-    
-    -- Terminal panels with dark backgrounds  
+
+    -- Terminal panels with dark backgrounds
     TerminalPanel = syntax_entry(palette.fg, palette.bg0),
-    
+
     -- Bottom panel separation (subtle)
     BottomPanel = syntax_entry(palette.fg, palette.bg1),
-    
+
     -- Enhanced borders for section separation (green, no bold)
     PanelBorder = syntax_entry(palette.green, palette.none),
-    
+
     -- echasnovski/mini.nvim
     MiniAnimateCursor = syntax_entry(palette.none, palette.none, { styles.reverse, styles.nocombine }),
     MiniFilesFile = syntax_entry(palette.fg, palette.none),
@@ -1897,8 +1893,8 @@ highlights.generate_syntax = function(palette, options)
     markdownH1 = syntax_entry(palette.red, palette.none, { styles.bold }),
     markdownH2 = syntax_entry(palette.orange, palette.none, { styles.bold }),
     markdownH3 = syntax_entry(palette.yellow, palette.none, { styles.bold }),
-     -- Markdown: text-only headings, no background blocks
-     markdownH4 = syntax_entry(palette.green, palette.none, { styles.bold }),
+    -- Markdown: text-only headings, no background blocks
+    markdownH4 = syntax_entry(palette.green, palette.none, { styles.bold }),
     markdownH5 = syntax_entry(palette.blue, palette.none, { styles.bold }),
     markdownH6 = syntax_entry(palette.purple, palette.none, { styles.bold }),
     markdownUrl = { link = "TSURI" },
@@ -2293,7 +2289,8 @@ highlights.generate_syntax = function(palette, options)
   syntax["AvanteConfirmTitle"] = syntax_entry(palette.bg0, palette.red, { styles.bold })
   syntax["AvanteSidebarNormal"] = { link = "NormalFloat" }
   syntax["AvanteSidebarWinSeparator"] = { link = "WinSeparator" }
-  syntax["AvanteSidebarWinHorizontalSeparator"] = syntax_entry(palette.grey0, transparency_respecting_colour(palette.bg1))
+  syntax["AvanteSidebarWinHorizontalSeparator"] =
+    syntax_entry(palette.grey0, transparency_respecting_colour(palette.bg1))
   syntax["AvanteReversedNormal"] = syntax_entry(transparency_respecting_colour(palette.bg0), palette.fg)
   syntax["AvanteCommentFg"] = { link = "Comment" }
   syntax["AvanteStateSpinnerGenerating"] = syntax_entry(palette.bg0, palette.purple)
