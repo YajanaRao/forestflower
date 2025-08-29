@@ -39,18 +39,18 @@ local M = {}
 ---@type PaletteBackgrounds
 local hard_background = {
   night = {
-    bg_dim = "#1e2326",
-    bg0 = "#050505",
-    bg1 = "#2e383c",
-    bg2 = "#374145",
-    bg3 = "#414b50",
-    bg4 = "#495156",
-    bg5 = "#4f5b58",
     bg_visual = "#45475a",
     bg_red = "#493b40",
     bg_green = "#3c4841",
     bg_blue = "#384b55",
     bg_yellow = "#45443c",
+    bg_dim = "#000000",
+    bg0 = "#0a0a0a",
+    bg1 = "#111111",
+    bg2 = "#151515",
+    bg3 = "#1a1a1a",
+    bg4 = "#1f1f1f",
+    bg5 = "#242424",
   },
   day = {
     bg_dim = "#f2efdf",
