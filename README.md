@@ -1,7 +1,6 @@
-# 🪷 Forest Flower 
+# 🪷 Forestflower
 
-A Lua port of the [everforest](https://github.com/sainnhe/everforest) colour
-scheme with customization.
+A Lua theme inspired by Everforest with opinionated tweaks and customization.
 
 <img width="1920" height="1052" alt="Dark Theme" src="https://github.com/user-attachments/assets/ad4a67e8-75ce-4af1-856f-76e0d7a20887" />
 
@@ -11,22 +10,24 @@ _All screenshots taken from [my personal config](https://github.com/YajanaRao/ki
 ## Features
 
 - 100% Lua, supports Treesitter & LSP
-- Vim terminal colours
-- **Lualine** theme
+- Vim terminal colours (termguicolors-aware)
+- **Lualine** theme included (`lualine/themes/forestflower.lua`)
 
 ## Installation
+
+Forestflower requires Neovim 0.8+ and termguicolors enabled.
 
 Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 require("lazy").setup({
-  "neanias/everforest-nvim",
+  "YajanaRao/forestflower",
   version = false,
   lazy = false,
   priority = 1000, -- make sure to load this before all the other start plugins
   -- Optional; default configuration will be used if setup isn't called.
   config = function()
-    require("everforest").setup({
+require("forestflower").setup({
       -- Your config here
     })
   end,
@@ -39,24 +40,24 @@ require("lazy").setup({
 " In VimL
 
 " This has both light & dark modes to match your background setting.
-colorscheme everforest
+colorscheme forestflower
 ```
 
 ```lua
 -- In Lua
-vim.cmd([[colorscheme everforest]])
+vim.cmd([[colorscheme forestflower]])
 
 -- Alternatively
-require("everforest").load()
+require("forestflower").load()
 ```
 
-To enable the everforest theme for LuaLine, you can specify it as such:
+To enable the forestflower theme for Lualine, you can specify it as such:
 
 ```lua
 require("lualine").setup({
   options = {
     -- ... other configuration
-    theme = "everforest", -- Can also be "auto" to detect automatically.
+    theme = "forestflower", -- Can also be "auto" to detect automatically.
   }
 })
 ```
@@ -74,8 +75,7 @@ please set the `diagnostic.border_follow` configuration option to `false`.**
 
 ## Configuration
 
-> Configuration options aren't as comprehensive as the original everforest
-> theme yet.
+> Configuration options are evolving; parity with Everforest is not the goal.
 
 This colour scheme has a light and a dark mode which are configured using the
 vim background setting: `:set background=light` or `vim.o.background=dark` as
@@ -85,7 +85,7 @@ appropriate.
     <summary>The default configuration used by the colour scheme</summary>
 
 ```lua
-require("everforest").setup({
+require("forestflower").setup({
   ---Controls the "hardness" of the background. Options are "soft", "medium" or "hard".
   ---Default is "medium".
   background = "medium",
@@ -159,13 +159,13 @@ require("everforest").setup({
 
 ## Overriding Highlight Groups
 
-To find all possible palette colours, please see [`colours.lua`](lua/everforest/colours.lua).
+To find all possible palette colours, please see [`colours.lua`](lua/forestflower/colours.lua).
 
 For example, you could override the Diagnostic group of highlights to remove
 the undercurl:
 
 ```lua
-require("everforest").setup({
+require("forestflower").setup({
   on_highlights = function(hl, palette)
     hl.DiagnosticError = { fg = palette.none, bg = palette.none, sp = palette.red }
     hl.DiagnosticWarn = { fg = palette.none, bg = palette.none, sp = palette.yellow }
@@ -183,7 +183,7 @@ highlights.
 Here's an example of adding a **bold** styling to the `TSBoolean` highlight group:
 
 ```lua
-require("everforest").setup({
+require("forestflower").setup({
   on_highlights = function(hl, palette)
     -- The default highlights for TSBoolean is linked to `Purple` which is fg
     -- purple and bg none. If we want to just add a bold style to the existing,
@@ -197,7 +197,7 @@ require("everforest").setup({
 To clear any highlight groups, simply set them to `{}`:
 
 ```lua
-require("everforest").setup({
+require("forestflower").setup({
   on_highlights = function(hl, palette)
     hl.TSDanger = {}
   end,
@@ -206,16 +206,17 @@ require("everforest").setup({
 
 ## Overriding colours in the palette
 
-To find the existing palette colours, please see [`colours.lua`](lua/everforest/colours.lua).
+To find the existing palette colours, please see [`colours.lua`](lua/forestflower/colours.lua).
 
 For instance, if you use a dark background and want to use a darker hue for red,
 you could use the following configuration:
 
 ```lua
-require("everforest").setup({
-  colours_override = function (palette)
-    palette.red = "#b86466"
-  end
+require("forestflower").setup({
+  -- example options
+  background = "medium",
+  transparent_background_level = 0,
+  italics = false,
 })
 ```
 
@@ -269,7 +270,7 @@ require("everforest").setup({
 - [vim-sneak](https://github.com/justinmk/vim-sneak)
 - [yanky.nvim](https://github.com/gbprod/yanky.nvim)
 
-See [the wiki](https://github.com/neanias/everforest-nvim/wiki) for the full
+See the highlights in source (lua/forestflower/highlights.lua) and PRs/issues for coverage.
 list of plugins that have highlights.
 
 ## Still TODO
