@@ -30,4 +30,18 @@ util.load = function(generated_syntax)
   util.generate_highlights(generated_syntax)
 end
 
+---Resolve a semantic colour name to an actual palette hex.
+---Falls back to palette.fg if mapping missing.
+---@param palette table
+---@param semantic table
+---@param role string
+---@return string
+function util.semantic_colour(palette, semantic, role)
+  local hue_key = semantic[role]
+  if hue_key and palette[hue_key] then
+    return palette[hue_key]
+  end
+  return palette.fg
+end
+
 return util
