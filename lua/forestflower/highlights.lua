@@ -1,6 +1,7 @@
 local highlights = {}
 
 local ColourUtility = require("forestflower.colour_utility")
+local colour_util = require("forestflower.util")
 
 ---@enum Styles
 local styles = {
@@ -43,9 +44,14 @@ end
 
 ---Generates the various highlight groups for this colour scheme to be used by Neovim.
 ---@param palette Palette
+---@param semantic table
 ---@param options Config
 ---@return Highlights
 highlights.generate_syntax = function(palette, options)
+  local semantic = require("forestflower.colours").semantic
+  local function sc(role)
+    return colour_util.semantic_colour(palette, semantic, role)
+  end
   -- Comments are italic by default
   local comment_italics = options.disable_italic_comments and {} or { styles.italic }
   -- All other italics are disabled by default
@@ -232,6 +238,7 @@ highlights.generate_syntax = function(palette, options)
     DiagnosticFloatingWarn = { link = "WarningFloat" },
     DiagnosticFloatingInfo = { link = "InfoFloat" },
     DiagnosticFloatingHint = { link = "HintFloat" },
+    DiagnosticFloatingOk = { link = "OkFloat" },
     DiagnosticError = syntax_entry(palette.red, options.diagnostic_text_highlight and palette.bg_red or palette.none),
     DiagnosticWarn = syntax_entry(
       palette.yellow,
@@ -239,14 +246,22 @@ highlights.generate_syntax = function(palette, options)
     ),
     DiagnosticInfo = syntax_entry(palette.blue, options.diagnostic_text_highlight and palette.bg_blue or palette.none),
     DiagnosticHint = syntax_entry(
-      palette.green,
-      options.diagnostic_text_highlight and palette.bg_green or palette.none
+      palette.purple,
+      options.diagnostic_text_highlight and palette.bg_purple or palette.none
     ),
+    DiagnosticOk = syntax_entry(palette.green, options.diagnostic_text_highlight and palette.bg_green or palette.none),
     DiagnosticUnnecessary = syntax_entry(palette.grey1, palette.none),
+    DiagnosticDeprecated = syntax_entry(palette.none, palette.none, { styles.strikethrough }, palette.fg),
     DiagnosticVirtualTextError = { link = "VirtualTextError" },
     DiagnosticVirtualTextWarn = { link = "VirtualTextWarning" },
     DiagnosticVirtualTextInfo = { link = "VirtualTextInfo" },
     DiagnosticVirtualTextHint = { link = "VirtualTextHint" },
+    DiagnosticUnderlineOk = syntax_entry(
+      palette.none,
+      options.diagnostic_text_highlight and palette.bg_green or palette.none,
+      { styles.undercurl },
+      palette.green
+    ),
     DiagnosticUnderlineError = syntax_entry(
       palette.red,
       options.diagnostic_text_highlight and palette.bg_red or palette.none,
@@ -274,7 +289,8 @@ highlights.generate_syntax = function(palette, options)
     DiagnosticSignError = { link = "RedSign" },
     DiagnosticSignWarn = { link = "YellowSign" },
     DiagnosticSignInfo = { link = "BlueSign" },
-    DiagnosticSignHint = { link = "GreenSign" },
+    DiagnosticSignHint = { link = "PurpleSign" },
+    DiagnosticSignOk = { link = "GreenSign" },
 
     -- LSP colours
     LspDiagnosticsFloatingError = { link = "DiagnosticFloatingError" },
@@ -309,37 +325,37 @@ highlights.generate_syntax = function(palette, options)
     healthWarning = { link = "Yellow" },
 
     Boolean = syntax_entry(palette.purple, palette.none),
-    Number = syntax_entry(palette.purple, palette.none),
-    Float = syntax_entry(palette.purple, palette.none),
+    Number = syntax_entry(sc("number"), palette.none),
+    Float = syntax_entry(sc("number"), palette.none),
 
-    PreProc = syntax_entry(palette.purple, palette.none, optional_italics),
-    PreCondit = syntax_entry(palette.purple, palette.none, optional_italics),
-    Include = syntax_entry(palette.purple, palette.none, optional_italics),
-    Define = syntax_entry(palette.purple, palette.none, optional_italics),
-    Conditional = syntax_entry(palette.red, palette.none, optional_italics),
-    Repeat = syntax_entry(palette.red, palette.none, optional_italics),
-    Keyword = syntax_entry(palette.red, palette.none, optional_italics),
-    Typedef = syntax_entry(palette.red, palette.none, optional_italics),
-    Exception = syntax_entry(palette.red, palette.none, optional_italics),
-    Statement = syntax_entry(palette.red, palette.none, optional_italics),
+    PreProc = syntax_entry(sc("decorator"), palette.none, optional_italics),
+    PreCondit = syntax_entry(sc("decorator"), palette.none, optional_italics),
+    Include = syntax_entry(sc("decorator"), palette.none, optional_italics),
+    Define = syntax_entry(sc("decorator"), palette.none, optional_italics),
+    Conditional = syntax_entry(sc("keyword"), palette.none, optional_italics),
+    Repeat = syntax_entry(sc("keyword"), palette.none, optional_italics),
+    Keyword = syntax_entry(sc("keyword"), palette.none, optional_italics),
+    Typedef = syntax_entry(sc("type"), palette.none, optional_italics),
+    Exception = syntax_entry(sc("keyword"), palette.none, optional_italics),
+    Statement = syntax_entry(sc("keyword"), palette.none, optional_italics),
 
     Error = syntax_entry(palette.red, palette.none),
-    StorageClass = syntax_entry(palette.orange, palette.none),
-    Tag = syntax_entry(palette.orange, palette.none),
-    Label = syntax_entry(palette.orange, palette.none),
-    Structure = syntax_entry(palette.orange, palette.none),
-    Operator = syntax_entry(palette.orange, palette.none),
-    Special = syntax_entry(palette.yellow, palette.none),
-    SpecialChar = syntax_entry(palette.yellow, palette.none),
-    Type = syntax_entry(palette.yellow, palette.none),
-    Function = syntax_entry(palette.green, palette.none),
-    String = syntax_entry(palette.green, palette.none),
-    Character = syntax_entry(palette.green, palette.none),
-    Constant = syntax_entry(palette.aqua, palette.none),
-    Macro = syntax_entry(palette.aqua, palette.none),
-    Identifier = syntax_entry(palette.blue, palette.none),
+    StorageClass = syntax_entry(sc("type"), palette.none),
+    Tag = syntax_entry(sc("decorator"), palette.none),
+    Label = syntax_entry(sc("keyword"), palette.none),
+    Structure = syntax_entry(sc("type"), palette.none),
+    Operator = syntax_entry(sc("operator"), palette.none),
+    Special = syntax_entry(sc("constant"), palette.none),
+    SpecialChar = syntax_entry(sc("constant"), palette.none),
+    Type = syntax_entry(sc("type"), palette.none),
+    Function = syntax_entry(sc("func"), palette.none), -- func -> aqua now
+    String = syntax_entry(sc("string"), palette.none),
+    Character = syntax_entry(sc("string"), palette.none),
+    Constant = syntax_entry(sc("constant"), palette.none),
+    Macro = syntax_entry(sc("decorator"), palette.none),
+    Identifier = syntax_entry(palette.fg, palette.none),
 
-    Comment = syntax_entry(palette.grey1, palette.none, comment_italics),
+    Comment = syntax_entry(palette.grey1, palette.none, comment_italics), -- could map to semantic later
     SpecialComment = syntax_entry(palette.grey1, palette.none, comment_italics),
     Todo = syntax_entry(palette.bg0, palette.blue, { styles.bold }),
 
@@ -409,25 +425,27 @@ highlights.generate_syntax = function(palette, options)
       palette.none,
       options.diagnostic_text_highlight and palette.bg_green or palette.none,
       { styles.undercurl },
-      palette.green
+      palette.purple
     ),
 
     ErrorLine = options.diagnostic_line_highlight and syntax_entry(palette.none, palette.bg_red) or {},
     WarningLine = options.diagnostic_line_highlight and syntax_entry(palette.none, palette.bg_yellow) or {},
     InfoLine = options.diagnostic_line_highlight and syntax_entry(palette.none, palette.bg_blue) or {},
-    HintLine = options.diagnostic_line_highlight and syntax_entry(palette.none, palette.bg_green) or {},
+    HintLine = options.diagnostic_line_highlight and syntax_entry(palette.none, palette.bg_purple) or {},
 
     -- Configuration based on `diagnostic_virtual_text` option
     VirtualTextWarning = { link = options.diagnostic_virtual_text == "grey" and "Grey" or "Yellow" },
     VirtualTextError = { link = options.diagnostic_virtual_text == "grey" and "Grey" or "Red" },
     VirtualTextInfo = { link = options.diagnostic_virtual_text == "grey" and "Grey" or "Blue" },
-    VirtualTextHint = { link = options.diagnostic_virtual_text == "grey" and "Grey" or "Green" },
+    VirtualTextHint = { link = options.diagnostic_virtual_text == "grey" and "Grey" or "Purple" },
+    VirtualTextOk = { link = options.diagnostic_virtual_text == "grey" and "Grey" or "Green" },
 
     -- Diagnostic text inherits the background of the floating window, which is Neovim's default.
     ErrorFloat = syntax_entry(palette.red, palette.none),
     WarningFloat = syntax_entry(palette.yellow, palette.none),
     InfoFloat = syntax_entry(palette.blue, palette.none),
-    HintFloat = syntax_entry(palette.green, palette.none),
+    HintFloat = syntax_entry(palette.purple, palette.none),
+    OkFloat = syntax_entry(palette.green, palette.none),
     CurrentWord = syntax_entry(palette.none, palette.none, { styles.bold }),
 
     -- Git commit colours
@@ -461,7 +479,7 @@ highlights.generate_syntax = function(palette, options)
     TSNote = syntax_entry(palette.green, palette.bg2, { styles.bold }),
     TSWarning = syntax_entry(palette.yellow, palette.bg2, { styles.bold }),
     TSDanger = syntax_entry(palette.red, palette.bg2, { styles.bold }),
-    TSAnnotation = { link = "Purple" },
+    TSAnnotation = { link = "Purple" }, -- decorator semantic
     TSAttribute = { link = "Purple" },
     TSBoolean = { link = "Purple" },
     TSCharacter = { link = "Aqua" },
@@ -480,10 +498,10 @@ highlights.generate_syntax = function(palette, options)
     TSException = { link = "Red" },
     TSField = { link = "Blue" },
     TSFloat = { link = "Purple" },
-    TSFuncBuiltin = { link = "Green" },
-    TSFuncMacro = { link = "Green" },
-    TSFunction = { link = "Green" },
-    TSFunctionCall = { link = "Green" },
+    TSFuncBuiltin = { link = "Function" },
+    TSFuncMacro = { link = "Function" },
+    TSFunction = { link = "Function" },
+    TSFunctionCall = { link = "Function" },
     TSInclude = { link = "Red" },
     TSKeyword = { link = "RedItalic" },
     TSKeywordFunction = { link = "RedItalic" },
@@ -492,8 +510,8 @@ highlights.generate_syntax = function(palette, options)
     TSLabel = { link = "Orange" },
     TSLiteral = { link = "String" },
     TSMath = { link = "Blue" },
-    TSMethod = { link = "Green" },
-    TSMethodCall = { link = "Green" },
+    TSMethod = { link = "Function" },
+    TSMethodCall = { link = "Function" },
     TSModuleInfoGood = { link = "Green" },
     TSModuleInfoBad = { link = "Red" },
     TSNamespace = { link = "YellowItalic" },
@@ -510,7 +528,7 @@ highlights.generate_syntax = function(palette, options)
     TSRepeat = { link = "Red" },
     TSStorageClass = { link = "Orange" },
     TSStorageClassLifetime = { link = "Orange" },
-    TSString = { link = "Aqua" },
+    TSString = { link = "String" },
     TSStringEscape = { link = "Green" },
     TSStringRegex = { link = "Green" },
     TSStringSpecial = { link = "SpecialChar" },
@@ -591,7 +609,7 @@ highlights.generate_syntax = function(palette, options)
     ["@field"] = { link = "TSField" },
     ["@field.yaml"] = { link = "yamlTSField" },
     ["@float"] = { link = "TSFloat" },
-    ["@function"] = { link = "TSFunction" },
+    ["@function"] = { link = "Function" },
     ["@function.builtin"] = { link = "TSFuncBuiltin" },
     ["@function.call"] = { link = "TSFunctionCall" },
     ["@function.macro"] = { link = "TSFuncMacro" },
@@ -673,7 +691,7 @@ highlights.generate_syntax = function(palette, options)
     ["@storageclass"] = { link = "TSStorageClass" },
     ["@storageclass.lifetime"] = { link = "TSStorageClassLifetime" },
     ["@strike"] = { link = "TSStrike" },
-    ["@string"] = { link = "TSString" },
+    ["@string"] = { link = "String" },
     ["@string.escape"] = { link = "TSStringEscape" },
     ["@string.escape.json"] = { link = "jsonTSStringEscape" },
     ["@string.escape.yaml"] = { link = "yamlTSStringEscape" },
@@ -760,6 +778,7 @@ highlights.generate_syntax = function(palette, options)
     ["@lsp.type.typeAlias"] = { link = "@type.definition" },
     ["@lsp.type.typeParameter"] = { link = "@type.definition" },
     ["@lsp.type.variable"] = { link = "@variable" },
+    ["@lsp.type.variable.lua"] = syntax_entry(palette.none, palette.none),
     ["@lsp.typemod.class.defaultLibrary"] = { link = "@type.builtin" },
     ["@lsp.typemod.enum.defaultLibrary"] = { link = "@type.builtin" },
     ["@lsp.typemod.enumMember.defaultLibrary"] = { link = "@constant.builtin" },
@@ -867,7 +886,7 @@ highlights.generate_syntax = function(palette, options)
     CocErrorSign = { link = "RedSign" },
     CocWarningSign = { link = "YellowSign" },
     CocInfoSign = { link = "BlueSign" },
-    CocHintSign = { link = "GreenSign" },
+    CocHintSign = { link = "PurpleSign" },
     CocWarningVirtualText = { link = "VirtualTextWarning" },
     CocErrorVirtualText = { link = "VirtualTextError" },
     CocInfoVirtualText = { link = "VirtualTextInfo" },
@@ -889,6 +908,7 @@ highlights.generate_syntax = function(palette, options)
     CocGitChangedSign = { link = "BlueSign" },
     CocGitRemovedSign = { link = "RedSign" },
     CocGitTopRemovedSign = { link = "RedSign" },
+    CocInlineVirtualText = { link = "Grey" },
     CocTreeOpenClose = { link = "Aqua" },
     CocTreeDescription = { link = "Grey" },
 
@@ -973,7 +993,7 @@ highlights.generate_syntax = function(palette, options)
     LspDiagSignErrorText = { link = "RedSign" },
     LspDiagSignWarningText = { link = "YellowSign" },
     LspDiagSignInfoText = { link = "BlueSign" },
-    LspDiagSignHintText = { link = "GreenSign" },
+    LspDiagSignHintText = { link = "PurpleSign" },
     LspDiagVirtualTextError = { link = "VirtualTextError" },
     LspDiagVirtualTextWarning = { link = "VirtualTextWarning" },
     LspDiagVirtualTextInfo = { link = "VirtualTextInfo" },
@@ -1311,18 +1331,18 @@ highlights.generate_syntax = function(palette, options)
     BufferInactiveMod = syntax_entry(palette.grey1, palette.bg_dim),
     BufferInactiveSign = syntax_entry(palette.grey0, palette.bg_dim),
     BufferInactiveTarget = syntax_entry(palette.yellow, palette.bg_dim, { styles.bold }),
-    BufferInactiveADDED = syntax_entry(palette.grey1, palette.bg_dim),
-    BufferInactiveCHANGED = syntax_entry(palette.grey1, palette.bg_dim),
-    BufferInactiveDELETED = syntax_entry(palette.grey1, palette.bg_dim),
+    BufferInactiveADDED = { link = "BufferInactiveSign" },
+    BufferInactiveCHANGED = { link = "BufferInactiveSign" },
+    BufferInactiveDELETED = { link = "BufferInactiveSign" },
     BufferInactiveERROR = syntax_entry(palette.grey1, palette.bg_dim),
     BufferInactiveHINT = syntax_entry(palette.grey1, palette.bg_dim),
     BufferInactiveINFO = syntax_entry(palette.grey1, palette.bg_dim),
     BufferInactiveWARN = syntax_entry(palette.grey1, palette.bg_dim),
     BufferTabpages = syntax_entry(palette.grey1, palette.bg_dim, { styles.bold }),
+    BufferTabpagesSep = syntax_entry(palette.grey0, palette.bg_dim, { styles.bold }),
     BufferTabpageFill = syntax_entry(palette.bg_dim, palette.bg_dim),
 
     BlinkCmpLabelMatch = syntax_entry(palette.green, palette.none, { styles.bold }),
-    BlinkCmpKind = { link = "Yellow" },
 
     -- SmiteshP/nvim-navic
     NavicIconsFile = syntax_entry(palette.fg, palette.none),
@@ -1336,7 +1356,7 @@ highlights.generate_syntax = function(palette, options)
     NavicIconsConstructor = syntax_entry(palette.orange, palette.none),
     NavicIconsEnum = syntax_entry(palette.orange, palette.none),
     NavicIconsInterface = syntax_entry(palette.orange, palette.none),
-    NavicIconsFunction = syntax_entry(palette.blue, palette.none),
+    NavicIconsFunction = syntax_entry(palette.aqua, palette.none),
     NavicIconsVariable = syntax_entry(palette.purple, palette.none),
     NavicIconsConstant = syntax_entry(palette.purple, palette.none),
     NavicIconsString = syntax_entry(palette.green, palette.none),
@@ -1659,7 +1679,7 @@ highlights.generate_syntax = function(palette, options)
     NvimTreeLspDiagnosticsError = { link = "RedSign" },
     NvimTreeLspDiagnosticsWarning = { link = "YellowSign" },
     NvimTreeLspDiagnosticsInformation = { link = "BlueSign" },
-    NvimTreeLspDiagnosticsHint = { link = "GreenSign" },
+    NvimTreeLspDiagnosticsHint = { link = "PurpleSign" },
 
     -- nvim-neo-tree/neo-tree.nvim
     NeoTreeNormal = syntax_entry(palette.fg, palette.bg1),
@@ -1855,7 +1875,7 @@ highlights.generate_syntax = function(palette, options)
     NoiceCompletionItemKindConstant = syntax_entry(palette.statusline3, palette.none),
     NoiceCompletionItemKindReference = syntax_entry(palette.statusline3, palette.none),
     NoiceCompletionItemKindValue = syntax_entry(palette.statusline3, palette.none),
-    NoiceCompletionItemKindFunction = syntax_entry(palette.blue, palette.none),
+    NoiceCompletionItemKindFunction = syntax_entry(palette.aqua, palette.none),
     NoiceCompletionItemKindMethod = syntax_entry(palette.blue, palette.none),
     NoiceCompletionItemKindConstructor = syntax_entry(palette.blue, palette.none),
     NoiceCompletionItemKindClass = syntax_entry(palette.orange, palette.none),
@@ -2039,7 +2059,7 @@ highlights.generate_syntax = function(palette, options)
     -- Lua
     luaBraces = { link = "Fg" },
     luaFunc = { link = "Green" },
-    luaFunction = { link = "Aqua" },
+    luaFunction = { link = "Function" },
     luaTable = { link = "Fg" },
     luaIn = { link = "RedItalic" },
 
@@ -2092,7 +2112,7 @@ highlights.generate_syntax = function(palette, options)
     phpVarSelector = { link = "Blue" },
     phpDefine = { link = "OrangeItalic" },
     phpStructure = { link = "RedItalic" },
-    phpSpecialFunction = { link = "Green" },
+    phpSpecialFunction = { link = "Function" },
     phpInterpSimpleCurly = { link = "Yellow" },
     phpComparison = { link = "Orange" },
     phpMethodsVar = { link = "Aqua" },
@@ -2150,21 +2170,21 @@ highlights.generate_syntax = function(palette, options)
     shVarAssign = { link = "Orange" },
     shCmdSubRegion = { link = "Green" },
     shCommandSub = { link = "Orange" },
-    shFunction = { link = "Green" },
+    shFunction = { link = "Function" },
     shFunctionKey = { link = "RedItalic" },
 
     -- ZSH
     zshOptStart = { link = "PurpleItalic" },
     zshOption = { link = "Blue" },
     zshSubst = { link = "Yellow" },
-    zshFunction = { link = "Green" },
+    zshFunction = { link = "Function" },
     zshDeref = { link = "Blue" },
     zshTypes = { link = "Orange" },
     zshVariableDef = { link = "Blue" },
 
     -- VimL
     vimLet = { link = "Orange" },
-    vimFunction = { link = "Green" },
+    vimFunction = { link = "Function" },
     vimIsCommand = { link = "Fg" },
     vimUserFunc = { link = "Green" },
     vimFuncName = { link = "Green" },

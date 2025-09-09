@@ -13,6 +13,7 @@ local M = {}
 ---@field bg_green string
 ---@field bg_blue string
 ---@field bg_yellow string
+---@field bg_purple string
 
 ---@class PaletteBase
 ---@field fg string
@@ -44,6 +45,7 @@ local hard_background = {
     bg_green = "#3c4841",
     bg_blue = "#384b55",
     bg_yellow = "#45443c",
+    bg_purple = "#463f48",
     bg_dim = "#000000",
     bg0 = "#0a0a0a",
     bg1 = "#111111",
@@ -61,11 +63,11 @@ local hard_background = {
     bg4 = "#e8e5d5",
     bg5 = "#bec5b2",
     bg_visual = "#dde5b6",
-    -- bg_visual = "#f0f2d4",
     bg_red = "#ffe7de",
     bg_green = "#f3f5d9",
     bg_blue = "#ecf5ed",
     bg_yellow = "#fef2d5",
+    bg_purple = "#fceced",
   },
 }
 
@@ -89,20 +91,21 @@ local base_palette = {
     none = "NONE",
   },
   night = {
-    fg = "#d3c6aa",
-    red = "#eb6f92",
-    orange = "#e69875",
-    yellow = "#f6c177",
-    green = "#a7c080",
-    aqua = "#83c092",
-    blue = "#7fbbb3",
-    purple = "#d699b6",
-    grey0 = "#7a8478",
-    grey1 = "#859289",
-    grey2 = "#9da9a0",
-    statusline1 = "#a6e3a1",
-    statusline2 = "#89b4fa",
-    statusline3 = "#e67e80",
+    -- Modern night palette (JOYFUL modern variant)
+    fg = "#d6d6d6",
+    red = "#e06464",      -- error / critical
+    orange = "#d9894d",   -- numbers / attrs
+    yellow = "#e1b86c",   -- constants / params
+    green = "#65b585",    -- functions / additions
+    aqua = "#5fc8ce",     -- types
+    blue = "#6fa4f6",     -- keywords / control
+    purple = "#c68ad5",   -- decorators / special
+    grey0 = "#707070",
+    grey1 = "#8a8a8a",
+    grey2 = "#b2b2b2",
+    statusline1 = "#65b585", -- ui accent 1
+    statusline2 = "#6fa4f6", -- ui accent 2
+    statusline3 = "#c68ad5", -- ui accent 3
     none = "NONE",
   },
 }
@@ -123,5 +126,23 @@ M.generate_palette = function(options, theme)
 
   return combined_palette
 end
+
+-- Semantic mapping (Option B): map syntax roles to palette hue keys
+-- This enables quick remapping without changing highlight definitions everywhere.
+M.semantic = {
+  keyword = "blue",
+  type = "aqua",
+  func = "aqua",   -- functions now aqua (was green)
+  string = "green", -- strings green (classic)
+  number = "orange",
+  constant = "yellow",
+  decorator = "purple",
+  parameter = "yellow",
+  operator = "orange",
+  error = "red",
+  warning = "yellow",
+  info = "blue",
+  hint = "purple",
+}
 
 return M
