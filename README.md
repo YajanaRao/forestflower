@@ -2,7 +2,7 @@
 
 A Lua theme inspired by Everforest with opinionated tweaks and customization.
 
-<img width="1920" height="1052" alt="Dark Theme" src="https://github.com/user-attachments/assets/ad4a67e8-75ce-4af1-856f-76e0d7a20887" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b3515995-0815-44f5-a71c-b4099a13c482" />
 
 
 _All screenshots taken from [my personal config](https://github.com/YajanaRao/kickstart.nvim)_
