@@ -1,4 +1,4 @@
-# Forest Flower
+# Forest Flower 💐
 
 A Lua port of the [everforest](https://github.com/sainnhe/everforest) colour
 scheme with customization.
