@@ -1,91 +1,56 @@
 # Forest Flower 🌺
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Neovim](https://img.shields.io/badge/Neovim-0.9+-green.svg)](https://neovim.io)
+[![Lua](https://img.shields.io/badge/Made%20with-Lua-blueviolet.svg)](https://lua.org)
+
 A nature-inspired Neovim colorscheme for mindful programming.
 
 **For developers who code in long sessions and value eye health, natural aesthetics, and conscious focus.**
 
 ---
 
-## Design Philosophy
+<img width="1918" height="1050" alt="Forest Flower colorscheme preview" src="https://github.com/user-attachments/assets/f4325305-5e9b-4688-aa4b-ae5995cd4b8e" />
 
-### Core Values
-
-**Mindful Focus**  
-Conscious attention, relaxed intensity, sustained presence. Colors that support deep work states without artificial stimulation.
-
-**Health-First**  
-Warm tones and moderate contrast reduce eye strain. Optimized for 8+ hour sessions - because your eyes matter more than trends.
-
-**Nature-Inspired**  
-Colors drawn from flowers, plants, twilight skies. Vibrant yet organic, distinct yet harmonious. Never synthetic or mechanical.
-
-**Timeless Simplicity**  
-Minimum visual noise, maximum clarity. Natural colors don't go out of style.
+_Screenshot taken from [my personal config](https://github.com/YajanaRao/kickstart.nvim)_
 
 ---
 
-## Color Architecture
+## ✨ Features
 
-### Palette Philosophy
-- **UI elements** = Environment (sky, earth, natural light)  
-- **Syntax tokens** = Flora (flower-inspired names for memorability)
+- 🎨 **Nature-inspired palette** - Warm, organic colors from flowers and twilight skies
+- 👁️ **Eye health optimized** - Moderate contrast for 8+ hour coding sessions
+- 🌓 **Day & Night variants** - Seamless theme switching with dedicated colorschemes
+- ⚛️ **Enhanced React/JSX/TSX** - Distinct colors for components, hooks, and attributes
+- 🎯 **Full LSP & Treesitter** - Modern syntax highlighting for all major languages
+- 🎨 **Lualine theme** - Matching statusline integration
+- 🔧 **Highly customizable** - Override colors, highlights, and behavior
+- 📦 **100% Lua** - Fast, lightweight, no dependencies
 
-### Structure
-- Warm golden undertones throughout (twilight-range temperature)
-- Distinct syntax colors for clarity (biodiversity principle)
-- Layered surfaces for depth (forest floor to canopy)
-- WCAG AA compliant for critical text
+## 🚀 Quick Start
 
-**Specific values:** See `lua/forestflower/core/colors.lua`
+**Minimal setup:**
 
----
+```lua
+vim.cmd.colorscheme("forestflower")
+```
 
-## Design Principles
+**With lazy.nvim (recommended):**
 
-**✅ Natural Colors Only**  
-Forest greens, sky blues, flower purples, sunset oranges, earth tones. No neon, electric, or corporate branding colors.
+```lua
+{
+  "YajanaRao/forestflower",
+  priority = 1000,
+  lazy = false,
+  config = function()
+    vim.cmd.colorscheme("forestflower")
+  end,
+}
+```
 
-**✅ Warm Over Cool**  
-Golden/amber undertones. Never cold, clinical, or harsh grayscale.
+That's it! For advanced configuration options, see the [Installation](#installation) section below.
 
-**✅ Sustainable Contrast**  
-Moderate contrast for 8+ hours without headaches. Health over "maximum pop."
-
-**✅ Timeless Over Trendy**  
-Resist UI fads. Nature-based palette designed for years, not months.
-
----
-
-## Brand Identity
-
-### What This Is
-A health-conscious, nature-inspired colorscheme for mindful programmers. Not for everyone - and that's intentional.
-
-### What This Is NOT
-- Maximum-contrast "productivity theater"
-- Trendy corporate aesthetics  
-- Chasing design fads
-- For quick context-switching or short sessions
-
-### Decision Framework
-Before changing colors, ask:
-1. **Natural?** Could this exist in nature?
-2. **Healthy?** Does it support 8+ hour sessions?
-3. **Mindful?** Calm focus or artificial stimulation?
-4. **Timeless?** Will this feel dated in 2 years?
-
-<img width="1918" height="1050" alt="image" src="https://github.com/user-attachments/assets/f4325305-5e9b-4688-aa4b-ae5995cd4b8e" />
-
-_All screenshots taken from [my personal config](https://github.com/YajanaRao/kickstart.nvim)_
-
-## Features
-
-- 100% Lua, supports Treesitter & LSP
-- Vim terminal colours
-- **Lualine** theme
-- **Enhanced React/JSX/TSX support** with distinct colors for components, attributes, and hooks
-
-## Installation
+## 📖 Installation
 
 Using [lazy.nvim](https://github.com/folke/lazy.nvim) (basic):
 
@@ -261,7 +226,74 @@ A: Use `:colorscheme forestflower-day` for the light theme or `:colorscheme fore
 Q: Soft background washed out with transparency?
 A: Try `transparent_background_level = 1` only, or move to `medium` hardness.
 
-## Inspiration
+---
+
+## 🎨 Design Philosophy
+
+### Core Values
+
+**Mindful Focus**  
+Conscious attention, relaxed intensity, sustained presence. Colors that support deep work states without artificial stimulation.
+
+**Health-First**  
+Warm tones and moderate contrast reduce eye strain. Optimized for 8+ hour sessions - because your eyes matter more than trends.
+
+**Nature-Inspired**  
+Colors drawn from flowers, plants, twilight skies. Vibrant yet organic, distinct yet harmonious. Never synthetic or mechanical.
+
+**Timeless Simplicity**  
+Minimum visual noise, maximum clarity. Natural colors don't go out of style.
+
+### Color Architecture
+
+**Palette Philosophy:**
+- **UI elements** = Environment (sky, earth, natural light)  
+- **Syntax tokens** = Flora (flower-inspired names for memorability)
+
+**Structure:**
+- Warm golden undertones throughout (twilight-range temperature)
+- Distinct syntax colors for clarity (biodiversity principle)
+- Layered surfaces for depth (forest floor to canopy)
+- WCAG AA compliant for critical text
+
+**Specific values:** See `lua/forestflower/core/colors.lua`
+
+### Design Principles
+
+**✅ Natural Colors Only**  
+Forest greens, sky blues, flower purples, sunset oranges, earth tones. No neon, electric, or corporate branding colors.
+
+**✅ Warm Over Cool**  
+Golden/amber undertones. Never cold, clinical, or harsh grayscale.
+
+**✅ Sustainable Contrast**  
+Moderate contrast for 8+ hours without headaches. Health over "maximum pop."
+
+**✅ Timeless Over Trendy**  
+Resist UI fads. Nature-based palette designed for years, not months.
+
+### What This Is
+
+A health-conscious, nature-inspired colorscheme for mindful programmers. Not for everyone - and that's intentional.
+
+### What This Is NOT
+
+- Maximum-contrast "productivity theater"
+- Trendy corporate aesthetics  
+- Chasing design fads
+- For quick context-switching or short sessions
+
+### Decision Framework
+
+Before changing colors, ask:
+1. **Natural?** Could this exist in nature?
+2. **Healthy?** Does it support 8+ hour sessions?
+3. **Mindful?** Calm focus or artificial stimulation?
+4. **Timeless?** Will this feel dated in 2 years?
+
+---
+
+## 💡 Inspiration
 
 - [everforest](https://github.com/sainnhe/everforest) (obviously)
 - [NeoSolarized.nvim](https://github.com/Tsuzat/NeoSolarized.nvim)
