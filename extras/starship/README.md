@@ -1,14 +1,16 @@
 # Forest Flower Starship Configuration
 
-A clean, minimal powerline prompt for Starship using Forest Flower colors.
+A clean, minimal powerline prompt for Starship using Forest Flower colors with a natural brightness gradient.
 
 ## Features
 
-- **Clean 5-segment design:** Username, directory, git, languages, and time
+- **Clean 4-segment design:** Directory, git, jobs, and languages
+- **Sunset Fade gradient:** Natural brightness descent from light to dark
 - **Smart language detection:** Only shows when language files are detected (avoids empty segments)
+- **Jobs indicator:** Shows background job count in a dedicated segment
 - **Proper powerline arrows:** Uses Nerd Font glyphs for smooth transitions
-- **Nature-inspired colors:** Hybrid hierarchical design using Forest Flower's semantic palette
-- **Visual hierarchy:** Forest (green) → Flower (pink) → Water (cyan) → Sunset (orange)
+- **Nature-inspired colors:** Warm palette flowing from bright to subtle
+- **Visual hierarchy:** Light Green → Light Pink → Sunset Orange → Dark Forest
 
 ## Installation
 
@@ -31,43 +33,71 @@ Or use the provided install script from the project root:
 
 ## Segments
 
-1. **Username** (forest green) - Your username - Forest Flower's primary brand color
-2. **Directory** (rose pink) - Current directory with icons
-3. **Git** (twilight cyan) - Branch and status
-4. **Languages** (sage green) - Detected language versions (when present)
-5. **Time** (sunset orange) - Current time with heart icon
+The prompt uses a **Sunset Fade** gradient - brightness descends naturally from light to dark:
+
+1. **Directory** (`#b4d494` - light green, 80% brightness) 🌿
+   - Current directory with smart path truncation
+   - Icon substitutions for common folders
+   - Forest Flower's primary brand color
+
+2. **Git** (`#d699b6` - light pink/rose, 70% brightness) 🌸
+   - Branch name with git icon
+   - Status indicators (staged, modified, etc.)
+   - Tertiary color for warm, delicate contrast
+
+3. **Jobs** (`#d9a85f` - sunset orange, 60% brightness) 🍯
+   - Background job count indicator
+   - Only appears when jobs are running (threshold: 1+)
+   - Warning color used functionally
+
+4. **Languages** (`#2d4d3a` - dark forest green, 30% brightness) 🌲
+   - Detected language versions (Node.js, Python, Rust, Go, Bun)
+   - Only shows when relevant project files detected
+   - Recedes to background, doesn't compete for attention
 
 ## Design Rationale
 
-The color scheme uses a **hybrid hierarchical approach** that balances brand identity with visual hierarchy:
+The **Sunset Fade** gradient creates a natural visual flow that mimics watching a sunset:
 
-- **Forest Green** (`#b4d494`) for username: Forest Flower's primary brand color, represents identity
-- **Rose Pink** (`#d699b6`) for directory: Tertiary color, warm and distinct context indicator
-- **Twilight Cyan** (`#7fbbb3`) for git: Secondary color, clear visual separation from directory
-- **Sage Green** (`#89b4a8`) for languages: Subtle metadata that appears only when relevant
-- **Sunset Orange** (`#d9a85f`) for time: Warm warning color, functional but not demanding
+- **Brightness descent:** Light → Light → Medium → Dark (no jarring jumps)
+- **Warm palette only:** All colors have warm undertones (no cool cyans interrupting)
+- **Information hierarchy:** Most important (directory) is brightest, metadata (languages) recedes
+- **Reading flow:** Follows left-to-right eye movement, ending in subtle darkness
+- **Nature-inspired:** Like forest floor to canopy, or twilight fading to dusk
 
-This creates a natural color flow: **Forest → Flower → Water → Sunset** - mimicking a day in nature.
+This aligns with Forest Flower's core philosophy of **mindful, health-first design** - the gradient is easy on the eyes during long coding sessions.
 
 ## Customization
 
-### Add Language Detection
+### Enable/Disable Jobs Indicator
 
-If you want to show programming language versions, add to the config:
+The jobs segment shows background job count:
 
 ```toml
-# Add to format string (after $git_status):
-$nodejs\
-[](fg:#d9a85f bg:#89b4a8)\
+[jobs]
+symbol = "✦"
+number_threshold = 1  # Show when 1+ jobs
+# Set to 2 to only show when 2+ jobs
+disabled = false  # Set true to hide completely
+```
+
+### Add More Language Detection
+
+The config includes Node.js, Python, Rust, Go, and Bun. Add more:
+
+```toml
+# Add to format string (in the language segment):
+$java\
+$ruby\
 
 # Add module configuration:
-[nodejs]
-symbol = ""
-style = "bg:#89b4a8 fg:#101010"
+[java]
+symbol = " "
+style = "bg:#2d4d3a fg:#b4d494"
 format = '[ $symbol ($version) ]($style)'
 ```
 
-Supported languages: `nodejs`, `python`, `rust`, `golang`, `java`, `ruby`, etc.
+Supported languages: `java`, `ruby`, `php`, `elixir`, `nim`, etc.
 
 ### Change Directory Icons
 
