@@ -1,34 +1,27 @@
 # Forest Flower Powerline Preset for Starship
 # Full version with language detection
 # Proper UTF-8 powerline arrows
+# Sunset Fade: Brightness gradient from light to dark
 
 format = """
 [](#b4d494)\
-$time\
-[](bg:#4d3d4a fg:#b4d494)\
 $directory\
-[](fg:#4d3d4a bg:#2d4d4a)\
+[](fg:#b4d494 bg:#d699b6)\
 $git_branch\
 $git_status\
-[](fg:#2d4d4a bg:#1e2326)\
+[](fg:#d699b6 bg:#d9a85f)\
+$jobs\
+[](fg:#d9a85f bg:#2d4d3a)\
 $bun\
 $nodejs\
 $python\
 $rust\
 $golang\
-[](fg:#1e2326)\
+[](fg:#2d4d3a)\
 """
 
-[time]
-# show_always = true
-style = "bg:#b4d494 fg:#101010"
-# style = "bg:#b4d494 fg:#f85552"
-format = '[ $time ]($style)'
-time_format = "%R"
-disabled = false
-
 [directory]
-style = "bg:#4d3d4a fg:#d699b6"
+style = "bg:#b4d494 fg:#101010"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -43,43 +36,43 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:#2d4d4a fg:#7fbbb3"
-format = '[$symbol $branch ]($style)'
+style = "bg:#d699b6 fg:#101010"
+format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#2d4d4a fg:#7fbbb3"
+style = "bg:#d699b6 fg:#101010"
 format = '[$all_status$ahead_behind ]($style)'
 
-# Language modules - show in sage segment when detected
+[jobs]
+symbol = "✦"
+style = "bg:#d9a85f fg:#101010"
+format = "[ $symbol $number ]($style)"
+number_threshold = 1
+
+# Language modules - show in dark forest segment when detected
 [bun]
-symbol = ""
-style = "bg:#1e2326 fg:#89b4a8"
-format = '[$symbol ($version) ]($style)'
+symbol = ""
+style = "bg:#2d4d3a fg:#b4d494"
+format = '[ $symbol ($version) ]($style)'
 detect_files = ['bun.lockb', 'bunfig.toml']
 
 [nodejs]
 symbol = "󰎙"
-style = "bg:#1e2326 fg:#89b4a8"
+style = "bg:#2d4d3a fg:#b4d494"
 format = '[ $symbol ($version) ]($style)'
 detect_files = ['package.json', '.node-version', '.nvmrc']
 
 [python]
 symbol = " "
-style = "bg:#1e2326 fg:#89b4a8"
-format = '[$symbol ($version) ]($style)'
+style = "bg:#2d4d3a fg:#b4d494"
+format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#1e2326 fg:#89b4a8"
-format = '[$symbol ($version) ]($style)'
+style = "bg:#2d4d3a fg:#b4d494"
+format = '[ $symbol ($version) ]($style)'
 
 [golang]
 symbol = " "
-style = "bg:#1e2326 fg:#89b4a8"
-format = '[$symbol ($version) ]($style)'
-
-# [time]
-# disabled = false
-# time_format = "%R"
-# style = "bg:#1e2326 fg:#d9a85f"
-# format = '[$time ]($style)'
+style = "bg:#2d4d3a fg:#b4d494"
+format = '[ $symbol ($version) ]($style)'
