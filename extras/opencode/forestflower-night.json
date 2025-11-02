@@ -81,12 +81,12 @@
   },
   "theme": {
     "primary": {
-      "dark": "blue",
-      "light": "blue"
+      "dark": "green1",
+      "light": "green1"
     },
     "secondary": {
-      "dark": "purple",
-      "light": "purple"
+      "dark": "blue",
+      "light": "blue"
     },
     "accent": {
       "dark": "orange",
@@ -117,8 +117,8 @@
       "light": "fg_dark"
     },
     "background": {
-      "dark": "bg",
-      "light": "bg"
+      "dark": "bg_dark",
+      "light": "bg_dark"
     },
     "backgroundPanel": {
       "dark": "bg_dark",

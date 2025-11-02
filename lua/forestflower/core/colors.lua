@@ -46,6 +46,7 @@
 ---@field on_surface_variant string
 ---@field outline string
 ---@field outline_variant string
+---@field terminal table<string, string>
 ---@field none string
 
 ---@class SyntaxTokens
@@ -117,6 +118,26 @@ M.palettes = {
     outline = "#3a3f47",
     outline_variant = "#3d4247",
 
+    -- Terminal colors (matches OpenCode theme)
+    terminal = {
+      black = "#3a3f47",
+      black_bright = "#6e6a86",
+      red = "#eb6f92",
+      red_bright = "#f85552",
+      green = "#a7c080",
+      green_bright = "#b4d494",
+      yellow = "#d9a85f",
+      yellow_bright = "#dfa97a",
+      blue = "#7fbbb3",
+      blue_bright = "#8fb4b3",
+      magenta = "#c4a7e7",
+      magenta_bright = "#d699b6",
+      cyan = "#7fbbb3",
+      cyan_bright = "#9ab8b5",
+      white = "#d3c6aa",
+      white_bright = "#e0def4",
+    },
+
     none = "NONE",
   },
   day = {
@@ -149,12 +170,32 @@ M.palettes = {
     on_background = "#2d3338",
     surface = "#f8f5e4",
     on_surface = "#2d3338",
-    surface_variant = "#edeada",
+    surface_variant = "#e8e5d0",
     on_surface_variant = "#5a5a5a",
 
     -- Borders & outlines
     outline = "#8a9199",
     outline_variant = "#b1bca3",
+
+    -- Terminal colors (matches OpenCode theme)
+    terminal = {
+      black = "#5a5a5a",
+      black_bright = "#9ca3af",
+      red = "#dc2626",
+      red_bright = "#f85552",
+      green = "#16a34a",
+      green_bright = "#8da101",
+      yellow = "#d97706",
+      yellow_bright = "#dfa000",
+      blue = "#5a9bb3",
+      blue_bright = "#0891b2",
+      magenta = "#7c3aed",
+      magenta_bright = "#df69ba",
+      cyan = "#0891b2",
+      cyan_bright = "#0891b2",
+      white = "#2d3338",
+      white_bright = "#374151",
+    },
 
     none = "NONE",
   },

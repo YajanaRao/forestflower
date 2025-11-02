@@ -5,7 +5,7 @@
     "bg_dark": "#f8f5e4",
     "bg_dark1": "#edeada",
     "bg_float": "#f8f5e4",
-    "bg_highlight": "#edeada",
+    "bg_highlight": "#e8e5d0",
     "bg_popup": "#f8f5e4",
     "bg_search": "#d5e8f5",
     "bg_sidebar": "#f8f5e4",
@@ -81,12 +81,12 @@
   },
   "theme": {
     "primary": {
-      "dark": "blue",
-      "light": "blue"
+      "dark": "green1",
+      "light": "green1"
     },
     "secondary": {
-      "dark": "purple",
-      "light": "purple"
+      "dark": "blue",
+      "light": "blue"
     },
     "accent": {
       "dark": "orange",
