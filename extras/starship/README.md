@@ -14,8 +14,15 @@ A clean, minimal powerline prompt for Starship using Forest Flower colors with a
 
 ## Installation
 
+### Night Theme (Dark)
 ```bash
 cp extras/starship/forestflower.toml ~/.config/starship.toml
+exec $SHELL
+```
+
+### Day Theme (Light)
+```bash
+cp extras/starship/forestflower-day.toml ~/.config/starship.toml
 exec $SHELL
 ```
 

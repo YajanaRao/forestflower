@@ -106,7 +106,7 @@ function M.build(config, background)
   end
   
   local ui = build_ui_roles(palette)
-  local syntax = colors.syntax
+  local syntax = colors.syntax[flavour]  -- Select flavour-specific syntax colors
   local ansi = build_ansi_roles(palette)
   
   

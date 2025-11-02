@@ -1,0 +1,78 @@
+# Forest Flower Day Powerline Preset for Starship
+# Full version with language detection
+# Proper UTF-8 powerline arrows
+# Sunrise Gradient: Light to warm tones
+
+format = """
+[](#8da101)\
+$directory\
+[](fg:#8da101 bg:#df69ba)\
+$git_branch\
+$git_status\
+[](fg:#df69ba bg:#dfa000)\
+$jobs\
+[](fg:#dfa000 bg:#e8f5d5)\
+$bun\
+$nodejs\
+$python\
+$rust\
+$golang\
+[](fg:#e8f5d5)\
+"""
+
+[directory]
+style = "bg:#8da101 fg:#fffbef"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = "󰇚 "
+"Music" = " "
+"Pictures" = " "
+"Code" = "󰨞 "
+"Developer" = "󰨞 "
+
+[git_branch]
+symbol = ""
+style = "bg:#df69ba fg:#fffbef"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "bg:#df69ba fg:#fffbef"
+format = '[$all_status$ahead_behind ]($style)'
+
+[jobs]
+symbol = "✦"
+style = "bg:#dfa000 fg:#fffbef"
+format = "[ $symbol $number ]($style)"
+number_threshold = 1
+
+# Language modules - show in light container segment when detected
+[bun]
+symbol = ""
+style = "bg:#e8f5d5 fg:#2d3338"
+format = '[ $symbol ($version) ]($style)'
+detect_files = ['bun.lockb', 'bunfig.toml']
+
+[nodejs]
+symbol = "󰎙"
+style = "bg:#e8f5d5 fg:#2d3338"
+format = '[ $symbol ($version) ]($style)'
+detect_files = ['package.json', '.node-version', '.nvmrc']
+
+[python]
+symbol = " "
+style = "bg:#e8f5d5 fg:#2d3338"
+format = '[ $symbol ($version) ]($style)'
+
+[rust]
+symbol = ""
+style = "bg:#e8f5d5 fg:#2d3338"
+format = '[ $symbol ($version) ]($style)'
+
+[golang]
+symbol = " "
+style = "bg:#e8f5d5 fg:#2d3338"
+format = '[ $symbol ($version) ]($style)'

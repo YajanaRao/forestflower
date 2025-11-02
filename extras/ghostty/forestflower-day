@@ -1,0 +1,30 @@
+# Forest Flower (Day) - Ghostty Theme
+# Source: lua/forestflower/core/colors.lua
+# Light theme with warm, natural tones
+
+# Base colors (ANSI 0-7)
+palette = 0=#edeada
+palette = 1=#f85552
+palette = 2=#8da101
+palette = 3=#dfa000
+palette = 4=#5a9bb3
+palette = 5=#df69ba
+palette = 6=#5a9bb3
+palette = 7=#2d3338
+
+# Bright colors (ANSI 8-15)
+palette = 8=#b1bca3
+palette = 9=#ff7a77
+palette = 10=#a8c080
+palette = 11=#f0c050
+palette = 12=#7fb8d9
+palette = 13=#f099d6
+palette = 14=#7fb8d9
+palette = 15=#2d3338
+
+# UI colors
+background = #fffbef
+foreground = #2d3338
+cursor-color = #8da101
+selection-background = #e8f5d5
+selection-foreground = #2d3338

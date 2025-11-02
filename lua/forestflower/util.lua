@@ -290,7 +290,7 @@ end
 function M.get_theme(options, theme)
   local palette = M.generate_palette(options, theme)
   local ui = M.build_ui_roles(palette)
-  local syntax = colors.syntax
+  local syntax = colors.syntax[theme]  -- Select flavour-specific syntax colors
   local ansi = M.build_ansi_roles(palette)
   if options.roles_override then
     options.roles_override(ui)

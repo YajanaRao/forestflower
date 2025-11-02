@@ -161,35 +161,64 @@ M.palettes = {
 }
 
 ---Syntax highlighting - Flora-inspired tokens
----Each color represents a natural element for memorability and distinctness
----Warm-shifted palette aligned with twilight/nature identity
+---Separate palettes for night (dark) and day (light) themes
 M.syntax = {
-  keyword = "#c4a7e7", -- Kurinji purple (distinctive bloom)
-  operator = "#8fb4b3", -- Warm sky blue (twilight sky, not electric)
-  ["function"] = "#d9a85f", -- Deep champak gold (warm, rich)
-  method = "#d9a85f", -- Deep champak gold
-  type = "#89b4a8", -- Warm sage (between sky and earth)
-  interface = "#89b4a8", -- Warm sage
-  enum = "#89b4a8", -- Warm sage
-  constant = "#ea9a97", -- Hibiscus coral (stands out)
-  number = "#ea9a97", -- Hibiscus coral
-  boolean = "#ea9a97", -- Hibiscus coral
-  string = "#a7c080", -- Forest green (foundational)
-  variable = "#e0def4", -- Jasmine white (soft, natural)
-  parameter = "#a8c9a8", -- Warm mint (fresh, green-leaning)
-  property = "#a8c4b8", -- Warm morning mist (subtle, clear)
-  field = "#e0def4", -- Jasmine white
-  namespace = "#e08856", -- Sunset orange (vibrant, distinct from gold)
-  comment = "#6e6a86", -- Twilight gray (present but receded)
-  punctuation = "#9ab8b5", -- Warm rain (connective, soft)
-  macro = "#dfa97a", -- Sunset orange (between gold and coral)
-  special = "#9ab8b5", -- Warm rain
-  todo = "#d9a85f", -- Deep champak gold (attention)
-  hint = "#9ab8b5", -- Warm rain
-  info = "#9ab8b5", -- Warm rain
-  warn = "#d9a85f", -- Deep champak gold
-  error = "#eb6f92", -- Rose red (alert)
-  jsx_component = "#dd7878", -- Coral (React component)
+  night = {
+    keyword = "#c4a7e7",      -- Kurinji purple (distinctive bloom)
+    operator = "#8fb4b3",     -- Warm sky blue (twilight sky)
+    ["function"] = "#d9a85f", -- Deep champak gold (warm, rich)
+    method = "#d9a85f",       -- Deep champak gold
+    type = "#89b4a8",         -- Warm sage (between sky and earth)
+    interface = "#89b4a8",    -- Warm sage
+    enum = "#89b4a8",         -- Warm sage
+    constant = "#ea9a97",     -- Hibiscus coral (stands out)
+    number = "#ea9a97",       -- Hibiscus coral
+    boolean = "#ea9a97",      -- Hibiscus coral
+    string = "#a7c080",       -- Forest green (foundational)
+    variable = "#e0def4",     -- Jasmine white (soft, natural)
+    parameter = "#a8c9a8",    -- Warm mint (fresh, green-leaning)
+    property = "#a8c4b8",     -- Warm morning mist (subtle, clear)
+    field = "#e0def4",        -- Jasmine white
+    namespace = "#e08856",    -- Sunset orange (vibrant, distinct)
+    comment = "#6e6a86",      -- Twilight gray (present but receded)
+    punctuation = "#9ab8b5",  -- Warm rain (connective, soft)
+    macro = "#dfa97a",        -- Sunset orange (between gold and coral)
+    special = "#9ab8b5",      -- Warm rain
+    todo = "#d9a85f",         -- Deep champak gold (attention)
+    hint = "#9ab8b5",         -- Warm rain
+    info = "#9ab8b5",         -- Warm rain
+    warn = "#d9a85f",         -- Deep champak gold
+    error = "#eb6f92",        -- Rose red (alert)
+    jsx_component = "#dd7878", -- Coral (React component)
+  },
+  day = {
+    keyword = "#7c3aed",      -- Deep purple (high contrast, distinctive)
+    operator = "#0891b2",     -- Cyan-700 (clear, functional)
+    ["function"] = "#d97706", -- Amber-600 (warm, inviting)
+    method = "#d97706",       -- Amber-600
+    type = "#059669",         -- Emerald-600 (stable, structural)
+    interface = "#059669",    -- Emerald-600
+    enum = "#059669",         -- Emerald-600
+    constant = "#dc2626",     -- Red-600 (stands out clearly)
+    number = "#dc2626",       -- Red-600
+    boolean = "#dc2626",      -- Red-600
+    string = "#16a34a",       -- Green-600 (natural, foundational)
+    variable = "#374151",     -- Gray-700 (readable, neutral)
+    parameter = "#059669",    -- Emerald-600 (fresh, clear)
+    property = "#0891b2",     -- Cyan-600 (distinct from variables)
+    field = "#374151",        -- Gray-700
+    namespace = "#ea580c",    -- Orange-600 (warm, distinct)
+    comment = "#9ca3af",      -- Gray-400 (subdued but readable)
+    punctuation = "#6b7280",  -- Gray-500 (present, connective)
+    macro = "#f59e0b",        -- Amber-500 (attention-getting)
+    special = "#0891b2",      -- Cyan-600
+    todo = "#d97706",         -- Amber-600 (attention)
+    hint = "#6b7280",         -- Gray-500
+    info = "#0891b2",         -- Cyan-600
+    warn = "#d97706",         -- Amber-600
+    error = "#dc2626",        -- Red-600 (alert, clear)
+    jsx_component = "#dc2626", -- Red-600 (React component, distinct)
+  },
 }
 
 return M
