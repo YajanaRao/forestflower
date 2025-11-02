@@ -10,7 +10,12 @@ A nature-inspired Neovim colorscheme for mindful programming.
 
 ---
 
+### Night Theme
 <img width="1918" height="1050" alt="Forest Flower colorscheme preview" src="https://github.com/user-attachments/assets/f4325305-5e9b-4688-aa4b-ae5995cd4b8e" />
+
+### Day Theme
+<img width="1470" height="928" alt="image" src="https://github.com/user-attachments/assets/522891f2-c358-4d1f-978b-443c8d5accca" />
+
 
 _Screenshot taken from [my personal config](https://github.com/YajanaRao/kickstart.nvim)_
 
