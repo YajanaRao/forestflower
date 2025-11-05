@@ -179,8 +179,7 @@ end
 
 ---Load the colorscheme
 ---@param generated_syntax Highlights Generated highlight groups
----@param ansi table ANSI color mappings (kept for API compatibility)
-function M.load(generated_syntax, ansi)
+function M.load(generated_syntax)
   if vim.g.colors_name then
     vim.cmd([[highlight clear]])
   end
@@ -255,50 +254,6 @@ function M.build_ui_roles(p)
   }
 
   return ui
-end
-
--- Removed build_syntax_roles - was dead code that returned unused 'syntax' variable
--- Actual syntax colors come from colours.lua and are used via colors.syntax
-
----Build ANSI color mappings from palette
----@param p MaterialTokens Color palette
----@return table ANSI color mappings
-function M.build_ansi_roles(p)
-  return {
-    black = p.surface_variant,
-    red = p.error,
-    green = p.success,
-    yellow = p.warning,
-    blue = p.info,
-    magenta = p.tertiary,
-    cyan = p.secondary,
-    white = p.on_surface,
-  }
-end
-
----@class ForestflowerTheme
----@field palette MaterialTokens
----@field ui table
----@field syntax table
----@field status MaterialTokens
----@field ansi table
-
----Generate complete theme from configuration
----@param options Config Configuration options
----@param theme string Theme name ("day" or "night")
----@return ForestflowerTheme Complete theme object
-function M.get_theme(options, theme)
-  local palette = M.generate_palette(options, theme)
-  local ui = M.build_ui_roles(palette)
-  local syntax = colors.syntax[theme]  -- Select flavour-specific syntax colors
-  local ansi = M.build_ansi_roles(palette)
-  if options.roles_override then
-    options.roles_override(ui)
-  end
-  if options.syntax_override then
-    options.syntax_override(syntax)
-  end
-  return { palette = palette, ui = ui, syntax = syntax, status = palette, ansi = ansi }
 end
 
 return M

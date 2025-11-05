@@ -67,3 +67,18 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Personal development scripts
+install-configs.sh
+update-opencode-themes.sh
+clear-nvim-cache.sh
+
+# Temporary/backup files
+*.bak
+*_new.lua
+FIX_*.md
+README_CHANGES.md
+README_PREVIEW.md
+
+# OpenCode config (personal)
+.opencode/

@@ -4,43 +4,36 @@
 [![Neovim](https://img.shields.io/badge/Neovim-0.9+-green.svg)](https://neovim.io)
 [![Lua](https://img.shields.io/badge/Made%20with-Lua-blueviolet.svg)](https://lua.org)
 
-A nature-inspired Neovim colorscheme for mindful programming.
+A nature-inspired Neovim colorscheme for mindful programming. Warm, eye-friendly colors optimized for long coding sessions with automatic light/dark mode detection.
 
-**For developers who code in long sessions and value eye health, natural aesthetics, and conscious focus.**
-
----
+<div align="center">
 
 ### Night Theme
-<img width="1918" height="1050" alt="Forest Flower colorscheme preview" src="https://github.com/user-attachments/assets/f4325305-5e9b-4688-aa4b-ae5995cd4b8e" />
+<img width="1918" alt="Forest Flower night theme" src="https://github.com/user-attachments/assets/f4325305-5e9b-4688-aa4b-ae5995cd4b8e" />
 
 ### Day Theme
-<img width="1470" height="928" alt="image" src="https://github.com/user-attachments/assets/522891f2-c358-4d1f-978b-443c8d5accca" />
+<img width="1470" alt="Forest Flower day theme" src="https://github.com/user-attachments/assets/522891f2-c358-4d1f-978b-443c8d5accca" />
 
-
-_Screenshot taken from [my personal config](https://github.com/YajanaRao/kickstart.nvim)_
-
----
+</div>
 
 ## ✨ Features
 
-- 🎨 **Nature-inspired palette** - Warm, organic colors from flowers and twilight skies
-- 👁️ **Eye health optimized** - Moderate contrast for 8+ hour coding sessions
-- 🌓 **Day & Night variants** - Seamless theme switching with dedicated colorschemes
-- ⚛️ **Enhanced React/JSX/TSX** - Distinct colors for components, hooks, and attributes
-- 🎯 **Full LSP & Treesitter** - Modern syntax highlighting for all major languages
-- 🎨 **Lualine theme** - Matching statusline integration
-- 🔧 **Highly customizable** - Override colors, highlights, and behavior
-- 📦 **100% Lua** - Fast, lightweight, no dependencies
+- 🌓 **Auto theme detection** - Respects terminal light/dark mode, switches automatically
+- 👁️ **Eye health first** - Warm tones, moderate contrast for 8+ hour sessions
+- 🎨 **Nature-inspired** - Organic colors from flowers and twilight skies
+- ⚛️ **Enhanced React/JSX/TSX** - Distinct colors for components, hooks, attributes
+- 🎯 **Full LSP & Treesitter** - Modern syntax highlighting
+- 🔧 **Highly customizable** - Override any color or highlight
+- 📦 **Pure Lua** - Fast, lightweight, zero dependencies
 
 ## 🚀 Quick Start
 
-**Minimal setup:**
-
 ```lua
+-- Minimal (auto-detects light/dark mode)
 vim.cmd.colorscheme("forestflower")
 ```
 
-**With lazy.nvim (recommended):**
+**With [lazy.nvim](https://github.com/folke/lazy.nvim):**
 
 ```lua
 {
@@ -53,253 +46,153 @@ vim.cmd.colorscheme("forestflower")
 }
 ```
 
-That's it! For advanced configuration options, see the [Installation](#installation) section below.
+That's it! The theme auto-detects your terminal's light/dark mode and updates when your system appearance changes.
 
-## 📖 Installation
+## ⚙️ Configuration
 
-Using [lazy.nvim](https://github.com/folke/lazy.nvim) (basic):
-
-```lua
-require("lazy").setup({
-  {
-    "YajanaRao/forestflower",
-    priority = 1000, -- load first so everything can inherit
-    lazy = false,    -- force load during startup
-    opts = {         -- override any default (all shown below)
-      background = "medium", -- "soft" | "medium" | "hard"
-      transparent_background_level = 0, -- 0 | 1 | 2
-      italics = false,
-      disable_italic_comments = false,
-      sign_column_background = "none", -- "none" | "grey"
-      diagnostic_text_highlight = false,
-      diagnostic_virtual_text = "coloured", -- "coloured" | "grey"
-      diagnostic_line_highlight = false,
-      show_eob = true,
-      float_style = "bright", -- "bright" | "dim"
-      contrast_audit = false,
-      on_highlights = function(hl, palette) end,
-      colours_override = function(p) end,
-    },
-    config = function(_, opts)
-      require("forestflower").setup(opts)
-      vim.cmd.colorscheme("forestflower")
-    end,
-  },
-})
-```
-
-### LazyVim specific
-
-If you are using LazyVim and want this to be your colorscheme, create (or edit) a spec file:
-
-```lua
--- lua/plugins/colorscheme.lua
-return {
-  {
-    "YajanaRao/forestflower",
-    priority = 1000,
-    lazy = false,
-    opts = { background = "medium" },
-    config = function(_, opts)
-      require("forestflower").setup(opts)
-      vim.cmd.colorscheme("forestflower")
-    end,
-  },
-}
-```
-
-### Minimal setup
-
-```lua
-vim.cmd.colorscheme("forestflower")
-```
-
-### Day and Night Variants
-
-Forest Flower provides dedicated colorscheme variants for quick theme switching:
-
-```lua
--- Switch to night theme (dark)
-vim.cmd.colorscheme("forestflower-night")
-
--- Switch to day theme (light)
-vim.cmd.colorscheme("forestflower-day")
-
--- Use default (respects config, defaults to night)
-vim.cmd.colorscheme("forestflower")
-```
-
-These variants only override the flavour setting while preserving all other user configurations. This allows easy switching with the `:colorscheme` command or keybindings:
-
-```lua
--- Example keybindings for theme switching
-vim.keymap.set("n", "<leader>td", "<cmd>colorscheme forestflower-day<cr>", { desc = "Theme: Day" })
-vim.keymap.set("n", "<leader>tn", "<cmd>colorscheme forestflower-night<cr>", { desc = "Theme: Night" })
-```
-
-### Options
-
-| Option                       | Type     | Default    | Description                                                        |
-| ---------------------------- | -------- | ---------- | ------------------------------------------------------------------ |
-| background                   | string   | "medium"   | Hardness of base background: "soft", "medium", "hard"              |
-| transparent_background_level | integer  | 0          | 0: normal, 1: editor bg transparent, 2: more UI chrome transparent |
-| italics                      | boolean  | false      | Enable italics for keywords etc.                                   |
-| disable_italic_comments      | boolean  | false      | Force comments non-italic                                          |
-| sign_column_background       | string   | "none"     | "none" or "grey" background for sign column                        |
-| diagnostic_text_highlight    | boolean  | false      | Fill diagnostic virtual text background                            |
-| diagnostic_virtual_text      | string   | "coloured" | "coloured" or "grey" diagnostic virtual text colour                |
-| diagnostic_line_highlight    | boolean  | false      | Background highlight for entire diagnostic lines                   |
-| show_eob                     | boolean  | true       | Show end-of-buffer tildes                                          |
-| float_style                  | string   | "bright"   | Floating win bg lighter ("bright") or darker ("dim")               |
-| contrast_audit               | boolean  | false      | Run contrast audit and report via vim.notify                       |
-| on_highlights                | function | noop       | (hl, palette) mutate final highlight groups                        |
-| colours_override             | function | noop       | (palette) edit raw material-ish tokens before roles applied        |
-
-### Override examples
-
-Darken selection, tweak palette & add custom group.
+<details>
+<summary><b>All options (click to expand)</b></summary>
 
 ```lua
 require("forestflower").setup({
-  colours_override = function(p)
-    p.primary = "#98c379" -- change primary accent
+  flavour = "auto",              -- "auto" | "night" | "day"
+  background = "medium",         -- "soft" | "medium" | "hard"
+  transparent_background_level = 0, -- 0 | 1 | 2
+  italics = false,
+  disable_italic_comments = false,
+  sign_column_background = "none", -- "none" | "grey"
+  diagnostic_text_highlight = false,
+  diagnostic_virtual_text = "coloured", -- "coloured" | "grey"
+  diagnostic_line_highlight = false,
+  show_eob = true,
+  float_style = "bright",        -- "bright" | "dim"
+  on_highlights = function(hl, palette) 
+    -- Customize highlights
   end,
-  on_highlights = function(hl, palette)
-    hl.MyTitle = { fg = palette.primary, bold = true }
-    hl.MySelection = { bg = "#445566" } -- custom selection bg
+  colours_override = function(palette)
+    -- Customize palette
   end,
 })
 vim.cmd.colorscheme("forestflower")
 ```
 
-### Contrast audit
+</details>
 
-Enable `contrast_audit = true` to receive a summary of WCAG-ish contrast ratios for core roles. Useful while theming or adjusting roles.
+## 🎨 Theme Variants
 
-### React/JSX/TSX Highlighting
+### Automatic Detection (Default)
+```lua
+vim.cmd.colorscheme("forestflower")  -- Auto-detects from terminal
+```
+Reads `vim.o.background` from your terminal and switches automatically when system appearance changes.
 
-Forest Flower provides enhanced syntax highlighting for React, JSX, and TSX with distinct colors for better visual differentiation:
+### Manual Selection
+```lua
+-- Lock to night/day theme
+require("forestflower").setup({ flavour = "night" })  -- or "day"
+vim.cmd.colorscheme("forestflower")
 
-**Visual Hierarchy:**
-
-- 🔴 **React Components** (PascalCase): Coral `#dd7878` - Components like `<ChatWidget>`, `<Button>`
-- 🔵 **HTML Tags** (lowercase): Cyan `#74c7ec` - Native elements like `<div>`, `<span>`
-- 🟠 **JSX Attributes**: Orange `#f6c177` - Props like `onClick`, `className`, `css`
-- 🟣 **React Hooks**: Purple `#c4a7e7` - `useState`, `useEffect`, `useCallback`
-- 🟢 **Strings**: Green `#a7c080` - String values and text content
-
-**Example:**
-
-```tsx
-import { useState } from "react"; // Hook import
-
-const ChatWidget = ({ config }) => {
-  // Component (coral)
-  const [isOpen, setIsOpen] = useState(false); // Hook (purple)
-
-  return (
-    <FrameWrapper css={styles}>
-      {" "}
-      {/* Component (coral), Attribute (orange) */}
-      <div className="container">
-        {" "}
-        {/* HTML tag (cyan), Attribute (orange) */}
-        <ChatButton onClick={toggle}>
-          {" "}
-          {/* Component (coral), Attribute (orange) */}
-          Open Chat {/* String (green) */}
-        </ChatButton>
-      </div>
-    </FrameWrapper>
-  );
-};
+-- Quick switching with commands
+vim.cmd.colorscheme("forestflower-night")
+vim.cmd.colorscheme("forestflower-day")
 ```
 
-This creates a clear visual hierarchy that makes React code easier to scan and understand at a glance.
+### Keybindings for Theme Switching
+```lua
+vim.keymap.set("n", "<leader>td", "<cmd>colorscheme forestflower-day<cr>")
+vim.keymap.set("n", "<leader>tn", "<cmd>colorscheme forestflower-night<cr>")
+```
 
-### FAQ
+## 🔧 Customization
 
-Q: Treesitter highlight group names changed?
-A: Forest Flower maps both legacy TS* groups and new *@\* captures; you can safely migrate gradually.
+### Color Overrides
+```lua
+require("forestflower").setup({
+  colours_override = function(palette)
+    palette.primary = "#98c379"  -- Change accent color
+  end,
+  on_highlights = function(highlights, palette)
+    highlights.Comment = { fg = palette.primary, italic = true }
+  end,
+})
+```
 
-Q: Can I safely link to Red/Green groups?
-A: Yes. These generic groups deliberately persist for plugin compatibility.
+### Transparency
+```lua
+require("forestflower").setup({
+  transparent_background_level = 1,  -- 0: none, 1: editor, 2: all UI
+})
+```
 
-Q: Light mode?
-A: Use `:colorscheme forestflower-day` for the light theme or `:colorscheme forestflower-night` for the dark theme. You can also set `flavour = "day"` in your config, or use `:set background=light` before loading.
+## ⚛️ React/JSX/TSX Support
 
-Q: Soft background washed out with transparency?
-A: Try `transparent_background_level = 1` only, or move to `medium` hardness.
+Enhanced syntax highlighting with distinct colors:
+
+- **Components** (PascalCase) - Coral: `<ChatWidget>`, `<Button>`
+- **HTML tags** (lowercase) - Cyan: `<div>`, `<span>`
+- **Attributes** - Orange: `onClick`, `className`
+- **Hooks** - Purple: `useState`, `useEffect`
+- **Strings** - Green: String values
+
+Creates clear visual hierarchy for easier code scanning.
+
+## ❓ FAQ
+
+<details>
+<summary><b>How does automatic theme detection work?</b></summary>
+
+Forest Flower reads `vim.o.background` from your terminal and automatically switches between night/day themes. When your system appearance changes (macOS, GNOME, etc.), the theme updates automatically. To lock to a specific theme, use `flavour = "night"` or `"day"`.
+</details>
+
+<details>
+<summary><b>Can I manually switch themes?</b></summary>
+
+Yes! Use `:colorscheme forestflower-night` or `:colorscheme forestflower-day`. Or set `flavour = "night"/"day"` in your config.
+</details>
+
+<details>
+<summary><b>Transparency looks washed out?</b></summary>
+
+Try `transparent_background_level = 1` instead of 2, or use `background = "medium"` instead of `"soft"`.
+</details>
+
+
+
+## 🌿 Design Philosophy
+
+Built for mindful programming with health-conscious design:
+
+- **Eye Health First** - Warm tones, moderate contrast for 8+ hour sessions
+- **Nature-Inspired** - Colors from flowers, twilight skies, forest canopies
+- **Timeless** - Natural palette designed for years, not trends
+- **WCAG AA Compliant** - Accessible contrast for critical text
+
+### Principles
+- ✅ Natural colors only (no neon or corporate branding)
+- ✅ Warm over cool (golden/amber undertones)
+- ✅ Sustainable contrast (health over "maximum pop")
+- ✅ Timeless over trendy
+
+
+
+## 🙏 Credits
+
+Inspired by [everforest](https://github.com/sainnhe/everforest), [NeoSolarized](https://github.com/Tsuzat/NeoSolarized.nvim), and [Tokyo Night](https://github.com/folke/tokyonight.nvim).
+
+## 📄 License
+
+[MIT License](LICENSE) - See LICENSE file for details.
+
+## 🤝 Contributing
+
+Contributions welcome! Please open an issue or PR. For color changes, follow the [design philosophy](#-design-philosophy).
 
 ---
 
-## 🎨 Design Philosophy
+<div align="center">
 
-### Core Values
+**[⭐ Star on GitHub](https://github.com/YajanaRao/forestflower)** • **[🐛 Report Bug](https://github.com/YajanaRao/forestflower/issues)** • **[💡 Request Feature](https://github.com/YajanaRao/forestflower/issues)**
 
-**Mindful Focus**  
-Conscious attention, relaxed intensity, sustained presence. Colors that support deep work states without artificial stimulation.
+Made with 🌺 for mindful programmers
 
-**Health-First**  
-Warm tones and moderate contrast reduce eye strain. Optimized for 8+ hour sessions - because your eyes matter more than trends.
-
-**Nature-Inspired**  
-Colors drawn from flowers, plants, twilight skies. Vibrant yet organic, distinct yet harmonious. Never synthetic or mechanical.
-
-**Timeless Simplicity**  
-Minimum visual noise, maximum clarity. Natural colors don't go out of style.
-
-### Color Architecture
-
-**Palette Philosophy:**
-- **UI elements** = Environment (sky, earth, natural light)  
-- **Syntax tokens** = Flora (flower-inspired names for memorability)
-
-**Structure:**
-- Warm golden undertones throughout (twilight-range temperature)
-- Distinct syntax colors for clarity (biodiversity principle)
-- Layered surfaces for depth (forest floor to canopy)
-- WCAG AA compliant for critical text
-
-**Specific values:** See `lua/forestflower/core/colors.lua`
-
-### Design Principles
-
-**✅ Natural Colors Only**  
-Forest greens, sky blues, flower purples, sunset oranges, earth tones. No neon, electric, or corporate branding colors.
-
-**✅ Warm Over Cool**  
-Golden/amber undertones. Never cold, clinical, or harsh grayscale.
-
-**✅ Sustainable Contrast**  
-Moderate contrast for 8+ hours without headaches. Health over "maximum pop."
-
-**✅ Timeless Over Trendy**  
-Resist UI fads. Nature-based palette designed for years, not months.
-
-### What This Is
-
-A health-conscious, nature-inspired colorscheme for mindful programmers. Not for everyone - and that's intentional.
-
-### What This Is NOT
-
-- Maximum-contrast "productivity theater"
-- Trendy corporate aesthetics  
-- Chasing design fads
-- For quick context-switching or short sessions
-
-### Decision Framework
-
-Before changing colors, ask:
-1. **Natural?** Could this exist in nature?
-2. **Healthy?** Does it support 8+ hour sessions?
-3. **Mindful?** Calm focus or artificial stimulation?
-4. **Timeless?** Will this feel dated in 2 years?
-
----
-
-## 💡 Inspiration
-
-- [everforest](https://github.com/sainnhe/everforest) (obviously)
-- [NeoSolarized.nvim](https://github.com/Tsuzat/NeoSolarized.nvim)
-- [Tokyo Night](https://github.com/folke/tokyonight.nvim)
+</div>

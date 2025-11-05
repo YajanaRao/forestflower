@@ -5,7 +5,7 @@ local M = {}
 
 ---@class ForestflowerConfig
 M.config = {
-  flavour = "night", -- "night" | "day"
+  flavour = "auto", -- "auto" | "night" | "day"
   background = "medium", -- "soft" | "medium" | "hard"
   transparent_background_level = 0, -- 0 | 1 | 2
   italics = false,
@@ -27,6 +27,18 @@ function M.setup(opts)
   M.config = vim.tbl_deep_extend("force", M.config, opts or {})
 end
 
+---Resolve the actual flavour from config
+---@param config ForestflowerConfig
+---@return string
+local function resolve_flavour(config)
+  if config.flavour == "auto" then
+    -- Map vim.o.background to our flavour names
+    return vim.o.background == "light" and "day" or "night"
+  else
+    return config.flavour
+  end
+end
+
 ---Load the colorscheme
 function M.load()
   -- Import required modules
@@ -34,8 +46,11 @@ function M.load()
   local terminal = require("forestflower.core.terminal")
   local util = require("forestflower.util")
   
-  -- Build theme based on config
-  local theme = theme_builder.build(M.config, vim.o.background)
+  -- Resolve actual flavour from config
+  local actual_flavour = resolve_flavour(M.config)
+  
+  -- Build theme based on resolved flavour
+  local theme = theme_builder.build(M.config, actual_flavour)
   
   -- Generate highlight groups
   local editor = require("forestflower.groups.editor")(theme, M.config)
@@ -53,14 +68,28 @@ function M.load()
   end
   
   -- Load the colorscheme
-  util.load(highlights, theme.ansi)
+  util.load(highlights)
   
   -- Setup terminal colors
-  terminal.setup(theme.ansi)
+  terminal.setup(theme.palette)
   
   -- Run contrast audit if enabled
   if M.config.contrast_audit then
     util.contrast_audit(theme)
+  end
+  
+  -- Set up dynamic switching for auto mode
+  if M.config.flavour == "auto" then
+    vim.api.nvim_create_autocmd("OptionSet", {
+      pattern = "background",
+      callback = function()
+        -- Only reload if we're still in auto mode
+        if M.config.flavour == "auto" then
+          M.load()
+        end
+      end,
+      group = vim.api.nvim_create_augroup("ForestFlowerAutoSwitch", { clear = true })
+    })
   end
 end
 

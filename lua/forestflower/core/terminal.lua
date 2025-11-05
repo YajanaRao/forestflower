@@ -6,8 +6,7 @@ local M = {}
 
 ---Configure terminal ANSI colors
 ---@param palette ColorPalette
----@param background string
-function M.setup(palette, background)
+function M.setup(palette)
   -- Use explicit terminal colors that match OpenCode theme
   -- Base ANSI colors (0-7)
   vim.g.terminal_color_0 = palette.terminal.black
@@ -52,4 +51,3 @@ function M.setup(palette, background)
 end
 
 return M
-

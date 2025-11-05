@@ -139,7 +139,7 @@ return function(theme, config)
 
     -- Popup menu
     Pmenu = create(ui.on_surface, ui.popup_background),
-    PmenuSel = create(ui.background, ui.selection),
+    PmenuSel = create(ui.on_surface, ui.selection),
     PmenuSbar = create(palette.none, ui.popup_background),
     PmenuThumb = create(palette.none, ui.scrollbar_thumb),
     WildMenu = link("PmenuSel"),

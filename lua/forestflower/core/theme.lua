@@ -5,7 +5,7 @@ local colors = require("forestflower.core.colors")
 local util = require("forestflower.util")
 
 ---@class ThemeConfig
----@field flavour "day" | "night"
+---@field flavour "auto" | "day" | "night"
 ---@field background "soft" | "medium" | "hard"
 ---@field transparent_background_level 0 | 1 | 2
 ---@field italics boolean
@@ -24,7 +24,6 @@ local util = require("forestflower.util")
 ---@field palette ColorPalette
 ---@field ui table
 ---@field syntax SyntaxTokens
----@field ansi table
 
 local M = {}
 
@@ -76,28 +75,11 @@ local function build_ui_roles(palette)
   }
 end
 
----Build ANSI color mappings
----@param palette ColorPalette
----@return table
-local function build_ansi_roles(palette)
-  return {
-    black = palette.surface_variant,
-    red = palette.error,
-    green = palette.success,
-    yellow = palette.warning,
-    blue = palette.info,
-    magenta = palette.tertiary,
-    cyan = palette.secondary,
-    white = palette.on_surface,
-  }
-end
-
 ---Generate complete theme from configuration
 ---@param config ThemeConfig
----@param background string
+---@param flavour string Explicit flavour ("night" or "day")
 ---@return ForestflowerTheme
-function M.build(config, background)
-  local flavour = config.flavour or "night"
+function M.build(config, flavour)
   local palette = colors.palettes[flavour]
   
   -- Apply color overrides
@@ -107,16 +89,12 @@ function M.build(config, background)
   
   local ui = build_ui_roles(palette)
   local syntax = colors.syntax[flavour]  -- Select flavour-specific syntax colors
-  local ansi = build_ansi_roles(palette)
-  
   
   return {
     palette = palette,
     ui = ui,
     syntax = syntax,
-    ansi = ansi,
   }
 end
 
 return M
-
