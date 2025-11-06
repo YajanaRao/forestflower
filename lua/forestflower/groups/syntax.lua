@@ -104,18 +104,18 @@ return function(theme, config)
 
     -- Variables
     ["@variable"] = link("Variable"),
-    ["@variable.builtin"] = link("Variable"),
-    ["@variable.parameter"] = create(syntax.parameter, palette.none),
-    ["@variable.member"] = create(syntax.property, palette.none),
-    ["@property"] = create(syntax.property, palette.none),
-    ["@field"] = create(syntax.field, palette.none),
+    ["@variable.builtin"] = create(syntax.keyword, palette.none, optional_italics),
+    ["@variable.parameter"] = create(syntax.parameter, palette.none, optional_italics),
+    ["@variable.member"] = create(syntax.property, palette.none, optional_italics),
+    ["@property"] = create(syntax.property, palette.none, optional_italics),
+    ["@field"] = create(syntax.field, palette.none, optional_italics),
     ["@constant"] = link("Constant"),
     ["@constant.builtin"] = link("Constant"),
 
     -- Strings and literals
     ["@string"] = link("String"),
-    ["@string.escape"] = create(syntax.special, palette.none),
-    ["@string.regexp"] = create(syntax.special, palette.none),
+    ["@string.escape"] = create(syntax.special, palette.none, optional_italics),
+    ["@string.regexp"] = create(syntax.special, palette.none, optional_italics),
     ["@character"] = link("Character"),
     ["@number"] = link("Number"),
     ["@float"] = link("Float"),
@@ -129,7 +129,7 @@ return function(theme, config)
 
     -- Comments
     ["@comment"] = link("Comment"),
-    ["@comment.documentation"] = link("SpecialComment"),
+    ["@comment.documentation"] = create(syntax.comment, palette.none, comment_italics),
     ["@comment.error"] = create(syntax.error, palette.none),
     ["@comment.warning"] = create(syntax.warn, palette.none),
     ["@comment.todo"] = link("Todo"),
@@ -148,12 +148,12 @@ return function(theme, config)
     ["@markup.strikethrough"] = create(palette.none, palette.none, { styles.strikethrough }),
     ["@markup.underline"] = create(palette.none, palette.none, { styles.underline }),
     ["@markup.link"] = create(syntax.special, palette.none, { styles.underline }),
-    ["@markup.link.url"] = create(syntax.string, palette.none),
-    ["@markup.raw"] = create(syntax.string, palette.none),
+    ["@markup.link.url"] = create(syntax.string, palette.none, optional_italics),
+    ["@markup.raw"] = create(syntax.string, palette.none, optional_italics),
     ["@markup.list"] = link("Special"),
 
     -- Misc
-    ["@namespace"] = create(syntax.namespace, palette.none),
+    ["@namespace"] = create(syntax.namespace, palette.none, optional_italics),
     ["@macro"] = link("Macro"),
     ["@preproc"] = link("PreProc"),
     ["@include"] = link("Include"),
@@ -168,9 +168,9 @@ return function(theme, config)
     ["@lsp.type.interface"] = link("Type"),
     ["@lsp.type.macro"] = link("Macro"),
     ["@lsp.type.method"] = link("Function"),
-    ["@lsp.type.namespace"] = create(syntax.namespace, palette.none),
-    ["@lsp.type.parameter"] = create(syntax.parameter, palette.none),
-    ["@lsp.type.property"] = create(syntax.property, palette.none),
+    ["@lsp.type.namespace"] = create(syntax.namespace, palette.none, optional_italics),
+    ["@lsp.type.parameter"] = create(syntax.parameter, palette.none, optional_italics),
+    ["@lsp.type.property"] = create(syntax.property, palette.none, optional_italics),
     ["@lsp.type.struct"] = link("Type"),
     ["@lsp.type.type"] = link("Type"),
     ["@lsp.type.typeParameter"] = link("Type"),
@@ -179,8 +179,8 @@ return function(theme, config)
     -- React/JSX/TSX Specific
     ["@constructor.tsx"] = create(syntax.jsx_component, palette.none), -- React Components in TSX
     ["@constructor.jsx"] = create(syntax.jsx_component, palette.none), -- React Components in JSX
-    ["@variable.builtin.tsx"] = create(syntax.keyword, palette.none), -- React, Fragment, etc.
-    ["@variable.builtin.jsx"] = create(syntax.keyword, palette.none), -- React, Fragment, etc.
+    ["@variable.builtin.tsx"] = create(syntax.keyword, palette.none, optional_italics), -- React, Fragment, etc.
+    ["@variable.builtin.jsx"] = create(syntax.keyword, palette.none, optional_italics), -- React, Fragment, etc.
 
     -- React Hooks (these are function calls that start with 'use')
     ["@function.call.tsx"] = link("Function"), -- Function calls including hooks

@@ -8,7 +8,7 @@ M.config = {
   flavour = "night", -- "night" | "day"
   background = "medium", -- "soft" | "medium" | "hard"
   transparent_background_level = 0, -- 0 | 1 | 2
-  italics = false,
+  italics = true,
   disable_italic_comments = false,
   sign_column_background = "none", -- "none" | "grey"
   diagnostic_text_highlight = false,
@@ -56,7 +56,7 @@ function M.load()
   util.load(highlights, theme.ansi)
   
   -- Setup terminal colors
-  terminal.setup(theme.ansi)
+  terminal.setup(theme.palette)
   
   -- Run contrast audit if enabled
   if M.config.contrast_audit then
