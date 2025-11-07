@@ -1,19 +1,19 @@
 # Forest Flower (Night) - Ghostty Theme
 # Source: lua/forestflower/core/colors.lua
-# Updated with warm palette changes
+# Enhanced with Gentle Brutalism principles
 
-# Base colors
+# Base colors (gentle brutalism: enhanced saturation +10-12%)
 palette = 0=#252a30
 palette = 1=#f85552
 palette = 2=#b4d494
-palette = 3=#d9a85f
+palette = 3=#e0b36e  # Gold +12% (was #d9a85f)
 palette = 4=#7fbbb3
 palette = 5=#d699b6
 palette = 6=#7fbbb3
 palette = 7=#e6e1cf
 
-# Bright colors
-palette = 8=#3d4247
+# Bright colors (gentle brutalism: more vibrant)
+palette = 8=#42474f  # Stronger border (was #3d4247)
 palette = 9=#fcaaa9
 palette = 10=#d3f0bb
 palette = 11=#f0d8a8
