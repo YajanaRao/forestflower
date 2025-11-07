@@ -86,9 +86,9 @@ M.palettes = {
     primary = "#b4d494",
     primary_container = "#2d4d3a",
 
-    -- Secondary: Sky at twilight (clear, spacious)
-    secondary = "#7fbbb3",
-    secondary_container = "#2d4d4a",
+    -- Secondary: Evening periwinkle (twilight sky, warm blue flower)
+    secondary = "#8294c9",
+    secondary_container = "#2d364a",
 
     -- Tertiary: Sunset/flower tones (warm, delicate)
     tertiary = "#d699b6",
@@ -101,8 +101,8 @@ M.palettes = {
     success_container = "#2d4d3a",
     warning = "#d9a85f",
     warning_container = "#4d4a2d",
-    info = "#7fbbb3",
-    info_container = "#2d4d4a",
+    info = "#8294c9",
+    info_container = "#2d364a",
     hint = "#5a5f6f",
     hint_container = "#1a1e23",
 
@@ -129,12 +129,12 @@ M.palettes = {
       green_bright = "#b4d494",
       yellow = "#d9a85f",
       yellow_bright = "#dfa97a",
-      blue = "#7fbbb3",
-      blue_bright = "#8fb4b3",
+      blue = "#8294c9",
+      blue_bright = "#95a8d8",
       magenta = "#c4a7e7",
       magenta_bright = "#d699b6",
-      cyan = "#7fbbb3",
-      cyan_bright = "#9ab8b5",
+      cyan = "#8294c9",
+      cyan_bright = "#95a8d8",
       white = "#d3c6aa",
       white_bright = "#e0def4",
     },
@@ -146,9 +146,9 @@ M.palettes = {
     primary = "#8da101",
     primary_container = "#e8f5d5",
 
-    -- Secondary: Warm sky blue (not corporate blue)
-    secondary = "#5a9bb3",
-    secondary_container = "#d5e8f5",
+    -- Secondary: Day periwinkle (soft sky, warm blue flower)
+    secondary = "#6B7FBD",
+    secondary_container = "#dfe5f5",
 
     -- Tertiary: Flower pink (warm, natural)
     tertiary = "#df69ba",
@@ -161,8 +161,8 @@ M.palettes = {
     success_container = "#e8f5d5",
     warning = "#dfa000",
     warning_container = "#f5f0d5",
-    info = "#5a9bb3",
-    info_container = "#d5e8f5",
+    info = "#6B7FBD",
+    info_container = "#dfe5f5",
     hint = "#8a9199",
     hint_container = "#f8f5e4",
 
@@ -189,12 +189,12 @@ M.palettes = {
       green_bright = "#8da101",
       yellow = "#d97706",
       yellow_bright = "#dfa000",
-      blue = "#5a9bb3",
-      blue_bright = "#0891b2",
+      blue = "#6B7FBD",
+      blue_bright = "#7a8fcf",
       magenta = "#7c3aed",
       magenta_bright = "#df69ba",
-      cyan = "#0891b2",
-      cyan_bright = "#0891b2",
+      cyan = "#6B7FBD",
+      cyan_bright = "#7a8fcf",
       white = "#2d3338",
       white_bright = "#374151",
     },

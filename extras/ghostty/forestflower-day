@@ -7,9 +7,9 @@ palette = 0=#edeada
 palette = 1=#f85552
 palette = 2=#8da101
 palette = 3=#dfa000
-palette = 4=#5a9bb3
+palette = 4=#6B7FBD
 palette = 5=#df69ba
-palette = 6=#5a9bb3
+palette = 6=#6B7FBD
 palette = 7=#2d3338
 
 # Bright colors (ANSI 8-15)
@@ -17,9 +17,9 @@ palette = 8=#b1bca3
 palette = 9=#ff7a77
 palette = 10=#a8c080
 palette = 11=#f0c050
-palette = 12=#7fb8d9
+palette = 12=#7a8fcf
 palette = 13=#f099d6
-palette = 14=#7fb8d9
+palette = 14=#7a8fcf
 palette = 15=#2d3338
 
 # UI colors
