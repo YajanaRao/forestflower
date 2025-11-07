@@ -252,6 +252,9 @@ Gentle brutalism embraces neobrutalism's structural honesty and geometric clarit
 - Window separators are more visible yet still warm-toned
 - Statusline segments have distinct backgrounds for better hierarchy
 
+**Technical Documentation:**  
+For comprehensive implementation details, saturation philosophy, and color science rationale, see [`doc/gentle-brutalism.md`](doc/gentle-brutalism.md).
+
 ### FAQ
 
 Q: Treesitter highlight group names changed?
