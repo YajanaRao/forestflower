@@ -6,14 +6,14 @@
 palette = 0=#252a30
 palette = 1=#f85552
 palette = 2=#b4d494
-palette = 3=#e0b36e  # Gold +12% (was #d9a85f)
+palette = 3=#e0b36e 
 palette = 4=#7fbbb3
 palette = 5=#d699b6
 palette = 6=#7fbbb3
 palette = 7=#e6e1cf
 
 # Bright colors (gentle brutalism: more vibrant)
-palette = 8=#42474f  # Stronger border (was #3d4247)
+palette = 8=#42474f 
 palette = 9=#fcaaa9
 palette = 10=#d3f0bb
 palette = 11=#f0d8a8
