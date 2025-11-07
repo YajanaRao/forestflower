@@ -28,9 +28,10 @@ _Screenshot taken from [my personal config](https://github.com/YajanaRao/kicksta
 - 🌓 **Day & Night variants** - Seamless theme switching with dedicated colorschemes
 - ⚛️ **Enhanced React/JSX/TSX** - Distinct colors for components, hooks, and attributes
 - 🎯 **Full LSP & Treesitter** - Modern syntax highlighting for all major languages
-- 🎨 **Lualine theme** - Matching statusline integration
+- 🎨 **Lualine theme** - Matching statusline integration with segmented brutal styling
 - 🔧 **Highly customizable** - Override colors, highlights, and behavior
 - 📦 **100% Lua** - Fast, lightweight, no dependencies
+- 🏛️ **Gentle Brutalism** - Structural clarity with health-conscious design (NEW!)
 
 ## 🚀 Quick Start
 
@@ -217,6 +218,40 @@ const ChatWidget = ({ config }) => {
 
 This creates a clear visual hierarchy that makes React code easier to scan and understand at a glance.
 
+### Gentle Brutalism Enhancement
+
+Forest Flower now incorporates "gentle brutalism" design principles - bringing structural clarity and confident aesthetics while preserving the theme's health-conscious, nature-inspired core.
+
+**What's Enhanced:**
+
+- **Stronger Borders**: More defined UI boundaries with warm dark tones (not harsh black)
+- **Layered Depth**: Subtle offset backgrounds for statusline segments and tabs
+- **Bold Hierarchy**: Strategic emphasis on active elements (tabs, selections, titles)
+- **Confident Colors**: 10-12% saturation boost while maintaining warm undertones
+- **Geometric Clarity**: Sharp, well-defined boundaries between UI components
+- **Segmented Statusline**: Clear visual separation between lualine sections
+
+**What's Preserved:**
+
+- **Warm Undertones**: Golden/amber base temperature unchanged
+- **Sustainable Contrast**: Still optimized for 8+ hour sessions
+- **Nature-Inspired Palette**: Organic colors from flowers and twilight
+- **No Harsh Elements**: No pure black, no neon, no electric colors
+- **Eye Health**: Moderate contrast levels maintained
+
+**Philosophy:**
+
+Gentle brutalism embraces neobrutalism's structural honesty and geometric clarity without the harsh contrast and electric colors. Think of it as "brutalism designed by nature" - clear boundaries like tree trunks, layered depth like forest canopies, bold emphasis like blooming flowers, all while maintaining the warm, organic feel that makes Forest Flower ideal for long coding sessions.
+
+**Visual Improvements:**
+
+- Float windows have more prominent borders and bold titles
+- Active tabs are elevated with subtle background changes
+- Telescope and pickers have stronger borders and bold selections
+- File explorers show bold folder names and prominent current files
+- Window separators are more visible yet still warm-toned
+- Statusline segments have distinct backgrounds for better hierarchy
+
 ### FAQ
 
 Q: Treesitter highlight group names changed?
@@ -276,6 +311,9 @@ Moderate contrast for 8+ hours without headaches. Health over "maximum pop."
 
 **✅ Timeless Over Trendy**  
 Resist UI fads. Nature-based palette designed for years, not months.
+
+**✅ Structural Clarity** (Gentle Brutalism)  
+Clear boundaries and honest design. UI elements show their actual structure without decoration. Geometric precision meets organic warmth.
 
 ### What This Is
 

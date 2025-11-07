@@ -114,9 +114,10 @@ M.palettes = {
     surface_variant = "#252a30", -- Elevated surface (dappled light)
     on_surface_variant = "#8a8a7a", -- Muted secondary text
 
-    -- Borders & outlines
-    outline = "#3a3f47",
-    outline_variant = "#3d4247",
+    -- Borders & outlines (enhanced for gentle brutalism)
+    outline = "#2d3239", -- Darker, more defined
+    outline_variant = "#32373d", -- Increased definition
+    border_strong = "#42474f", -- New: prominent borders for brutal style
 
     -- Terminal colors (matches OpenCode theme)
     terminal = {
@@ -173,9 +174,10 @@ M.palettes = {
     surface_variant = "#e8e5d0",
     on_surface_variant = "#5a5a5a",
 
-    -- Borders & outlines
-    outline = "#8a9199",
-    outline_variant = "#b1bca3",
+    -- Borders & outlines (enhanced for gentle brutalism)
+    outline = "#6b7280", -- Stronger definition
+    outline_variant = "#9ca3af", -- More defined
+    border_strong = "#4b5563", -- New: prominent borders for brutal style
 
     -- Terminal colors (matches OpenCode theme)
     terminal = {
@@ -205,32 +207,33 @@ M.palettes = {
 ---Separate palettes for night (dark) and day (light) themes
 M.syntax = {
   night = {
-    keyword = "#c4a7e7",      -- Kurinji purple (distinctive bloom)
-    operator = "#8fb4b3",     -- Warm sky blue (twilight sky)
-    ["function"] = "#d9a85f", -- Deep champak gold (warm, rich)
-    method = "#d9a85f",       -- Deep champak gold
-    type = "#89b4a8",         -- Warm sage (between sky and earth)
-    interface = "#89b4a8",    -- Warm sage
-    enum = "#89b4a8",         -- Warm sage
-    constant = "#ea9a97",     -- Hibiscus coral (stands out)
-    number = "#ea9a97",       -- Hibiscus coral
-    boolean = "#ea9a97",      -- Hibiscus coral
-    string = "#a7c080",       -- Forest green (foundational)
-    variable = "#e0def4",     -- Jasmine white (soft, natural)
-    parameter = "#a8c9a8",    -- Warm mint (fresh, green-leaning)
-    property = "#a8c4b8",     -- Warm morning mist (subtle, clear)
+    -- Gentle brutalism: 10-12% saturation boost while keeping warm undertones
+    keyword = "#caaff0",      -- Kurinji purple +10% (distinctive bloom)
+    operator = "#97bbb9",     -- Warm sky blue +10% (twilight sky)
+    ["function"] = "#e0b36e", -- Deep champak gold +12% (warm, rich)
+    method = "#e0b36e",       -- Deep champak gold +12%
+    type = "#93bcb1",         -- Warm sage +10% (between sky and earth)
+    interface = "#93bcb1",    -- Warm sage +10%
+    enum = "#93bcb1",         -- Warm sage +10%
+    constant = "#f0a5a2",     -- Hibiscus coral +10% (stands out)
+    number = "#f0a5a2",       -- Hibiscus coral +10%
+    boolean = "#f0a5a2",      -- Hibiscus coral +10%
+    string = "#b1c88d",       -- Forest green +10% (foundational)
+    variable = "#e0def4",     -- Jasmine white (unchanged, already optimal)
+    parameter = "#b2d1b2",    -- Warm mint +10% (fresh, green-leaning)
+    property = "#b2ccc2",     -- Warm morning mist +10% (subtle, clear)
     field = "#e0def4",        -- Jasmine white
-    namespace = "#e08856",    -- Sunset orange (vibrant, distinct)
-    comment = "#6e6a86",      -- Twilight gray (present but receded)
-    punctuation = "#9ab8b5",  -- Warm rain (connective, soft)
-    macro = "#dfa97a",        -- Sunset orange (between gold and coral)
-    special = "#9ab8b5",      -- Warm rain
-    todo = "#d9a85f",         -- Deep champak gold (attention)
-    hint = "#9ab8b5",         -- Warm rain
-    info = "#9ab8b5",         -- Warm rain
-    warn = "#d9a85f",         -- Deep champak gold
-    error = "#eb6f92",        -- Rose red (alert)
-    jsx_component = "#dd7878", -- Coral (React component)
+    namespace = "#e69462",    -- Sunset orange +10% (vibrant, distinct)
+    comment = "#6e6a86",      -- Twilight gray (unchanged for readability)
+    punctuation = "#a3bfbc",  -- Warm rain +10% (connective, soft)
+    macro = "#e5b485",        -- Sunset orange +10% (between gold and coral)
+    special = "#a3bfbc",      -- Warm rain +10%
+    todo = "#e0b36e",         -- Deep champak gold +12% (attention)
+    hint = "#a3bfbc",         -- Warm rain +10%
+    info = "#a3bfbc",         -- Warm rain +10%
+    warn = "#e0b36e",         -- Deep champak gold +12%
+    error = "#eb6f92",        -- Rose red (unchanged for alerts)
+    jsx_component = "#e38484", -- Coral +10% (React component)
   },
   day = {
     keyword = "#7c3aed",      -- Deep purple (high contrast, distinctive)

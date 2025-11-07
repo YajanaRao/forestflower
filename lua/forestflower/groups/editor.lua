@@ -58,18 +58,19 @@ return function(theme, config)
       config.transparent_background_level == 2 and palette.none or ui.statusline_nc_bg
     ),
 
-    -- Tabs
+    -- Tabs (enhanced for gentle brutalism)
     TabLine = create(ui.tab_inactive_fg, ui.tab_inactive_bg),
     TabLineFill = create(ui.tab_fill_fg, config.transparent_background_level == 2 and palette.none or ui.tab_fill_bg),
-    TabLineSel = create(ui.on_surface, ui.tab_active_bg, { styles.bold }),
+    TabLineSel = create(ui.on_surface, ui.tab_active_elevated or ui.tab_active_bg, { styles.bold }), -- Enhanced with elevation
 
-    -- Tab modifications (unsaved changes)
-    TabLineModified = create(palette.primary, ui.tab_inactive_bg),
-    TabLineSelModified = create(palette.primary, ui.tab_active_bg, { styles.bold }),
+    -- Tab modifications (unsaved changes) - more prominent
+    TabLineModified = create(palette.primary, ui.tab_inactive_bg, { styles.bold }),
+    TabLineSelModified = create(palette.primary, ui.tab_active_elevated or ui.tab_active_bg, { styles.bold }),
 
-    -- Tab separators and borders
+    -- Tab separators and borders - more defined
     TabLineClose = create(ui.on_surface_variant, ui.tab_inactive_bg),
-    TabLineSelClose = create(ui.on_surface, ui.tab_active_bg, { styles.bold }),
+    TabLineSelClose = create(ui.on_surface, ui.tab_active_elevated or ui.tab_active_bg, { styles.bold }),
+    TabLineSeparator = create(ui.tab_separator, ui.tab_fill_bg), -- New: visible tab separator
 
     -- Mini.tabline highlight groups
     MiniTablineCurrent = create(ui.on_surface, ui.tab_active_bg, { styles.bold }),
@@ -85,7 +86,7 @@ return function(theme, config)
     MiniTablineTabpagesection = create(ui.on_surface_variant, ui.tab_inactive_bg),
     MiniTablineTrunc = create(ui.on_surface_variant, ui.tab_inactive_bg),
 
-    -- Windows
+    -- Windows (enhanced separators for gentle brutalism)
     WinBar = create(
       ui.on_surface_variant,
       config.transparent_background_level == 2 and palette.none or ui.surface,
@@ -95,16 +96,16 @@ return function(theme, config)
       ui.on_surface_variant,
       config.transparent_background_level == 2 and palette.none or ui.surface_variant
     ),
-    WinSeparator = create(ui.background, ui.background),
+    WinSeparator = create(ui.border_strong or ui.outline, palette.none), -- More visible separators
     VertSplit = link("WinSeparator"),
 
-    -- Borders
+    -- Borders (enhanced for gentle brutalism)
     FloatBorder = create(
-      ui.float_border,
+      ui.float_border_strong or ui.float_border, -- Stronger borders
       config.float_style == "bright" and ui.float_background or ui.float_background_dim
     ),
     FloatTitle = create(
-      ui.float_title,
+      palette.primary, -- More prominent title color
       config.float_style == "bright" and ui.float_background or ui.float_background_dim,
       { styles.bold }
     ),
@@ -137,11 +138,12 @@ return function(theme, config)
     -- Signs
     SignColumn = create(ui.on_surface, config.sign_column_background == "none" and palette.none or ui.surface),
 
-    -- Popup menu
+    -- Popup menu (enhanced selection for gentle brutalism)
     Pmenu = create(ui.on_surface, ui.popup_background),
-    PmenuSel = create(ui.background, ui.selection),
+    PmenuSel = create(ui.background, ui.selection, { styles.bold }), -- Bold selection
     PmenuSbar = create(palette.none, ui.popup_background),
     PmenuThumb = create(palette.none, ui.scrollbar_thumb),
+    PmenuBorder = create(ui.border_strong or ui.outline, ui.popup_background), -- New: popup border
     WildMenu = link("PmenuSel"),
 
     -- Quick fix

@@ -13,11 +13,16 @@ return function(theme, config)
   local styles = highlights.styles
 
   return {
-    -- Telescope
-    TelescopeMatching = create(palette.success, palette.none, { styles.bold }),
-    TelescopeBorder = link("Grey"),
-    TelescopePromptPrefix = link("Orange"),
-    TelescopeSelection = link("DiffAdd"),
+    -- Telescope (enhanced for gentle brutalism)
+    TelescopeMatching = create(palette.primary, palette.none, { styles.bold }),
+    TelescopeBorder = create(ui.border_strong or ui.outline, palette.none), -- Stronger borders
+    TelescopePromptPrefix = create(palette.primary, palette.none, { styles.bold }), -- Bold prompt
+    TelescopeSelection = create(ui.on_surface, ui.selection, { styles.bold }), -- Bold selection
+    TelescopeSelectionCaret = create(palette.primary, ui.selection, { styles.bold }),
+    TelescopePromptBorder = create(ui.border_strong or ui.outline, palette.none),
+    TelescopeResultsBorder = create(ui.border_strong or ui.outline, palette.none),
+    TelescopePreviewBorder = create(ui.border_strong or ui.outline, palette.none),
+    TelescopeTitle = create(palette.primary, palette.none, { styles.bold }), -- Bold titles
 
     -- Which-key
     WhichKey = link("Red"),
@@ -108,6 +113,33 @@ return function(theme, config)
     -- Quick scope
     QuickScopePrimary = create(palette.secondary, palette.none, { styles.underline }),
     QuickScopeSecondary = create(palette.info, palette.none, { styles.underline }),
+
+    -- File explorers (nvim-tree, neo-tree, oil) - enhanced for gentle brutalism
+    NvimTreeFolderName = create(ui.on_surface, palette.none, { styles.bold }),
+    NvimTreeOpenedFolderName = create(palette.primary, palette.none, { styles.bold }),
+    NvimTreeRootFolder = create(palette.primary, palette.none, { styles.bold }),
+    NvimTreeNormal = create(ui.on_surface, ui.surface),
+    NvimTreeNormalNC = create(ui.on_surface, ui.surface),
+    NvimTreeCursorLine = create(palette.none, ui.selection, { styles.bold }),
+    NvimTreeWinSeparator = create(ui.border_strong or ui.outline, palette.none),
+    NvimTreeFolderIcon = create(palette.primary, palette.none),
+    
+    -- Neo-tree
+    NeoTreeDirectoryName = create(ui.on_surface, palette.none, { styles.bold }),
+    NeoTreeDirectoryIcon = create(palette.primary, palette.none),
+    NeoTreeRootName = create(palette.primary, palette.none, { styles.bold }),
+    NeoTreeFileName = create(ui.on_surface, palette.none),
+    NeoTreeFileNameOpened = create(palette.primary, palette.none, { styles.bold }),
+    NeoTreeCursorLine = create(palette.none, ui.selection, { styles.bold }),
+    NeoTreeWinSeparator = create(ui.border_strong or ui.outline, palette.none),
+    NeoTreeFloatBorder = create(ui.border_strong or ui.float_border, palette.none),
+    NeoTreeFloatTitle = create(palette.primary, palette.none, { styles.bold }),
+    
+    -- Oil.nvim
+    OilDir = create(palette.primary, palette.none, { styles.bold }),
+    OilDirIcon = create(palette.primary, palette.none),
+    OilFile = create(ui.on_surface, palette.none),
+    OilCursorLine = create(palette.none, ui.selection, { styles.bold }),
   }
 end
 

@@ -32,6 +32,8 @@ local M = {}
 ---@param palette ColorPalette
 ---@return table
 local function build_ui_roles(palette)
+  local util = require("forestflower.util")
+  
   return {
     background = palette.background,
     surface = palette.surface,
@@ -73,6 +75,16 @@ local function build_ui_roles(palette)
     tab_inactive_fg = palette.on_surface,
     tab_fill_bg = palette.background,
     tab_fill_fg = palette.on_surface_variant,
+    
+    -- Gentle brutalism enhancements: stronger borders, layered depth, segments
+    border_strong = palette.border_strong or palette.outline,
+    float_border_strong = palette.border_strong or palette.outline_variant,
+    segment_bg = util.darken(palette.surface_variant, 0.08), -- Offset backgrounds for segments
+    segment_border = util.darken(palette.outline, 0.15), -- Darker segment separators
+    tab_separator = palette.outline_variant,
+    statusline_segment_bg = util.darken(palette.surface_variant, 0.1), -- Mode/segment containers
+    statusline_mode_bg = palette.primary, -- Bold mode indicator background
+    tab_active_elevated = util.lighten(palette.surface_variant, 0.95), -- Subtle lift for active tab
   }
 end
 
