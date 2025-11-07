@@ -48,19 +48,19 @@ Base Colors (palette 0-7):
   1: #f85552  ████  Red (errors)
   2: #b4d494  ████  Green (success)
   3: #e0b36e  ████  Gold (functions) ← Enhanced +12%
-  4: #7fbbb3  ████  Blue (info)
+  4: #8294c9  ████  Blue (info)
   5: #d699b6  ████  Pink (special)
-  6: #7fbbb3  ████  Cyan
+  6: #8294c9  ████  Cyan
   7: #e6e1cf  ████  White (foreground)
 
 Bright Colors (palette 8-15):
   8: #42474f  ████  Bright black (borders) ← Stronger
   9: #fcaaa9  ████  Bright red
  10: #d3f0bb  ████  Bright green
- 11: #f0d8a8  ████  Bright gold
- 12: #bfddd9  ████  Bright blue
- 13: #ebccdb  ████  Bright pink
- 14: #bfddd9  ████  Bright cyan
+  11: #f0d8a8  ████  Bright gold
+  12: #95a8d8  ████  Bright blue
+  13: #ebccdb  ████  Bright pink
+  14: #95a8d8  ████  Bright cyan
  15: #e6e1cf  ████  Bright white
 ```
 

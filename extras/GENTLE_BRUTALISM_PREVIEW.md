@@ -39,7 +39,7 @@ Updated JSON definitions to match the enhanced palette:
 
 **Rainbow Brackets** (Updated):
 ```
-rainbow_1: #7fbbb3 (unchanged - blue)
+rainbow_1: #8294c9 (evening periwinkle - blue)
 rainbow_2: #d9a85f → #e0b36e (gold +12%)
 rainbow_3: #a7c080 → #b1c88d (green +10%)
 rainbow_4: #89b4a8 → #93bcb1 (sage +10%)
