@@ -56,7 +56,7 @@ function M.load()
   util.load(highlights, theme.ansi)
   
   -- Setup terminal colors
-  terminal.setup(theme.ansi)
+  terminal.setup(theme.palette, vim.o.background)
   
   -- Run contrast audit if enabled
   if M.config.contrast_audit then
