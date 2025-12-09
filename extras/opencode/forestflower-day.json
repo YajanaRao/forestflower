@@ -81,16 +81,24 @@
   },
   "theme": {
     "primary": {
-      "dark": "green1",
-      "light": "green1"
+      "dark": "green",
+      "light": "green"
     },
     "secondary": {
       "dark": "blue",
       "light": "blue"
     },
     "accent": {
-      "dark": "orange",
-      "light": "orange"
+      "dark": "green1",
+      "light": "green1"
+    },
+    "userMessage": {
+      "dark": "green1",
+      "light": "green1"
+    },
+    "assistantMessage": {
+      "dark": "fg",
+      "light": "fg"
     },
     "error": {
       "dark": "red1",
@@ -109,8 +117,8 @@
       "light": "blue2"
     },
     "text": {
-      "dark": "fg",
-      "light": "fg"
+      "dark": "dark5",
+      "light": "dark5"
     },
     "textMuted": {
       "dark": "fg_dark",
