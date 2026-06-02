@@ -1,1 +1,1 @@
-require("forestflower").load()
+require("forestflower.init").load()

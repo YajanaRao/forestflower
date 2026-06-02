@@ -21,7 +21,7 @@
     "blue7": "#2d4d4a",
     "border": "#3a3f47",
     "border_highlight": "#7fbbb3",
-    "comment": "#6e6a86",
+    "comment": "#6F6E69",
     "cyan": "#7fbbb3",
     "dark3": "#8a8a7a",
     "dark5": "#d3c6aa",
@@ -81,16 +81,16 @@
   },
   "theme": {
     "primary": {
-      "dark": "green1",
-      "light": "green1"
+      "dark": "green",
+      "light": "green"
     },
     "secondary": {
       "dark": "blue",
       "light": "blue"
     },
     "accent": {
-      "dark": "orange",
-      "light": "orange"
+      "dark": "green1",
+      "light": "green1"
     },
     "error": {
       "dark": "red1",
@@ -109,8 +109,8 @@
       "light": "blue2"
     },
     "text": {
-      "dark": "fg",
-      "light": "fg"
+      "dark": "dark5",
+      "light": "dark5"
     },
     "textMuted": {
       "dark": "fg_dark",

@@ -1,35 +1,26 @@
----Terminal color system for Forest Flower colorscheme
----Handles ANSI terminal colors and external tool integrations
-
----@class TerminalModule
+---Configure terminal ANSI colors and related external-tool integrations.
 local M = {}
 
----Configure terminal ANSI colors
----@param palette ColorPalette
----@param background string
-function M.setup(palette, background)
-  -- Use explicit terminal colors that match OpenCode theme
-  -- Base ANSI colors (0-7)
-  vim.g.terminal_color_0 = palette.terminal.black
-  vim.g.terminal_color_1 = palette.terminal.red
-  vim.g.terminal_color_2 = palette.terminal.green
-  vim.g.terminal_color_3 = palette.terminal.yellow
-  vim.g.terminal_color_4 = palette.terminal.blue
-  vim.g.terminal_color_5 = palette.terminal.magenta
-  vim.g.terminal_color_6 = palette.terminal.cyan
-  vim.g.terminal_color_7 = palette.terminal.white
+---@param palette table palette table from themes/<name>.lua
+function M.setup(palette)
+  local a = palette.ansi
+  vim.g.terminal_color_0  = a.black
+  vim.g.terminal_color_1  = a.red
+  vim.g.terminal_color_2  = a.green
+  vim.g.terminal_color_3  = a.yellow
+  vim.g.terminal_color_4  = a.blue
+  vim.g.terminal_color_5  = a.magenta
+  vim.g.terminal_color_6  = a.cyan
+  vim.g.terminal_color_7  = a.white
+  vim.g.terminal_color_8  = a.bright_black
+  vim.g.terminal_color_9  = a.bright_red
+  vim.g.terminal_color_10 = a.bright_green
+  vim.g.terminal_color_11 = a.bright_yellow
+  vim.g.terminal_color_12 = a.bright_blue
+  vim.g.terminal_color_13 = a.bright_magenta
+  vim.g.terminal_color_14 = a.bright_cyan
+  vim.g.terminal_color_15 = a.bright_white
 
-  -- Bright ANSI colors (8-15)
-  vim.g.terminal_color_8 = palette.terminal.black_bright
-  vim.g.terminal_color_9 = palette.terminal.red_bright
-  vim.g.terminal_color_10 = palette.terminal.green_bright
-  vim.g.terminal_color_11 = palette.terminal.yellow_bright
-  vim.g.terminal_color_12 = palette.terminal.blue_bright
-  vim.g.terminal_color_13 = palette.terminal.magenta_bright
-  vim.g.terminal_color_14 = palette.terminal.cyan_bright
-  vim.g.terminal_color_15 = palette.terminal.white_bright       
-
-  -- fzf.vim colors
   vim.g.fzf_colors = {
     fg = { "fg", "Normal" },
     bg = { "bg", "Normal" },
@@ -46,10 +37,8 @@ function M.setup(palette, background)
     header = { "fg", "Grey" },
   }
 
-  -- limelight.vim colors
-  vim.g.limelight_conceal_ctermfg = palette.outline_variant
-  vim.g.limelight_conceal_guifg = palette.outline_variant
+  vim.g.limelight_conceal_ctermfg = palette.surface_raised
+  vim.g.limelight_conceal_guifg = palette.surface_raised
 end
 
 return M
-

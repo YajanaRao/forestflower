@@ -1,30 +1,30 @@
-# Forest Flower (Night) - Ghostty Theme
-# Source: lua/forestflower/core/colors.lua
-# Updated with warm palette changes
+# Forest Flower (Night) — Ghostty Theme
+# Source of truth: DESIGN.md
+# Surfaces: Everforest. Chrome: Cobalt 2 gold. Syntax: Flexoki.
 
-# Base colors
-palette = 0=#252a30
-palette = 1=#f85552
-palette = 2=#b4d494
-palette = 3=#d9a85f
-palette = 4=#7fbbb3
-palette = 5=#d699b6
-palette = 6=#7fbbb3
-palette = 7=#e6e1cf
+# Base ANSI — Flexoki 400-series
+palette = 0=#1D2226
+palette = 1=#D14D41
+palette = 2=#879A39
+palette = 3=#D0A215
+palette = 4=#4385BE
+palette = 5=#CE5D97
+palette = 6=#3AA99F
+palette = 7=#D3C6AA
 
-# Bright colors
-palette = 8=#3d4247
-palette = 9=#fcaaa9
-palette = 10=#d3f0bb
-palette = 11=#f0d8a8
-palette = 12=#bfddd9
-palette = 13=#ebccdb
-palette = 14=#bfddd9
-palette = 15=#e6e1cf
+# Bright ANSI — Flexoki 300/200-series
+palette = 8=#575653
+palette = 9=#E8705F
+palette = 10=#A0AF54
+palette = 11=#ECCB60
+palette = 12=#66A0C8
+palette = 13=#E47DA8
+palette = 14=#5ABDAC
+palette = 15=#ffffff
 
-# UI colors
-background = #101010
-foreground = #e6e1cf
-cursor-color = #b4d494
-selection-background = #2d4d3a
-selection-foreground = #e6e1cf
+# UI
+background = #2D353B
+foreground = #D3C6AA
+cursor-color = #FFC600
+selection-background = #3A5A40
+selection-foreground = #D3C6AA

@@ -1,27 +1,26 @@
-# Forest Flower Powerline Preset for Starship
-# Full version with language detection
-# Proper UTF-8 powerline arrows
-# Sunset Fade: Brightness gradient from light to dark
+# Forest Flower Powerline Preset for Starship — Night
+# Source of truth: DESIGN.md
+# Chrome: Cobalt 2 gold. Surfaces: Everforest tonal steps.
 
 format = """
-[](#b4d494)\
+[](#FFC600)\
 $directory\
-[](fg:#b4d494 bg:#d699b6)\
+[](fg:#FFC600 bg:#3A5A40)\
 $git_branch\
 $git_status\
-[](fg:#d699b6 bg:#d9a85f)\
+[](fg:#3A5A40 bg:#7FBBB3)\
 $jobs\
-[](fg:#d9a85f bg:#2d4d3a)\
+[](fg:#7FBBB3 bg:#403319)\
 $bun\
 $nodejs\
 $python\
 $rust\
 $golang\
-[](fg:#2d4d3a)\
+[](fg:#403319)\
 """
 
 [directory]
-style = "bg:#b4d494 fg:#101010"
+style = "bg:#FFC600 fg:#1D2226"
 format = "[ $path ]($style)"
 truncation_length = 0
 truncate_to_repo = false
@@ -36,43 +35,42 @@ truncate_to_repo = false
 
 [git_branch]
 symbol = ""
-style = "bg:#d699b6 fg:#101010"
+style = "bg:#3A5A40 fg:#FFC600"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#d699b6 fg:#101010"
+style = "bg:#3A5A40 fg:#FFC600"
 format = '[$all_status$ahead_behind ]($style)'
 
 [jobs]
 symbol = "✦"
-style = "bg:#d9a85f fg:#101010"
+style = "bg:#7FBBB3 fg:#1D2226"
 format = "[ $symbol $number ]($style)"
 number_threshold = 1
 
-# Language modules - show in dark forest segment when detected
 [bun]
 symbol = ""
-style = "bg:#2d4d3a fg:#b4d494"
+style = "bg:#403319 fg:#FFC600"
 format = '[ $symbol ($version) ]($style)'
 detect_files = ['bun.lockb', 'bunfig.toml']
 
 [nodejs]
 symbol = "󰎙"
-style = "bg:#2d4d3a fg:#b4d494"
+style = "bg:#403319 fg:#FFC600"
 format = '[ $symbol ($version) ]($style)'
 detect_files = ['package.json', '.node-version', '.nvmrc']
 
 [python]
 symbol = " "
-style = "bg:#2d4d3a fg:#b4d494"
+style = "bg:#403319 fg:#FFC600"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#2d4d3a fg:#b4d494"
+style = "bg:#403319 fg:#FFC600"
 format = '[ $symbol ($version) ]($style)'
 
 [golang]
 symbol = " "
-style = "bg:#2d4d3a fg:#b4d494"
+style = "bg:#403319 fg:#FFC600"
 format = '[ $symbol ($version) ]($style)'

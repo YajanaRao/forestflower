@@ -1,339 +1,143 @@
-*everforest.nvim.txt*    For Neovim >= 0.8.0    Last change: 2025 September 10
+*forestflower.nvim.txt*  For Neovim >= 0.9.0  Last change: 2026 May 29
 
 ==============================================================================
-Table of Contents                          *everforest.nvim-table-of-contents*
+Table of Contents                       *forestflower.nvim-table-of-contents*
 
-1. Everforest.nvim                           |everforest.nvim-everforest.nvim|
-  - Features                        |everforest.nvim-everforest.nvim-features|
-  - Installation                |everforest.nvim-everforest.nvim-installation|
-  - Usage                              |everforest.nvim-everforest.nvim-usage|
-  - Configuration              |everforest.nvim-everforest.nvim-configuration|
-  - Overriding Highlight Groups|everforest.nvim-everforest.nvim-overriding-highlight-groups|
-  - Overridingcolours in the palette|everforest.nvim-everforest.nvim-overridingcolours-in-the-palette|
-  - Plugin support            |everforest.nvim-everforest.nvim-plugin-support|
-  - Still TODO                    |everforest.nvim-everforest.nvim-still-todo|
-  - Inspiration                  |everforest.nvim-everforest.nvim-inspiration|
+1. Forest Flower                          |forestflower.nvim-forest-flower|
+  - Features                     |forestflower.nvim-forest-flower-features|
+  - Installation             |forestflower.nvim-forest-flower-installation|
+  - Configuration           |forestflower.nvim-forest-flower-configuration|
+  - Overrides                   |forestflower.nvim-forest-flower-overrides|
+  - Adding a Theme       |forestflower.nvim-forest-flower-adding-a-theme|
+  - Plugin Support         |forestflower.nvim-forest-flower-plugin-support|
+  - Inspiration               |forestflower.nvim-forest-flower-inspiration|
 
 ==============================================================================
-1. Everforest.nvim                           *everforest.nvim-everforest.nvim*
+1. Forest Flower                            *forestflower.nvim-forest-flower*
 
-A Lua port of the everforest <https://github.com/sainnhe/everforest> colour
-scheme.
+A Neovim colorscheme combining warm Everforest surfaces, a single
+Cobalt 2 chrome identity (gold at night, deep navy by day), and
+Flexoki's calm inky syntax palette.
 
-  -----------------------------------------------------------------------
-                                   Dark                    Light
-  ----------------------- ----------------------- -----------------------
-           Hard             [everforest colour       [eveforest colour
-                             scheme dark hard]      scheme light hard]
+Forest Flower ships two themes: `night` (dark) and `day` (light). By
+default it follows |'background'|. See DESIGN.md for the design thesis.
 
-     Medium (default)        [eveforest colour      [everforest colour
-                            scheme dark medium]    scheme light medium]
-
-           Soft             [everforest colour      [everforest colour
-                             scheme dark soft]      scheme light soft]
-  -----------------------------------------------------------------------
-_All screenshots taken from my personal config_
-
-
-FEATURES                            *everforest.nvim-everforest.nvim-features*
+FEATURES                           *forestflower.nvim-forest-flower-features*
 
 - 100% Lua, supports Treesitter & LSP
 - Vim terminal colours
-- **Lualine** theme
+- Lualine theme
+- Single-file theme model: drop a Lua file to add a theme.
+- Strict validation: missing palette roles fail loudly at startup, not at
+  first paint.
 
 
-INSTALLATION                    *everforest.nvim-everforest.nvim-installation*
+INSTALLATION                   *forestflower.nvim-forest-flower-installation*
 
-Using lazy.nvim <https://github.com/folke/lazy.nvim>
-
->lua
-    require("lazy").setup({
-      "neanias/everforest-nvim",
-      version = false,
+Using lazy.nvim: >lua
+    {
+      "YajanaRao/forestflower",
+      priority = 1000,
       lazy = false,
-      priority = 1000, -- make sure to load this before all the other start plugins
-      -- Optional; default configuration will be used if setup isn't called.
       config = function()
-        require("everforest").setup({
-          -- Your config here
-        })
+        vim.cmd.colorscheme("forestflower")
       end,
-    })
-<
-
-Usingpacker.nvim <https://github.com/wbthomason/packer.nvim>
-
->lua
-    use({
-      "neanias/everforest-nvim",
-      -- Optional; default configuration will be used if setup isn't called.
-      config = function()
-        require("everforest").setup()
-      end,
-    })
-<
-
-Usingvim-plug <https://github.com/junegunn/vim-plug>
-
->viml
-    Plug 'neanias/everforest-nvim', { 'branch': 'main' }
+    }
 <
 
 
-USAGE                                  *everforest.nvim-everforest.nvim-usage*
+CONFIGURATION                 *forestflower.nvim-forest-flower-configuration*
 
->viml
-    " In VimL
-    
-    " This has both light & dark modes to match your background setting.
-    colorscheme everforest
-<
-
->lua
-    -- In Lua
-    vim.cmd([[colorscheme everforest]])
-    
-    -- Alternatively
-    require("everforest").load()
-<
-
-Toenable the everforest theme for LuaLine, you can specify it as such:
-
->lua
-    require("lualine").setup({
-      options = {
-        -- ... other configuration
-        theme = "everforest", -- Can also be "auto" to detect automatically.
-      }
-    })
-<
-
-
-LSPSAGA INFORMATION ~
-
-Please note that LspSaga uses `Diagnostic{Warning,Error,Info,Hint}` highlight
-groups to define its borders for diagnostic pop-ups, especially in
-`diagnostic_jump_{next,prev}`. As discussed in the Sonokai repo
-<https://github.com/sainnhe/sonokai/issues/87>, this is not a good idea and
-there is no plan to change core highlights for one plugin.
-
-**To prevent the problem of squiggly lines in LspSaga diagnostic windows,
-please set the diagnostic.border_follow configuration option to false.**
-
-
-CONFIGURATION                  *everforest.nvim-everforest.nvim-configuration*
-
-
-  Configuration options aren’t as comprehensive as the original everforest
-  theme yet.
-This colour scheme has a light and a dark mode which are configured using the
-vim background setting: `:set background=light` or `vim.o.background=dark` as
-appropriate.
-
-The default configuration used by the colour scheme ~
-
->lua
-    require("everforest").setup({
-      ---Controls the "hardness" of the background. Options are "soft", "medium" or "hard".
-      ---Default is "medium".
-      background = "medium",
-      ---How much of the background should be transparent. 2 will have more UI
-      ---components be transparent (e.g. status line background)
-      transparent_background_level = 0,
-      ---Whether italics should be used for keywords and more.
+Defaults: >lua
+    require("forestflower").setup({
+      -- theme = "night",                 -- omit to auto-detect via vim.o.background
+      transparent_background = false,
       italics = false,
-      ---Disable italic fonts for comments. Comments are in italics by default, set
-      ---this to `true` to make them _not_ italic!
-      disable_italic_comments = false,
-      ---By default, the colour of the sign column background is the same as the as normal text
-      ---background, but you can use a grey background by setting this to `"grey"`.
-      sign_column_background = "none",
-      ---Some plugins support highlighting error/warning/info/hint texts, by
-      ---default these texts are only underlined, but you can use this option to
-      ---also highlight the background of them.
+      sign_column_background = "grey",    -- "none" | "grey"
       diagnostic_text_highlight = false,
-      ---Which colour the diagnostic text should be. Options are `"grey"` or `"coloured"` (default)
-      diagnostic_virtual_text = "coloured",
-      ---Some plugins support highlighting error/warning/info/hint lines, but this
-      ---feature is disabled by default in this colour scheme.
-      diagnostic_line_highlight = false,
-      ---Whether to show the EndOfBuffer highlight.
-      show_eob = true,
-      ---Style used to make floating windows stand out from other windows. `"bright"`
-      ---makes the background of these windows lighter than |hl-Normal|, whereas
-      ---`"dim"` makes it darker.
-      ---
-      ---Floating windows include for instance diagnostic pop-ups, scrollable
-      ---documentation windows from completion engines, overlay windows from
-      ---installers, etc.
-      ---
-      ---NB: This is only significant for dark backgrounds as the light palettes
-      ---have the same colour for both values in the switch.
-      float_style = "bright",
-      ---You can override specific highlights to use other groups or a hex colour.
-      ---This function will be called with the highlights and colour palette tables.
-      ---@param highlight_groups Highlights
-      ---@param palette Palette
-      on_highlights = function(highlight_groups, palette) end,
-      ---You can override colours in the palette to use different hex colours.
-      ---This function will be called once the base and background colours have
-      ---been mixed on the palette.
-      ---@param palette Palette
+      diagnostic_virtual_text = "coloured", -- "coloured" | "grey"
+      float_style = "bright",             -- "bright" | "dim"
+      on_highlights = function(highlights, palette) end,
       colours_override = function(palette) end,
     })
 <
 
 
-OVERRIDING HIGHLIGHT GROUPS*everforest.nvim-everforest.nvim-overriding-highlight-groups*
+RECOMMENDED `guicursor`
 
-To find all possible palette colours, please see `colours.lua`
-<lua/everforest/colours.lua>.
+Neovim cannot set cursor pixel width from a colorscheme. To approximate the
+spec's 5px fat cursor in a 14px font, use |'guicursor'| in your init: >vim
+    set guicursor=n-v-c:block-Cursor,i-ci-ve:ver60-Cursor,r-cr:hor20-Cursor,o:hor50-Cursor,a:Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175
+<
+`ver60` renders a bar at ~60% of cell width (~5px at 14px cell size), closer
+to the DESIGN.md cursor spec than the default thin bar.
 
-For example, you could override the Diagnostic group of highlights to remove
-the undercurl:
+RECOMMENDED `lualine`
 
->lua
-    require("everforest").setup({
+Forest Flower ships a native lualine theme matching DESIGN.md chrome rules:
+normal mode uses `{colors.success}` (RCB green) to signal resting state;
+all active-mutation modes (insert, visual, replace, command) use
+`{colors.primary}` (gold/navy). Load it with: >lua
+    require("lualine").setup({
+      options = { theme = "forestflower" }
+    })
+<
+If lualine is loaded before the colorscheme, ensure `forestflower` is
+available on |runtimepath| or lazy-load lualine after the colorscheme.
+
+
+OVERRIDES                         *forestflower.nvim-forest-flower-overrides*
+
+Both override hooks operate on a per-load copy of the palette; mutations
+never leak across loads.
+
+Highlight overrides: >lua
+    require("forestflower").setup({
       on_highlights = function(hl, palette)
-        hl.DiagnosticError = { fg = palette.none, bg = palette.none, sp = palette.red }
-        hl.DiagnosticWarn = { fg = palette.none, bg = palette.none, sp = palette.yellow }
-        hl.DiagnosticInfo = { fg = palette.none, bg = palette.none, sp = palette.blue }
-        hl.DiagnosticHint = { fg = palette.none, bg = palette.none, sp = palette.green }
+        hl.DiagnosticError = { fg = palette.error }
       end,
     })
 <
 
-If you want to tweak or amend an existing highlight group you **need to add the
-colours that aren’t changing as well as your new styles**. This is because
-the highlights defined in the `on_highlights` method will _override_ the
-default highlights.
-
-Here’s an example of adding a **bold** styling to the `TSBoolean` highlight
-group:
-
->lua
-    require("everforest").setup({
-      on_highlights = function(hl, palette)
-        -- The default highlights for TSBoolean is linked to `Purple` which is fg
-        -- purple and bg none. If we want to just add a bold style to the existing,
-        -- we need to have the existing *and* the bold style. (We could link to
-        -- `PurpleBold` here otherwise.)
-        hl.TSBoolean = { fg = palette.purple, bg = palette.none, bold = true }
-      end,
-    })
-<
-
-To clear any highlight groups, simply set them to `{}`
-
->lua
-    require("everforest").setup({
-      on_highlights = function(hl, palette)
-        hl.TSDanger = {}
+Palette overrides: >lua
+    require("forestflower").setup({
+      colours_override = function(palette)
+        palette.primary = "#b86466"
       end,
     })
 <
 
 
-OVERRIDINGCOLOURS IN THE PALETTE*everforest.nvim-everforest.nvim-overridingcolours-in-the-palette*
+ADDING A THEME             *forestflower.nvim-forest-flower-adding-a-theme*
 
-To find the existing palette colours, please see `colours.lua`
-<lua/everforest/colours.lua>.
+Drop a file under `lua/forestflower/themes/`. Every theme returns a flat
+palette table; the discovery layer auto-loads any file in this directory.
 
-For instance, if you use a dark background and want to use a darker hue for
-red, you could use the following configuration:
+The validator requires every key in the schema. Missing values fail at
+load time with a clear error message.
 
->lua
-    require("everforest").setup({
-      colours_override = function (palette)
-        palette.red = "#b86466"
-      end
-    })
+See `lua/forestflower/themes/night.lua` for the reference implementation
+and `lua/forestflower/themes/init.lua` for the required-role list.
+
+Select a theme: >lua
+    require("forestflower").setup({ theme = "my-theme" })
 <
 
 
-PLUGIN SUPPORT                *everforest.nvim-everforest.nvim-plugin-support*
+PLUGIN SUPPORT             *forestflower.nvim-forest-flower-plugin-support*
 
-- ALE <https://github.com/dense-analysis/ale>
-- Barbar <https://github.com/romgrk/barbar.nvim>
-- BufferLine <https://github.com/akinsho/nvim-bufferline.lua>
-- Coc.nvim <https://github.com/neoclide/coc.nvim>
-- Dashboard <https://github.com/glepnir/dashboard-nvim>
-- Git Gutter <https://github.com/airblade/vim-gitgutter>
-- Git Signs <https://github.com/lewis6991/gitsigns.nvim>
-- Hop <https://github.com/phaazon/hop.nvim>
-- Incline.nvim <https://github.com/b0o/incline.nvim>
-- Indent Blankline <https://github.com/lukas-reineke/indent-blankline.nvim>
-- |LSP Diagnostics|
-- LSP Saga <https://github.com/glepnir/lspsaga.nvim>
-- LSP Trouble <https://github.com/folke/lsp-trouble.nvim>
-- Leap <https://github.com/ggandor/leap.nvim>
-- Lualine <https://github.com/hoob3rt/lualine.nvim>
-- Mini <https://github.com/echasnovski/mini.nvim>
-- Neo-tree.nvim <https://github.com/nvim-neo-tree/neo-tree.nvim>
-- Neogit <https://github.com/TimUntersberger/neogit>
-- Neomake <https://github.com/neomake/neomake>
-- Neotest <https://github.com/nvim-neotest/neotest>
-- Noice <https://github.com/folke/noice.nvim>
-- NvimTree <https://github.com/nvim-tree/nvim-tree.lua>
-- Octo.nvim <https://github.com/pwntester/octo.nvim>
-- Scrollbar <https://github.com/petertriho/nvim-scrollbar>
-- Telescope <https://github.com/nvim-telescope/telescope.nvim>
-- TreeSitter <https://github.com/nvim-treesitter/nvim-treesitter>
-- Trouble <https://github.com/folke/trouble.nvim>
-- WhichKey <https://github.com/folke/which-key.nvim>
-- aerial.nvim <https://github.com/stevearc/aerial.nvim>
-- blamer.nvim <https://github.com/APZelos/blamer.nvim>
-- fzf.vim <https://github.com/junegunn/fzf.vim>
-- fsread.nvim <https://github.com/nullchilly/fsread.nvim>
-- lightspeed.nvim <https://github.com/ggandor/lightspeed.nvim>
-- nvim-cmp <https://github.com/hrsh7th/nvim-cmp>
-- nvim-dap-ui <https://github.com/rcarriga/nvim-dap-ui>
-- nvim-navic <https://github.com/SmiteshP/nvim-navic>
-- nvim-notify <https://github.com/rcarriga/nvim-notify>
-- nvim-ts-rainbow <https://github.com/p00f/nvim-ts-rainbow>
-- nvim-ts-rainbow2 <https://github.com/HiPhish/nvim-ts-rainbow2>
-- packer.nvim <https://github.com/wbthomason/packer.nvim>
-- symbols-outline.nvim <https://github.com/simrat39/symbols-outline.nvim>
-- undotree <https://github.com/mbbill/undotree>
-- vim-floaterm <https://github.com/voldikss/vim-floaterm>
-- vim-matchup <https://github.com/andymass/vim-matchup>
-- vim-plug <https://github.com/junegunn/vim-plug>
-- vim-sneak <https://github.com/justinmk/vim-sneak>
-- yanky.nvim <https://github.com/gbprod/yanky.nvim>
-
-See the wiki <https://github.com/neanias/everforest-nvim/wiki> for the full
-list of plugins that have highlights.
+ALE, Barbar, BufferLine, Coc.nvim, Dashboard, Flash, gitsigns, Hop,
+Incline, Indent Blankline, LSP Diagnostics, LspSaga, Leap, Lualine,
+Mini, Neo-tree, Neogit, Noice, NvimTree, Scrollbar, Snacks (explorer,
+picker, indent), Telescope, Treesitter, Trouble, WhichKey, aerial,
+blamer, fzf, nvim-cmp, nvim-dap-ui, nvim-navic, nvim-notify,
+nvim-ts-rainbow, yanky, and others.
 
 
-STILL TODO                        *everforest.nvim-everforest.nvim-still-todo*
+INSPIRATION                     *forestflower.nvim-forest-flower-inspiration*
 
-- Colour scheme configuration
-    - `background`
-    - `transparent_background`
-    - `dim_inactive_windows`
-    - `disable_italic_comments`
-    - `enable_italic` — this is `italic` in everforest-nvim
-    - _cursor
-    - `sign_column_background`
-    - `spell_foreground`
-    - `ui_contrast`
-    - `show_eob`
-    - `current_word`
-    - `diagnostic_text_highlight`
-    - `diagnostic_line_highlight`
-    - `diagnostic_virtual_text`
-    - `disable_terminal_colours`
-    - `colours_override`
-- Transparent backgrounds
-- Different colour scheme "weights"
-
-
-INSPIRATION                      *everforest.nvim-everforest.nvim-inspiration*
-
-- everforest <https://github.com/sainnhe/everforest> (obviously)
-- NeoSolarized.nvim <https://github.com/Tsuzat/NeoSolarized.nvim>
-- Tokyo Night <https://github.com/folke/tokyonight.nvim>
-
-Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
+- Everforest <https://github.com/sainnhe/everforest>
+- Cobalt 2 <https://github.com/wesbos/cobalt2>
+- Flexoki <https://stephango.com/flexoki>
 
 vim:tw=78:ts=8:noet:ft=help:norl:
