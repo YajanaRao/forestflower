@@ -1,112 +1,115 @@
 {
   "$schema": "https://opencode.ai/theme.json",
   "defs": {
-    "bg": "#101010",
-    "bg_dark": "#1e2326",
-    "bg_dark1": "#252a30",
-    "bg_float": "#1e2326",
-    "bg_highlight": "#252a30",
-    "bg_popup": "#1e2326",
-    "bg_search": "#2d4d4a",
-    "bg_sidebar": "#1e2326",
-    "bg_statusline": "#1e2326",
-    "bg_visual": "#2d4d4a",
-    "black": "#3a3f47",
-    "blue": "#7fbbb3",
-    "blue0": "#7fbbb3",
-    "blue1": "#89b4a8",
-    "blue2": "#8fb4b3",
-    "blue5": "#9ab8b5",
-    "blue6": "#7fbbb3",
-    "blue7": "#2d4d4a",
-    "border": "#3a3f47",
-    "border_highlight": "#7fbbb3",
-    "comment": "#6e6a86",
-    "cyan": "#7fbbb3",
-    "dark3": "#8a8a7a",
-    "dark5": "#d3c6aa",
-    "diff_add": "#2d4d3a",
-    "diff_change": "#2d4d4a",
-    "diff_delete": "#4d2d3a",
-    "diff_text": "#2d4d4a",
-    "error": "#f85552",
-    "fg": "#d3c6aa",
-    "fg_dark": "#8a8a7a",
-    "fg_float": "#d3c6aa",
-    "fg_gutter": "#3d4247",
-    "fg_sidebar": "#8a8a7a",
-    "git_add": "#b4d494",
-    "git_change": "#7fbbb3",
-    "git_delete": "#f85552",
-    "git_ignore": "#6e6a86",
-    "green": "#a7c080",
-    "green1": "#b4d494",
-    "green2": "#a8c9a8",
-    "hint": "#9ab8b5",
-    "info": "#7fbbb3",
-    "magenta": "#c4a7e7",
-    "magenta2": "#d699b6",
-    "orange": "#d9a85f",
-    "purple": "#c4a7e7",
-    "rainbow_1": "#7fbbb3",
-    "rainbow_2": "#d9a85f",
-    "rainbow_3": "#a7c080",
-    "rainbow_4": "#89b4a8",
-    "rainbow_5": "#c4a7e7",
-    "rainbow_6": "#d699b6",
-    "rainbow_7": "#e08856",
-    "rainbow_8": "#ea9a97",
-    "red": "#eb6f92",
-    "red1": "#f85552",
-    "teal": "#7fbbb3",
-    "terminal_black": "#3a3f47",
-    "terminal_black_bright": "#6e6a86",
-    "terminal_blue": "#7fbbb3",
-    "terminal_blue_bright": "#8fb4b3",
-    "terminal_cyan": "#7fbbb3",
-    "terminal_cyan_bright": "#9ab8b5",
-    "terminal_green": "#a7c080",
-    "terminal_green_bright": "#b4d494",
-    "terminal_magenta": "#c4a7e7",
-    "terminal_magenta_bright": "#d699b6",
-    "terminal_red": "#eb6f92",
-    "terminal_red_bright": "#f85552",
-    "terminal_white": "#d3c6aa",
-    "terminal_white_bright": "#e0def4",
-    "terminal_yellow": "#d9a85f",
-    "terminal_yellow_bright": "#dfa97a",
-    "todo": "#d9a85f",
-    "warning": "#d9a85f",
-    "yellow": "#d9a85f"
+    "bg": "#2D353B",
+    "bg_dark": "#232A2E",
+    "bg_dark1": "#1D2226",
+    "bg_float": "#232A2E",
+    "bg_highlight": "#3D484D",
+    "bg_popup": "#232A2E",
+    "bg_search": "#FFC600",
+    "bg_sidebar": "#232A2E",
+    "bg_statusline": "#1D2226",
+    "bg_visual": "#3A5A40",
+    "black": "#1D2226",
+    "blue": "#4385BE",
+    "blue0": "#4385BE",
+    "blue1": "#66A0C8",
+    "blue2": "#92BFDB",
+    "blue5": "#66A0C8",
+    "blue6": "#3AA99F",
+    "blue7": "#3A5A40",
+    "border": "#3D484D",
+    "border_highlight": "#FFC600",
+    "comment": "#6F6E69",
+    "cyan": "#3AA99F",
+    "sky_blue": "#5ABDAC",
+    "dark3": "#7A8478",
+    "dark5": "#D3C6AA",
+    "diff_add": "#3A5A40",
+    "diff_change": "#4D4231",
+    "diff_delete": "#4D2D3A",
+    "diff_text": "#3A5A40",
+    "error": "#F89A8A",
+    "fg": "#D3C6AA",
+    "fg_dark": "#969E95",
+    "fg_float": "#D3C6AA",
+    "fg_gutter": "#3D484D",
+    "fg_sidebar": "#969E95",
+    "git_add": "#BEC97E",
+    "git_change": "#F9AE77",
+    "git_delete": "#F89A8A",
+    "git_ignore": "#969E95",
+    "green": "#A0AF54",
+    "green1": "#BEC97E",
+    "green2": "#A0AF54",
+    "hint": "#969E95",
+    "info": "#92BFDB",
+    "magenta": "#E47DA8",
+    "magenta2": "#CE5D97",
+    "orange": "#EC8B49",
+    "purple": "#A699D0",
+    "rainbow_1": "#A0AF54",
+    "rainbow_2": "#EC8B49",
+    "rainbow_3": "#5ABDAC",
+    "rainbow_4": "#66A0C8",
+    "rainbow_5": "#A699D0",
+    "rainbow_6": "#E47DA8",
+    "rainbow_7": "#FFC600",
+    "rainbow_8": "#F89A8A",
+    "red": "#F89A8A",
+    "red1": "#E8705F",
+    "teal": "#5ABDAC",
+    "terminal_black": "#1D2226",
+    "terminal_black_bright": "#575653",
+    "terminal_blue": "#4385BE",
+    "terminal_blue_bright": "#66A0C8",
+    "terminal_cyan": "#3AA99F",
+    "terminal_cyan_bright": "#5ABDAC",
+    "terminal_green": "#879A39",
+    "terminal_green_bright": "#A0AF54",
+    "terminal_magenta": "#CE5D97",
+    "terminal_magenta_bright": "#E47DA8",
+    "terminal_red": "#D14D41",
+    "terminal_red_bright": "#E8705F",
+    "terminal_white": "#D3C6AA",
+    "terminal_white_bright": "#ffffff",
+    "terminal_yellow": "#D0A215",
+    "terminal_yellow_bright": "#ECCB60",
+    "todo": "#A0AF54",
+    "warning": "#F9AE77",
+    "yellow": "#FFC600",
+    "gold": "#FFC600",
+    "amber_dark": "#403319"
   },
   "theme": {
     "primary": {
-      "dark": "green",
-      "light": "green"
+      "dark": "gold",
+      "light": "gold"
     },
     "secondary": {
-      "dark": "blue",
-      "light": "blue"
+      "dark": "gold",
+      "light": "gold"
     },
     "accent": {
-      "dark": "green1",
-      "light": "green1"
+      "dark": "gold",
+      "light": "gold"
     },
     "error": {
-      "dark": "red1",
-      "light": "red1"
+      "dark": "error",
+      "light": "error"
     },
     "warning": {
-      "dark": "yellow",
-      "light": "yellow"
+      "dark": "warning",
+      "light": "warning"
     },
     "success": {
-      "dark": "green",
-      "light": "green"
+      "dark": "git_add",
+      "light": "git_add"
     },
     "info": {
-      "dark": "blue2",
-      "light": "blue2"
+      "dark": "info",
+      "light": "info"
     },
     "text": {
       "dark": "dark5",
@@ -117,8 +120,8 @@
       "light": "fg_dark"
     },
     "background": {
-      "dark": "bg_dark",
-      "light": "bg_dark"
+      "dark": "bg",
+      "light": "bg"
     },
     "backgroundPanel": {
       "dark": "bg_dark",
@@ -129,24 +132,24 @@
       "light": "bg_highlight"
     },
     "border": {
-      "dark": "black",
-      "light": "black"
+      "dark": "border",
+      "light": "border"
     },
     "borderActive": {
-      "dark": "border_highlight",
-      "light": "border_highlight"
+      "dark": "gold",
+      "light": "gold"
     },
     "borderSubtle": {
       "dark": "dark3",
       "light": "dark3"
     },
     "diffAdded": {
-      "dark": "green1",
-      "light": "green1"
+      "dark": "git_add",
+      "light": "git_add"
     },
     "diffRemoved": {
-      "dark": "red1",
-      "light": "red1"
+      "dark": "git_delete",
+      "light": "git_delete"
     },
     "diffContext": {
       "dark": "fg_dark",
@@ -193,8 +196,8 @@
       "light": "fg"
     },
     "markdownHeading": {
-      "dark": "blue",
-      "light": "blue"
+      "dark": "green",
+      "light": "green"
     },
     "markdownLink": {
       "dark": "blue",
@@ -205,8 +208,8 @@
       "light": "teal"
     },
     "markdownCode": {
-      "dark": "green",
-      "light": "green"
+      "dark": "teal",
+      "light": "teal"
     },
     "markdownBlockQuote": {
       "dark": "comment",
@@ -249,32 +252,32 @@
       "light": "comment"
     },
     "syntaxKeyword": {
-      "dark": "purple",
-      "light": "purple"
+      "dark": "green",
+      "light": "green"
     },
     "syntaxFunction": {
-      "dark": "blue",
-      "light": "blue"
+      "dark": "orange",
+      "light": "orange"
     },
     "syntaxVariable": {
       "dark": "fg",
       "light": "fg"
     },
     "syntaxString": {
-      "dark": "green",
-      "light": "green"
+      "dark": "teal",
+      "light": "teal"
     },
     "syntaxNumber": {
-      "dark": "orange",
-      "light": "orange"
+      "dark": "purple",
+      "light": "purple"
     },
     "syntaxType": {
       "dark": "blue1",
       "light": "blue1"
     },
     "syntaxOperator": {
-      "dark": "blue5",
-      "light": "blue5"
+      "dark": "dark3",
+      "light": "dark3"
     },
     "syntaxPunctuation": {
       "dark": "fg_dark",

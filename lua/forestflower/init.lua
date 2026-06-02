@@ -1,67 +1,47 @@
 ---Forest Flower Colorscheme
----A nature-inspired colorscheme for mindful programming
+---Single-flavour, role-driven. Add themes by dropping a file in themes/.
 
 local M = {}
 
 ---@class ForestflowerConfig
 M.config = {
-  flavour = "night", -- "night" | "day"
-  background = "medium", -- "soft" | "medium" | "hard"
-  transparent_background_level = 0, -- 0 | 1 | 2
+  -- theme = "night",  -- omit to auto-detect from vim.o.background
+  transparent_background = false,
   italics = false,
-  disable_italic_comments = false,
-  sign_column_background = "none", -- "none" | "grey"
+  sign_column_background = "grey", -- "none" | "grey"
   diagnostic_text_highlight = false,
   diagnostic_virtual_text = "coloured", -- "coloured" | "grey"
-  diagnostic_line_highlight = false,
-  show_eob = true,
   float_style = "bright", -- "bright" | "dim"
-  on_highlights = function() end,
-  colours_override = function() end,
-  contrast_audit = false,
+  on_highlights = function(_hl, _palette) end,
+  colours_override = function(_palette) end,
 }
 
----Setup configuration
 ---@param opts? table
 function M.setup(opts)
   M.config = vim.tbl_deep_extend("force", M.config, opts or {})
 end
 
----Load the colorscheme
 function M.load()
-  -- Import required modules
-  local theme_builder = require("forestflower.core.theme")
-  local terminal = require("forestflower.core.terminal")
+  local themes = require("forestflower.themes")
   local util = require("forestflower.util")
-  
-  -- Build theme based on config
-  local theme = theme_builder.build(M.config, vim.o.background)
-  
-  -- Generate highlight groups
-  local editor = require("forestflower.groups.editor")(theme, M.config)
-  local syntax = require("forestflower.groups.syntax")(theme, M.config)
-  local diagnostics = require("forestflower.groups.diagnostics")(theme, M.config)
-  local plugins = require("forestflower.groups.plugins")(theme, M.config)
-  local snacks = require("forestflower.groups.snacks")(theme, M.config)
-  
-  -- Merge all highlight groups
-  local highlights = vim.tbl_extend("force", {}, editor, syntax, diagnostics, plugins, snacks)
-  
-  -- Apply user overrides
-  if M.config.on_highlights then
-    M.config.on_highlights(highlights, theme.palette)
+  local terminal = require("forestflower.core.terminal")
+
+  -- resolve() returns a deepcopy; safe to mutate from here on.
+  local palette = themes.resolve(M.config, vim.o.background)
+  M.config.colours_override(palette)
+
+  local highlights = {}
+  for _, group in ipairs({ "editor", "syntax", "diagnostics", "plugins", "snacks" }) do
+    local generated = require("forestflower.groups." .. group)(palette, M.config)
+    for k, v in pairs(generated) do
+      highlights[k] = v
+    end
   end
-  
-  -- Load the colorscheme
-  util.load(highlights, theme.ansi)
-  
-  -- Setup terminal colors
-  terminal.setup(theme.palette, vim.o.background)
-  
-  -- Run contrast audit if enabled
-  if M.config.contrast_audit then
-    util.contrast_audit(theme)
-  end
+
+  M.config.on_highlights(highlights, palette)
+
+  util.load(highlights)
+  terminal.setup(palette)
 end
 
 return M

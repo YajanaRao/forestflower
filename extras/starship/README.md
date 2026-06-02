@@ -26,10 +26,11 @@ cp extras/starship/forestflower-day.toml ~/.config/starship.toml
 exec $SHELL
 ```
 
-Or use the provided install script from the project root:
+Or use the unified install script from the project root:
 
 ```bash
-./install-configs.sh
+./install.sh          # Install all configs
+./install.sh --dry-run # Preview what would be installed
 ```
 
 ## Requirements

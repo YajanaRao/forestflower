@@ -1,165 +1,208 @@
----Editor highlight groups
----Core editor functionality, cursor, selection, etc.
+---Editor highlight groups + base color aliases.
+---
+---Base color groups (Red/Green/Blue/...) are defined here because other group
+---files link to them. Keeping them in one place avoids ordering hazards.
 
 local highlights = require("forestflower.core.highlights")
+local util = require("forestflower.util")
 
----@param theme ForestflowerTheme
----@param config ThemeConfig
+---@param p table palette
+---@param config ForestflowerConfig
 ---@return Highlights
-return function(theme, config)
-  local palette, ui = theme.palette, theme.ui
+return function(p, config)
   local create = highlights.create
   local link = highlights.link
   local styles = highlights.styles
 
+  local sign_bg = config.sign_column_background == "none" and p.none or p.surface
+  local statusline_bg = config.transparent_background and p.none or p.surface_deep
+  local tab_fill_bg = config.transparent_background and p.none or p.canvas
+
   return {
     -- Core editor
-    Normal = create(ui.on_surface, config.transparent_background_level > 0 and palette.none or ui.background),
-    NormalFloat = create(
-      ui.on_surface,
-      config.float_style == "bright" and ui.float_background or ui.float_background_dim
-    ),
-    NormalNC = create(ui.on_surface, config.transparent_background_level > 0 and palette.none or ui.background),
+    Normal = create(p.ink, config.transparent_background and p.none or p.canvas),
+    NormalFloat = create(p.ink, config.float_style == "bright" and p.surface or p.surface_raised),
+    NormalNC = create(p.ink, config.transparent_background and p.none or p.canvas),
 
-    -- Cursor
-    Cursor = create(palette.none, palette.none, { styles.reverse }),
+    -- Cursor — spec: gold cursor (5px width set via guicursor in user config).
+    Cursor = create(p.canvas, p.primary),
     lCursor = link("Cursor"),
     CursorIM = link("Cursor"),
     TermCursor = link("Cursor"),
     TermCursorNC = link("Cursor"),
 
     -- Selection
-    Visual = create(palette.none, ui.selection),
+    Visual = create(p.none, p.selection),
     VisualNOS = link("Visual"),
 
-    -- Line numbers
-    LineNr = create(ui.outline, palette.none),
+    -- Line numbers — gutter sits on surface tier
+    LineNr = create(p.muted, sign_bg),
     LineNrAbove = link("LineNr"),
     LineNrBelow = link("LineNr"),
-    CursorLineNr = create(ui.primary, palette.none, { styles.bold }),
+    CursorLineNr = create(p.primary, sign_bg, { styles.bold }),
 
     -- Cursor line
-    CursorLine = create(palette.none, ui.surface_variant),
-    CursorColumn = create(palette.none, ui.surface),
+    CursorLine = create(p.none, p.surface_raised),
+    CursorColumn = create(p.none, p.surface),
 
-    -- Search
-    Search = create(ui.background, ui.primary),
+    -- Search — spec: find-match is chrome gold. Neovim cannot blend alpha at
+    -- the highlight layer; render solid gold with canvas fg.
+    Search = create(p.canvas, p.primary),
     IncSearch = link("Search"),
     CurSearch = link("IncSearch"),
-    Substitute = create(ui.background, palette.warning),
+    Substitute = create(p.canvas, p.primary),
 
-    -- Status line
-    StatusLine = create(
-      ui.statusline_fg,
-      config.transparent_background_level == 2 and palette.none or ui.statusline_bg
-    ),
-    StatusLineNC = create(
-      ui.statusline_nc_fg,
-      config.transparent_background_level == 2 and palette.none or ui.statusline_nc_bg
-    ),
+    -- Status line — sits on surface_deep
+    StatusLine = create(p.ink, statusline_bg),
+    StatusLineNC = create(p.subtle, config.transparent_background and p.none or p.surface),
 
     -- Tabs
-    TabLine = create(ui.tab_inactive_fg, ui.tab_inactive_bg),
-    TabLineFill = create(ui.tab_fill_fg, config.transparent_background_level == 2 and palette.none or ui.tab_fill_bg),
-    TabLineSel = create(ui.on_surface, ui.tab_active_bg, { styles.bold }),
+    TabLine = create(p.subtle, p.surface),
+    TabLineFill = create(p.subtle, tab_fill_bg),
+    -- TabLineSel — spec: 2px gold underline. Neovim renders underline as 1px sp; closest faithful approximation.
+    TabLineSel = create(p.ink, p.surface_raised, { styles.bold, styles.underline }, p.primary),
+    TabLineModified = create(p.primary, p.surface),
+    TabLineSelModified = create(p.primary, p.surface_raised, { styles.bold }),
+    TabLineClose = create(p.subtle, p.surface),
+    TabLineSelClose = create(p.ink, p.surface_raised, { styles.bold }),
 
-    -- Tab modifications (unsaved changes)
-    TabLineModified = create(palette.primary, ui.tab_inactive_bg),
-    TabLineSelModified = create(palette.primary, ui.tab_active_bg, { styles.bold }),
-
-    -- Tab separators and borders
-    TabLineClose = create(ui.on_surface_variant, ui.tab_inactive_bg),
-    TabLineSelClose = create(ui.on_surface, ui.tab_active_bg, { styles.bold }),
-
-    -- Mini.tabline highlight groups
-    MiniTablineCurrent = create(ui.on_surface, ui.tab_active_bg, { styles.bold }),
-    MiniTablineVisible = create(ui.tab_inactive_fg, ui.tab_inactive_bg),
-    MiniTablineHidden = create(ui.on_surface_variant, ui.tab_inactive_bg),
-    MiniTablineModifiedCurrent = create(ui.primary, ui.tab_active_bg, { styles.bold }),
-    MiniTablineModifiedVisible = create(ui.primary, ui.tab_inactive_bg),
-    MiniTablineModifiedHidden = create(ui.primary, ui.tab_inactive_bg),
-    MiniTablineFill = create(
-      ui.tab_fill_fg,
-      config.transparent_background_level == 2 and palette.none or ui.tab_fill_bg
-    ),
-    MiniTablineTabpagesection = create(ui.on_surface_variant, ui.tab_inactive_bg),
-    MiniTablineTrunc = create(ui.on_surface_variant, ui.tab_inactive_bg),
+    -- Mini.tabline
+    MiniTablineCurrent = create(p.ink, p.surface_raised, { styles.bold }),
+    MiniTablineVisible = create(p.subtle, p.surface),
+    MiniTablineHidden = create(p.subtle, p.surface),
+    MiniTablineModifiedCurrent = create(p.primary, p.surface_raised, { styles.bold }),
+    MiniTablineModifiedVisible = create(p.primary, p.surface),
+    MiniTablineModifiedHidden = create(p.primary, p.surface),
+    MiniTablineFill = create(p.subtle, tab_fill_bg),
+    MiniTablineTabpagesection = create(p.subtle, p.surface),
+    MiniTablineTrunc = create(p.subtle, p.surface),
 
     -- Windows
-    WinBar = create(
-      ui.on_surface_variant,
-      config.transparent_background_level == 2 and palette.none or ui.surface,
-      { styles.bold }
-    ),
-    WinBarNC = create(
-      ui.on_surface_variant,
-      config.transparent_background_level == 2 and palette.none or ui.surface_variant
-    ),
-    WinSeparator = create(ui.background, ui.background),
+    WinBar = create(p.subtle, config.transparent_background and p.none or p.surface, { styles.bold }),
+    WinBarNC = create(p.subtle, config.transparent_background and p.none or p.surface_raised),
+    -- WinSeparator — spec: divide by darkness, not stroke color.
+    WinSeparator = create(p.surface_deep, p.surface_deep),
     VertSplit = link("WinSeparator"),
 
     -- Borders
-    FloatBorder = create(
-      ui.float_border,
-      config.float_style == "bright" and ui.float_background or ui.float_background_dim
-    ),
-    FloatTitle = create(
-      ui.float_title,
-      config.float_style == "bright" and ui.float_background or ui.float_background_dim,
-      { styles.bold }
-    ),
+    FloatBorder = create(p.muted, config.float_style == "bright" and p.surface or p.surface_raised),
+    FloatTitle = create(p.primary, config.float_style == "bright" and p.surface or p.surface_raised, { styles.bold }),
 
-    -- End of buffer
-    EndOfBuffer = create(config.show_eob and ui.surface_variant or ui.background, palette.none),
+    -- End of buffer — render tilde column matching canvas
+    EndOfBuffer = create(p.canvas, p.none),
 
     -- Messages
-    ErrorMsg = create(palette.error, palette.none, { styles.bold, styles.underline }),
-    WarningMsg = create(palette.warning, palette.none, { styles.bold }),
-    ModeMsg = create(ui.on_surface, palette.none, { styles.bold }),
-    MoreMsg = create(palette.warning, palette.none, { styles.bold }),
-    Question = create(palette.warning, palette.none),
+    ErrorMsg = create(p.error, p.none, { styles.bold, styles.underline }),
+    WarningMsg = create(p.warning, p.none, { styles.bold }),
+    ModeMsg = create(p.ink, p.none, { styles.bold }),
+    MoreMsg = create(p.warning, p.none, { styles.bold }),
+    Question = create(p.warning, p.none),
 
     -- Special
-    SpecialKey = create(palette.warning, palette.none),
-    NonText = create(ui.on_surface_variant, palette.none),
-    Whitespace = create(ui.on_surface_variant, palette.none),
+    SpecialKey = create(p.warning, p.none),
+    NonText = create(p.subtle, p.none),
+    Whitespace = create(p.subtle, p.none),
 
-    -- Inline annotations
-    InlayHints = create(ui.hint, ui.hint_container),
+    -- Inline hints — container computed once via blend so themes don't carry it
+    InlayHints = create(p.hint, p.surface),
 
-    Directory = create(ui.success, palette.none),
-    Title = create(palette.warning, palette.none, { styles.bold }),
+    Directory = create(p.success, p.none),
+    -- Title — DESIGN: gold is chrome-only. Headings route to syntax_keyword.
+    Title = create(p.syntax_keyword, p.none, { styles.bold }),
 
     -- Folding
-    Folded = create(ui.on_surface_variant, config.transparent_background_level > 0 and palette.none or ui.surface),
-    FoldColumn = create(ui.outline, config.sign_column_background == "none" and palette.none or ui.surface),
+    Folded = create(p.subtle, config.transparent_background and p.none or p.surface),
+    FoldColumn = create(p.muted, sign_bg),
 
     -- Signs
-    SignColumn = create(ui.on_surface, config.sign_column_background == "none" and palette.none or ui.surface),
+    SignColumn = create(p.ink, sign_bg),
 
     -- Popup menu
-    Pmenu = create(ui.on_surface, ui.popup_background),
-    PmenuSel = create(ui.selection, ui.background, { styles.reverse }),
+    Pmenu = create(p.ink, p.surface_raised),
+    PmenuSel = create(p.selection, p.canvas, { styles.reverse }),
     PmenuKind = link("Pmenu"),
-    PmenuKindSel = create(ui.selection, ui.background, { styles.reverse }),
+    PmenuKindSel = create(p.selection, p.canvas, { styles.reverse }),
     PmenuExtra = link("Pmenu"),
-    PmenuExtraSel = create(ui.selection, ui.background, { styles.reverse }),
-    PmenuMatch = create(ui.primary, ui.popup_background),
-    PmenuMatchSel = create(ui.selection, ui.primary, { styles.reverse }),
-    PmenuSbar = create(palette.none, ui.popup_background),
-    PmenuThumb = create(palette.none, ui.scrollbar_thumb),
+    PmenuExtraSel = create(p.selection, p.canvas, { styles.reverse }),
+    -- PmenuMatch — substring match is find-match family (chrome gold).
+    PmenuMatch = create(p.primary, p.surface_raised, { styles.bold }),
+    PmenuMatchSel = create(p.primary, p.canvas, { styles.bold, styles.reverse }),
+    PmenuSbar = create(p.none, p.surface_raised),
+    PmenuThumb = create(p.none, p.surface_raised),
     WildMenu = link("PmenuSel"),
 
     -- Quick fix
-    QuickFixLine = create(palette.tertiary, palette.none, { styles.bold }),
+    QuickFixLine = create(p.syntax_regex, p.none, { styles.bold }),
 
-    -- Match paren
-    MatchParen = create(palette.none, ui.surface_variant),
+    -- Match paren — spec: gold border at rounded.sm, outline only.
+    -- Neovim has no per-character border; bold+underline gold is the closest.
+    MatchParen = create(p.primary, p.none, { styles.bold, styles.underline }),
 
     -- Conceal
-    Conceal = create(ui.on_surface_variant, palette.none),
+    Conceal = create(p.subtle, p.none),
 
     -- Color column
-    ColorColumn = create(palette.none, ui.surface_variant),
+    ColorColumn = create(p.none, p.surface_raised),
+
+    -------------------------------------------------------------------------
+    -- Base color aliases — referenced by every other groups/ file.
+    -- These names are historical (Red/Green/Blue/...). Mapping uses semantic
+    -- palette roles, not literal hue names.
+    -------------------------------------------------------------------------
+    Red = create(p.error, p.none),
+    Orange = create(p.warning, p.none),
+    Yellow = create(p.warning, p.none),
+    Green = create(p.success, p.none),
+    Aqua = create(p.syntax_string, p.none),
+    Blue = create(p.info, p.none),
+    Purple = create(p.syntax_regex, p.none),
+    Grey = create(p.subtle, p.none),
+
+    RedBold = create(p.error, p.none, { styles.bold }),
+    OrangeBold = create(p.warning, p.none, { styles.bold }),
+    YellowBold = create(p.warning, p.none, { styles.bold }),
+    GreenBold = create(p.success, p.none, { styles.bold }),
+    AquaBold = create(p.syntax_string, p.none, { styles.bold }),
+    BlueBold = create(p.info, p.none, { styles.bold }),
+    PurpleBold = create(p.syntax_regex, p.none, { styles.bold }),
+
+    RedItalic = create(p.error, p.none, { styles.italic }),
+    OrangeItalic = create(p.warning, p.none, { styles.italic }),
+    YellowItalic = create(p.warning, p.none, { styles.italic }),
+    GreenItalic = create(p.success, p.none, { styles.italic }),
+    AquaItalic = create(p.syntax_string, p.none, { styles.italic }),
+    BlueItalic = create(p.info, p.none, { styles.italic }),
+    PurpleItalic = create(p.syntax_regex, p.none, { styles.italic }),
+
+    -- Sign variants — used by gitsigns / diagnostic signs
+    RedSign = create(p.error, sign_bg),
+    OrangeSign = create(p.warning, sign_bg),
+    YellowSign = create(p.warning, sign_bg),
+    GreenSign = create(p.success, sign_bg),
+    AquaSign = create(p.syntax_string, sign_bg),
+    BlueSign = create(p.info, sign_bg),
+    PurpleSign = create(p.syntax_regex, sign_bg),
+
+    -- Float variants — diagnostic floats
+    ErrorFloat = create(p.error, config.float_style == "bright" and p.surface or p.surface_raised),
+    WarningFloat = create(p.warning, config.float_style == "bright" and p.surface or p.surface_raised),
+    InfoFloat = create(p.info, config.float_style == "bright" and p.surface or p.surface_raised),
+    HintFloat = create(p.hint, config.float_style == "bright" and p.surface or p.surface_raised),
+
+    -- Virtual text variants — code lens / inline annotations
+    VirtualTextInfo = create(p.info, p.none),
+    VirtualTextHint = create(p.hint, p.none),
+
+    -- Diff base groups — sign-glyph fg sources + full-line/word backgrounds.
+    -- Tints derive from semantic git_* hues blended into canvas so day/night
+    -- adapt automatically. DiffDelete carries a real bg (core default omits it,
+    -- which left mini.diff deleted lines unfilled).
+    Added = create(p.git_add, p.none),
+    Changed = create(p.git_change, p.none),
+    Removed = create(p.git_delete, p.none),
+    DiffAdd = create(p.none, util.blend(p.git_add, 0.22, p.canvas)),
+    DiffDelete = create(p.none, util.blend(p.git_delete, 0.22, p.canvas)),
+    DiffChange = create(p.none, util.blend(p.git_change, 0.14, p.canvas)),
+    DiffText = create(p.none, util.blend(p.git_change, 0.30, p.canvas)),
   }
 end

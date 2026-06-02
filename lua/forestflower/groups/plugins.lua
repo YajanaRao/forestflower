@@ -1,57 +1,72 @@
----Plugin highlight groups
----Third-party plugin integrations
+---Plugin highlight groups (third-party integrations).
 
 local highlights = require("forestflower.core.highlights")
+local util = require("forestflower.util")
 
----@param theme ForestflowerTheme
----@param config ThemeConfig
+---@param p table palette
+---@param config ForestflowerConfig
 ---@return Highlights
-return function(theme, config)
-  local palette, ui = theme.palette, theme.ui
+return function(p, config)
   local create = highlights.create
   local link = highlights.link
   local styles = highlights.styles
 
+  local sign_bg = config.sign_column_background == "none" and p.none or p.surface
+
   return {
-    -- Telescope
-    TelescopeMatching = create(palette.success, palette.none, { styles.bold }),
+    -- Telescope — fuzzy substring matches are find-match family (chrome gold).
+    TelescopeMatching = create(p.primary, p.none, { styles.bold }),
     TelescopeBorder = link("Grey"),
     TelescopePromptPrefix = link("Orange"),
-    TelescopeSelection = link("DiffAdd"),
+    TelescopeSelection = link("Visual"),
 
     -- Which-key
     WhichKey = link("Red"),
     WhichKeyDesc = link("Blue"),
-    WhichKeyFloat = create(palette.none, palette.surface),
+    WhichKeyFloat = create(p.none, p.surface),
     WhichKeyGroup = link("Yellow"),
     WhichKeySeparator = link("Green"),
-    WhichKeyValue = create(ui.on_surface, palette.none),
+    WhichKeyValue = create(p.ink, p.none),
 
-    -- Flash
-    FlashBackdrop = create(ui.on_surface_variant, palette.none),
-    FlashLabel = create(palette.warning, palette.none, { styles.bold, styles.italic }),
-    FlashMatch = create(palette.warning, palette.none, { styles.bold }),
-    FlashCurrent = create(palette.warning, palette.none, { styles.bold }),
+    -- Flash — labels/matches are chrome navigation aids → gold.
+    FlashBackdrop = create(p.subtle, p.none),
+    FlashLabel = create(p.primary, p.none, { styles.bold, styles.italic }),
+    FlashMatch = create(p.primary, p.none, { styles.bold }),
+    FlashCurrent = create(p.primary, p.none, { styles.bold }),
 
     -- Leap
-    LeapMatch = create(ui.on_surface, palette.tertiary, { styles.bold }),
-    LeapLabel = create(palette.tertiary, palette.none, { styles.bold }),
-    LeapBackdrop = create(ui.on_surface_variant, palette.none),
+    LeapMatch = create(p.ink, p.syntax_regex, { styles.bold }),
+    LeapLabel = create(p.syntax_regex, p.none, { styles.bold }),
+    LeapBackdrop = create(p.subtle, p.none),
 
-    -- Indent blankline
-    IblScope = create(ui.on_surface_variant, palette.none, { styles.nocombine }),
-    IblIndent = create(ui.surface_variant, palette.none, { styles.nocombine }),
+    -- Indent guides — DESIGN: default at surface_raised, active scope at primary (gold).
+    IblScope = create(p.primary, p.none, { styles.nocombine }),
+    IblIndent = create(p.surface_raised, p.none, { styles.nocombine }),
     IndentBlanklineContextChar = link("IblScope"),
     IndentBlanklineChar = link("IblIndent"),
     IndentBlanklineSpaceChar = link("IndentBlanklineChar"),
     IndentBlanklineSpaceCharBlankline = link("IndentBlanklineChar"),
 
+    MiniDiffSignAdd = create(p.git_add, sign_bg),
+    MiniDiffSignChange = create(p.git_change, sign_bg),
+    MiniDiffSignDelete = create(p.git_delete, sign_bg),
+    MiniDiffOverChangeBuf = create(p.none, util.blend(p.git_add, 0.30, p.canvas)),
+
+    -- mini.indentscope
+    MiniIndentscopeSymbol = create(p.primary, p.none, { styles.nocombine }),
+    MiniIndentscopeSymbolOff = create(p.surface_raised, p.none, { styles.nocombine }),
+
+    -- snacks.indent
+    SnacksIndent = create(p.surface_raised, p.none, { styles.nocombine }),
+    SnacksIndentScope = create(p.primary, p.none, { styles.nocombine }),
+    SnacksIndentChunk = create(p.primary, p.none, { styles.nocombine }),
+
     -- Navic
-    NavicText = create(ui.on_surface, palette.none),
-    NavicSeparator = create(ui.on_surface, palette.none),
+    NavicText = create(p.ink, p.none),
+    NavicSeparator = create(p.ink, p.none),
 
     -- Notify
-    NotifyBackground = create(palette.none, palette.background),
+    NotifyBackground = create(p.none, p.canvas),
     NotifyDEBUGBorder = link("Grey"),
     NotifyERRORBorder = link("Red"),
     NotifyINFOBorder = link("Green"),
@@ -69,24 +84,24 @@ return function(theme, config)
     NotifyWARNTitle = link("Yellow"),
 
     -- Incline
-    InclineNormalNC = create(ui.on_surface_variant, ui.surface_variant),
+    InclineNormalNC = create(p.subtle, p.surface_raised),
 
     -- Bufferline
     BufferLineIndicatorSelected = link("GreenSign"),
 
     -- Scrollbar
-    ScrollbarHandle = create(palette.none, palette.surface),
-    ScrollbarSearchHandle = create(palette.warning, palette.surface),
+    ScrollbarHandle = create(p.none, p.surface),
+    ScrollbarSearchHandle = create(p.primary, p.surface),
     ScrollbarSearch = link("Yellow"),
-    ScrollbarErrorHandle = create(palette.error, palette.surface),
+    ScrollbarErrorHandle = create(p.error, p.surface),
     ScrollbarError = link("Red"),
-    ScrollbarWarnHandle = create(palette.warning, palette.surface),
+    ScrollbarWarnHandle = create(p.warning, p.surface),
     ScrollbarWarn = link("Yellow"),
-    ScrollbarInfoHandle = create(palette.success, palette.surface),
+    ScrollbarInfoHandle = create(p.info, p.surface),
     ScrollbarInfo = link("Green"),
-    ScrollbarHintHandle = create(palette.info, palette.surface),
+    ScrollbarHintHandle = create(p.info, p.surface),
     ScrollbarHint = link("Blue"),
-    ScrollbarMiscHandle = create(palette.tertiary, palette.surface),
+    ScrollbarMiscHandle = create(p.syntax_regex, p.surface),
     ScrollbarMisc = link("Purple"),
 
     -- Yanky
@@ -97,7 +112,7 @@ return function(theme, config)
     HighlightedyankRegion = link("Visual"),
 
     -- Current word
-    CurrentWord = create(palette.none, palette.none, { styles.bold }),
+    CurrentWord = create(p.none, p.none, { styles.bold }),
     CurrentWordTwins = link("CurrentWord"),
 
     -- Illuminate
@@ -106,8 +121,7 @@ return function(theme, config)
     IlluminatedWordWrite = link("CurrentWord"),
 
     -- Quick scope
-    QuickScopePrimary = create(palette.secondary, palette.none, { styles.underline }),
-    QuickScopeSecondary = create(palette.info, palette.none, { styles.underline }),
+    QuickScopePrimary = create(p.syntax_string, p.none, { styles.underline }),
+    QuickScopeSecondary = create(p.info, p.none, { styles.underline }),
   }
 end
-
