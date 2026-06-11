@@ -1,30 +1,29 @@
 # Forest Flower Day Powerline Preset for Starship
-# Full version with language detection
-# Proper UTF-8 powerline arrows
-# Sunrise Gradient: Light to warm tones
+# Source of truth: DESIGN.md
+# Chrome: deep forest green (#044123). Surfaces: Everforest Light Soft parchment tones.
 
 format = """
-[](#8da101)\
+[](#044123)\
 $directory\
-[](fg:#8da101 bg:#df69ba)\
+[](fg:#044123 bg:#CAD8E2)\
 $git_branch\
 $git_status\
-[](fg:#df69ba bg:#dfa000)\
+[](fg:#CAD8E2 bg:#F4F0D9)\
 $jobs\
-[](fg:#dfa000 bg:#e8f5d5)\
+[](fg:#F4F0D9 bg:#FBE8D3)\
 $bun\
 $nodejs\
 $python\
 $rust\
 $golang\
-[](fg:#e8f5d5)\
+[](fg:#FBE8D3)\
 """
 
 [directory]
-style = "bg:#8da101 fg:#fffbef"
+style = "bg:#044123 fg:#FDF6E3"
 format = "[ $path ]($style)"
-truncation_length = 3
-truncation_symbol = "…/"
+truncation_length = 0
+truncate_to_repo = false
 
 [directory.substitutions]
 "Documents" = "󰈙 "
@@ -36,43 +35,42 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:#df69ba fg:#fffbef"
+style = "bg:#CAD8E2 fg:#044123"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#df69ba fg:#fffbef"
+style = "bg:#CAD8E2 fg:#044123"
 format = '[$all_status$ahead_behind ]($style)'
 
 [jobs]
 symbol = "✦"
-style = "bg:#dfa000 fg:#fffbef"
+style = "bg:#F4F0D9 fg:#5C6A72"
 format = "[ $symbol $number ]($style)"
 number_threshold = 1
 
-# Language modules - show in light container segment when detected
 [bun]
 symbol = ""
-style = "bg:#e8f5d5 fg:#2d3338"
+style = "bg:#FBE8D3 fg:#5C6A72"
 format = '[ $symbol ($version) ]($style)'
 detect_files = ['bun.lockb', 'bunfig.toml']
 
 [nodejs]
 symbol = "󰎙"
-style = "bg:#e8f5d5 fg:#2d3338"
+style = "bg:#FBE8D3 fg:#5C6A72"
 format = '[ $symbol ($version) ]($style)'
 detect_files = ['package.json', '.node-version', '.nvmrc']
 
 [python]
 symbol = " "
-style = "bg:#e8f5d5 fg:#2d3338"
+style = "bg:#FBE8D3 fg:#5C6A72"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#e8f5d5 fg:#2d3338"
+style = "bg:#FBE8D3 fg:#5C6A72"
 format = '[ $symbol ($version) ]($style)'
 
 [golang]
 symbol = " "
-style = "bg:#e8f5d5 fg:#2d3338"
+style = "bg:#FBE8D3 fg:#5C6A72"
 format = '[ $symbol ($version) ]($style)'

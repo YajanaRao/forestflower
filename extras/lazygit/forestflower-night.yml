@@ -1,0 +1,39 @@
+# Forest Flower (Night) — lazygit UI chrome theme
+# Source of truth: DESIGN.md
+# Chrome accent: Cobalt 2 gold (#FFC600). Selected row: selection forest-green
+# (#3A5A40) — primary-container amber had near-zero canvas separation (looked
+# muddy); the selection token gives a visible highlight with readable text.
+#
+# Theme-only layer — compose with your base config, never replaces it:
+#   lazygit -ucf ~/.config/lazygit/config.yml,~/.config/lazygit/forestflower-night.yml
+#
+# Diffs are rendered by delta — install ../delta/forestflower.gitconfig too.
+
+gui:
+  theme:
+    activeBorderColor:
+      - "#FFC600"
+      - bold
+    inactiveBorderColor:
+      - "#969E95"
+    searchingActiveBorderColor:
+      - "#FFC600"
+      - bold
+    optionsTextColor:
+      - "#66A0C8"
+    selectedLineBgColor:
+      - "#3A5A40"
+    inactiveViewSelectedLineBgColor:
+      - "#3D484D"
+    cherryPickedCommitFgColor:
+      - "#FFC600"
+    cherryPickedCommitBgColor:
+      - "#3A5A40"
+    markedBaseCommitFgColor:
+      - "#FFC600"
+    markedBaseCommitBgColor:
+      - "#403319"
+    unstagedChangesColor:
+      - "#F89A8A"
+    defaultFgColor:
+      - "#D3C6AA"

@@ -25,6 +25,6 @@ palette = 15=#FDF6E3
 # UI
 background = #FDF6E3
 foreground = #5C6A72
-cursor-color = #193549
+cursor-color = #044123
 selection-background = #CAD8E2
 selection-foreground = #5C6A72

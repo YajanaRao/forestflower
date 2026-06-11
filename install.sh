@@ -26,6 +26,8 @@ usage() {
     echo "This installs:"
     echo "  - OpenCode themes (forestflower, forestflower-day, forestflower-night)"
     echo "  - Starship prompt themes (forestflower-day, forestflower-night)"
+    echo "  - Delta diff themes (forestflower-day, forestflower-night)"
+    echo "  - Lazygit UI themes (forestflower-day, forestflower-night)"
     echo "  - Ghostty terminal themes (referenced, not copied)"
     echo "  - Slack sidebar themes (referenced, not copied)"
     echo "  - Brave (Chromium) chrome theme via managed policy"
@@ -127,6 +129,52 @@ install_starship_configs() {
     log_info "To use: set 'preset' in ~/.config/starship.toml to point to one of these files"
 }
 
+install_delta_configs() {
+    echo ""
+    log_info "Installing Delta diff configs..."
+
+    local target_dir="$HOME/.config/delta"
+
+    if [ "$DRY_RUN" = false ]; then
+        mkdir -p "$target_dir"
+    fi
+
+    if [ -f "$EXTRAS_DIR/delta/forestflower.gitconfig" ]; then
+        copy_file "$EXTRAS_DIR/delta/forestflower.gitconfig" "$target_dir/forestflower.gitconfig"
+    fi
+
+    log_success "Delta config installed"
+    log_info "To use, add to ~/.gitconfig:"
+    log_info "  [include]"
+    log_info "      path = ~/.config/delta/forestflower.gitconfig"
+    log_info "Then select a variant via 'features = forestflower-day' (or -night)"
+    log_info "in your [delta] block, or set DELTA_FEATURES for auto day/night."
+}
+
+install_lazygit_configs() {
+    echo ""
+    log_info "Installing Lazygit UI configs..."
+
+    local target_dir="$HOME/.config/lazygit"
+
+    if [ "$DRY_RUN" = false ]; then
+        mkdir -p "$target_dir"
+    fi
+
+    if [ -f "$EXTRAS_DIR/lazygit/forestflower-day.yml" ]; then
+        copy_file "$EXTRAS_DIR/lazygit/forestflower-day.yml" "$target_dir/forestflower-day.yml"
+    fi
+
+    if [ -f "$EXTRAS_DIR/lazygit/forestflower-night.yml" ]; then
+        copy_file "$EXTRAS_DIR/lazygit/forestflower-night.yml" "$target_dir/forestflower-night.yml"
+    fi
+
+    log_success "Lazygit configs installed"
+    log_info "To use, layer the theme over your base config (pick one variant):"
+    log_info "  lazygit -ucf ~/.config/lazygit/config.yml,~/.config/lazygit/forestflower-night.yml"
+    log_info "Diffs are rendered by delta — install the delta theme too."
+}
+
 show_ghostty_info() {
     echo ""
     log_info "Ghostty terminal theme"
@@ -175,9 +223,12 @@ install_brave_theme() {
         fi
         defaults write com.brave.Browser BrowserThemeColor -string "$theme_color"
         killall cfprefsd 2>/dev/null || true
-        # Attempt live refresh via --refresh-platform-policy (requires Brave
-        # based on Chromium 141+; gracefully ignored on older builds).
-        open -b com.brave.Browser --args --refresh-platform-policy --no-startup-window 2>/dev/null || true
+        # Live-refresh the policy only if Brave is already running, and do it in
+        # the background (-g) so the install never launches or foregrounds Brave.
+        # Requires Brave on Chromium 141+; gracefully ignored on older builds.
+        if pgrep -x "Brave Browser" >/dev/null 2>&1; then
+            open -g -b com.brave.Browser --args --refresh-platform-policy --no-startup-window 2>/dev/null || true
+        fi
         log_success "Brave theme (${variant}) applied: BrowserThemeColor=$theme_color"
         log_info "Verify at brave://policy"
     else
@@ -201,6 +252,8 @@ print_summary() {
     echo "Installed configs:"
     echo "  • OpenCode themes → ~/.config/opencode/themes/"
     echo "  • Starship prompt → ~/.config/starship-forestflower-{day,night}.toml"
+    echo "  • Delta diff themes → ~/.config/delta/forestflower.gitconfig (day+night features)"
+    echo "  • Lazygit UI themes → ~/.config/lazygit/forestflower-{day,night}.yml"
     echo "  • Brave theme → com.brave.Browser policy (macOS) / see notes (Linux)"
     echo ""
     echo "Referenced (not copied - use directly from repo):"
@@ -211,6 +264,8 @@ print_summary() {
     echo "  1. Restart OpenCode instances (if running)"
     echo "  2. Set 'theme': 'forestflower' in ~/.config/opencode/tui.json"
     echo "  3. Reload Starship config: eval \$(starship init \$SHELL)"
+    echo "  4. Add delta [include] to ~/.gitconfig (see ~/.config/delta/)"
+    echo "  5. Launch lazygit with -ucf base,theme (see extras/lazygit/README.md)"
     echo ""
 }
 
@@ -242,6 +297,8 @@ main() {
 
     install_opencode_themes
     install_starship_configs
+    install_delta_configs
+    install_lazygit_configs
     show_ghostty_info
     show_slack_info
     install_brave_theme

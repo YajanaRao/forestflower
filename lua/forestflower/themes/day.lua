@@ -19,9 +19,9 @@ return {
   muted = "#A6B0A0",
   subtle = "#829181",
 
-  -- Chrome — Cobalt 2 deep navy. Exclusive to UI chrome; never appears in syntax.
-  primary = "#193549",
-  primary_container = "#D4DEE5",
+  -- Chrome — deep forest green. Exclusive to UI chrome; never appears in syntax.
+  primary = "#044123",
+  primary_container = "#FBE8D3",
 
   -- Syntax — Flexoki 600-series, role-mapped per Flexoki spec (light tier).
   syntax_keyword = "#66800B", -- gr-600

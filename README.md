@@ -5,13 +5,15 @@
 [![Lua](https://img.shields.io/badge/Made%20with-Lua-blueviolet.svg)](https://lua.org)
 
 A Neovim colorscheme combining three pedigrees:
+
 - **Surfaces** from [Everforest](https://github.com/sainnhe/everforest) — warm grey-green forest canvas (night) or cream parchment (day).
 - **Chrome** from [Cobalt 2](https://github.com/wesbos/cobalt2) — a single accent identity: gold (`#FFC600`) at night, deep navy (`#193549`) by day. Both used as outline/marker/cursor — never as broad fill.
 - **Syntax** from [Flexoki](https://stephango.com/flexoki) — calm role-mapped accents. 300-series on dark canvas, 600-series on cream. Ink on paper, both ways.
 
-> Forest Flower ships two themes: **night** (default dark) and **day** (light). See [DESIGN.md](./DESIGN.md) and [DESIGN-LIGHT.md](./DESIGN-LIGHT.md) for the design thesis.
+> Forest Flower ships two themes: **night** (default dark) and **day** (light). See [DESIGN.md](./DESIGN.md) for the design thesis.
 
 ### Night
+
 <img width="1918" height="1050" alt="Forest Flower night preview" src="https://github.com/user-attachments/assets/f4325305-5e9b-4688-aa4b-ae5995cd4b8e" />
 
 ---
@@ -55,17 +57,17 @@ require("forestflower").setup({
 vim.cmd.colorscheme("forestflower")
 ```
 
-| Option                    | Type     | Default    | Description                                            |
-| ------------------------- | -------- | ---------- | ------------------------------------------------------ |
+| Option                    | Type     | Default    | Description                                                                                             |
+| ------------------------- | -------- | ---------- | ------------------------------------------------------------------------------------------------------- |
 | theme                     | string?  | nil        | Theme to load. Omit to auto-detect from `vim.o.background`. Ships `"night"` (dark) and `"day"` (light). |
-| transparent_background    | boolean  | false      | Drop the canvas and sidebar backgrounds.               |
-| italics                   | boolean  | false      | Italicize keywords and comments.                       |
-| sign_column_background    | string   | "grey"     | `"grey"` (surface) or `"none"` (transparent).          |
-| diagnostic_text_highlight | boolean  | false      | Tint diagnostic text backgrounds.                      |
-| diagnostic_virtual_text   | string   | "coloured" | `"coloured"` or `"grey"`.                              |
-| float_style               | string   | "bright"   | `"bright"` (surface) or `"dim"` (surface_raised) floats. |
-| on_highlights             | function | noop       | `(highlights, palette)` mutate the final highlight table. |
-| colours_override          | function | noop       | `(palette)` edit role values before highlights apply.  |
+| transparent_background    | boolean  | false      | Drop the canvas and sidebar backgrounds.                                                                |
+| italics                   | boolean  | false      | Italicize keywords and comments.                                                                        |
+| sign_column_background    | string   | "grey"     | `"grey"` (surface) or `"none"` (transparent).                                                           |
+| diagnostic_text_highlight | boolean  | false      | Tint diagnostic text backgrounds.                                                                       |
+| diagnostic_virtual_text   | string   | "coloured" | `"coloured"` or `"grey"`.                                                                               |
+| float_style               | string   | "bright"   | `"bright"` (surface) or `"dim"` (surface_raised) floats.                                                |
+| on_highlights             | function | noop       | `(highlights, palette)` mutate the final highlight table.                                               |
+| colours_override          | function | noop       | `(palette)` edit role values before highlights apply.                                                   |
 
 ### Recommended `guicursor`
 

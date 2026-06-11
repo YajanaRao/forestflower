@@ -1,0 +1,104 @@
+# Forest Flower — delta diff theme (day + night variants)
+# Source of truth: DESIGN.md
+#
+# Both variants are named delta "features". Installed to
+# ~/.config/delta/forestflower.gitconfig by install.sh.
+#
+# To use, add to ~/.gitconfig:
+#   [include]
+#       path = ~/.config/delta/forestflower.gitconfig
+#
+# Then select a variant. Two options:
+#
+#   1. Static — set the feature in your [delta] block:
+#        [delta]
+#            features = forestflower-day   # or forestflower-night
+#
+#   2. Auto day/night — set the DELTA_FEATURES env var from your shell. delta
+#      reads it fresh on every invocation, so toggling system light/dark updates
+#      the next `git diff` live. Example (fish), driven by macOS appearance:
+#        if test (defaults read -g AppleInterfaceStyle 2>/dev/null) = Dark
+#            set -gx DELTA_FEATURES forestflower-night
+#        else
+#            set -gx DELTA_FEATURES forestflower-day
+#        end
+
+# --- Day -------------------------------------------------------------------
+# Backgrounds match Neovim DiffAdd/DiffDelete/DiffChange (git_* hue blended
+# into canvas #FDF6E3). Chrome: deep forest green. Git fg: Flexoki 700-series.
+[delta "forestflower-day"]
+	light = true
+	line-numbers = true
+	# base16-256 renders diff syntax via the terminal's ANSI palette, which Ghostty
+	# maps to Forest Flower — so diff bodies match the editor and context lines stay
+	# readable (instead of delta's washed-out 'none' fallback).
+	syntax-theme = base16-256
+
+	# Diff line backgrounds — git_* hue @ ~0.22 over canvas (matches Neovim)
+	minus-style = syntax "#e6c9b9"
+	minus-emph-style = syntax "#e0c2a3"
+	minus-non-emph-style = syntax "#efdec5"
+	plus-style = syntax "#d6d7b4"
+	plus-emph-style = syntax "#c8cca3"
+	plus-non-emph-style = syntax "#d6d7b4"
+	zero-style = syntax
+
+	# Hunk header — chrome forest green + muted box, blue file path
+	hunk-header-style = "#044123" bold
+	hunk-header-decoration-style = "#A6B0A0" box
+	hunk-header-file-style = "#205EA6"
+	hunk-header-line-number-style = "#829181"
+
+	# File header — blue (syntax-type), muted underline
+	file-style = "#205EA6" bold
+	file-decoration-style = "#A6B0A0" ul
+
+	# Line numbers — git_add / git_delete fg, subtle gutters
+	line-numbers-minus-style = "#942822"
+	line-numbers-plus-style = "#4D6B0E"
+	line-numbers-zero-style = "#A6B0A0"
+	line-numbers-left-style = "#A6B0A0"
+	line-numbers-right-style = "#A6B0A0"
+
+	# Blame — Everforest light surface steps
+	blame-palette = "#EFEBD4" "#FDF6E3" "#E6E2CC"
+
+# --- Night -----------------------------------------------------------------
+# Backgrounds match Neovim DiffAdd/DiffDelete/DiffChange (git_* hue blended
+# into canvas #2D353B). Chrome: Cobalt 2 gold. Git fg: Flexoki semantic accents.
+[delta "forestflower-night"]
+	dark = true
+	line-numbers = true
+	# base16-256 renders diff syntax via the terminal's ANSI palette, which Ghostty
+	# maps to Forest Flower — so diff bodies match the editor and context lines stay
+	# readable (instead of delta's washed-out 'none' fallback).
+	syntax-theme = base16-256
+
+	# Diff line backgrounds — git_* hue @ ~0.22 over canvas (matches Neovim)
+	minus-style = syntax "#5a4b4c"
+	minus-emph-style = syntax "#6a594d"
+	minus-non-emph-style = syntax "#4a4643"
+	plus-style = syntax "#4d564a"
+	plus-emph-style = syntax "#58614f"
+	plus-non-emph-style = syntax "#4d564a"
+	zero-style = syntax
+
+	# Hunk header — chrome gold + muted box, blue file path
+	hunk-header-style = "#FFC600" bold
+	hunk-header-decoration-style = "#7A8478" box
+	hunk-header-file-style = "#66A0C8"
+	hunk-header-line-number-style = "#969E95"
+
+	# File header — blue (syntax-type), muted underline
+	file-style = "#66A0C8" bold
+	file-decoration-style = "#7A8478" ul
+
+	# Line numbers — git_add / git_delete fg, subtle gutters
+	line-numbers-minus-style = "#F89A8A"
+	line-numbers-plus-style = "#BEC97E"
+	line-numbers-zero-style = "#7A8478"
+	line-numbers-left-style = "#575653"
+	line-numbers-right-style = "#575653"
+
+	# Blame — Everforest dark surface steps
+	blame-palette = "#232A2E" "#2D353B" "#3D484D"
