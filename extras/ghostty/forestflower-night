@@ -1,8 +1,6 @@
-# Forest Flower (Night) — Ghostty Theme
-# Source of truth: DESIGN.md
-# Surfaces: Everforest. Chrome: Cobalt 2 gold. Syntax: Flexoki.
+# Forest Flower (Night) — Ghostty
+# GENERATED from DESIGN.md by scripts/generate.mjs — do not edit by hand.
 
-# Base ANSI — Flexoki 400-series
 palette = 0=#1D2226
 palette = 1=#D14D41
 palette = 2=#879A39
@@ -11,8 +9,6 @@ palette = 4=#4385BE
 palette = 5=#CE5D97
 palette = 6=#3AA99F
 palette = 7=#D3C6AA
-
-# Bright ANSI — Flexoki 300/200-series
 palette = 8=#575653
 palette = 9=#E8705F
 palette = 10=#A0AF54
@@ -20,9 +16,8 @@ palette = 11=#ECCB60
 palette = 12=#66A0C8
 palette = 13=#E47DA8
 palette = 14=#5ABDAC
-palette = 15=#ffffff
+palette = 15=#FFFFFF
 
-# UI
 background = #2D353B
 foreground = #D3C6AA
 cursor-color = #FFC600

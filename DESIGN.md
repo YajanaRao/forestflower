@@ -1,112 +1,153 @@
 ---
 version: alpha
 name: Forest Flower
-description: >
-  A code editor color theme built on one contrast philosophy: warm, low-chroma
-  surfaces underneath (canvas, gutter, panels), calm perceptually-calibrated
-  syntax inks on top, and a single high-contrast accent reserved exclusively for
-  chrome (cursor, active tab, branch name, chrome highlights). The accent's
-  power comes from that exclusivity — it never appears in syntax.
-  Ships light and dark modes from one semantic token layer: tokens are defined
-  once by role; only their resolved values flip between modes. The default
-  `colors:` block below is the dark palette. The `## Colors` section carries the
-  full Light | Dark value table for every token. Everything downstream
-  (components, typography, shapes) references tokens by name and never changes
-  between modes.
 
-# Default palette = DARK. For the LIGHT values of any token, see the
-# Light | Dark table in the ## Colors section. Mode switching is a value swap
-# on this single token layer — no token names, components, or prose change.
-colors:
-  # Surface — warm grey-green forest layering (dark) /
-  # warm cream parchment layering (light). Hierarchy by tone, never shadow.
-  canvas: "#2D353B"
-  surface: "#232A2E"
-  surface-deep: "#1D2226"
-  surface-raised: "#3D484D"
+schemes:
+  dark:
+    surface:
+      recessed2: "#1D2226" # title/status bar; also the 1px divider (border)
+      recessed1: "#232A2E" # sidebar, gutter, tab bar
+      base: "#2D353B" # the content plane (editor)
+      raised: "#3D484D" # current line, hover, floats
+      overlay: "#475258" # popups, dialogs, toasts (+2)
+    ink:
+      primary: "#D3C6AA" # body / default fg                          (AA)
+      secondary: "#A6B0A0" # filenames, headings — read                 (AA)
+      comment: "#969E95" # comments, inactive labels — read           (AA)
+      faint: "#7A8478" # line numbers, operators — locate     (AA-exempt)
+      on_action: "#1D2226" # text/icon on an accent.action fill
+    accent:
+      action: "#FFC600" # scarce "act here / you are here"
+      action_container: "#403319"
+      resting: "#BEC97E" # passive identity (normal mode, branch)
+      resting_container: "#3A5A40"
+    # Status — outcome / condition
+    status:
+      danger: "#F89A8A"
+      warning: "#F9AE77"
+      success: "{accent.resting}" # = #BEC97E
+      info: "#92BFDB"
+    state:
+      selection: "#50594B" # blend(accent.resting, 0.24, surface.base)
+      match_all: "#62592C" # blend(accent.action,  0.25, surface.base)
+      active: "{accent.action}" # the current match among many
+      hover: "{surface.raised}"
+      disabled: "{ink.faint}"
+    code:
+      keyword: "#A0AF54"
+      operator: "#878580" # constant — recedes on every line
+      function: "#EC8B49"
+      string: "#5ABDAC"
+      type: "#66A0C8"
+      tag: "#E47DA8"
+      regex: "#A699D0"
+      number: "{code.regex}"
+      variable: "{ink.primary}"
+      punctuation: "{ink.comment}"
+      comment: "{ink.comment}"
+    # Domain — diff (git) = the status family
+    diff:
+      add: "{status.success}"
+      change: "{status.warning}"
+      delete: "{status.danger}"
+      untracked: "{status.info}"
+      ignored: "{ink.comment}"
+      conflict: "{code.tag}"
+      add_bg: "#4D564A"
+      change_bg: "#5A5048"
+      delete_bg: "#5A4B4C"
+    # Domain — terminal ANSI (Flexoki dark)
+    terminal:
+      ansi:
+        black: "#1D2226"
+        red: "#D14D41"
+        green: "#879A39"
+        yellow: "#D0A215"
+        blue: "#4385BE"
+        magenta: "#CE5D97"
+        cyan: "#3AA99F"
+        white: "#D3C6AA"
+        bright_black: "#575653"
+        bright_red: "#E8705F"
+        bright_green: "#A0AF54"
+        bright_yellow: "#ECCB60"
+        bright_blue: "#66A0C8"
+        bright_magenta: "#E47DA8"
+        bright_cyan: "#5ABDAC"
+        bright_white: "#FFFFFF"
+  light:
+    surface:
+      recessed2: "#EFEBD4"
+      recessed1: "#F4F0D9"
+      base: "#FDF6E3"
+      raised: "#E6E2CC"
+      overlay: "#DEDAC2"
+    ink:
+      primary: "#5C6A72"
+      secondary: "#606D5C"
+      comment: "#829181"
+      faint: "#A6B0A0"
+      on_action: "#FDF6E3"
+    accent:
+      action: "#6F5800"
+      action_container: "#FBE8D3"
+      resting: "#4D6B0E"
+      resting_container: "#E1E0C1"
+    status:
+      danger: "#942822"
+      warning: "#9B4A0F"
+      success: "{accent.resting}" # = #4D6B0E
+      info: "#1A4F8C"
+    state:
+      selection: "#D3D5B0"
+      match_all: "#DACFAA"
+      active: "{accent.action}"
+      hover: "{surface.raised}"
+      disabled: "{ink.faint}"
+    code:
+      keyword: "#66800B"
+      operator: "#878580"
+      function: "#BC5215"
+      string: "#24837B"
+      type: "#205EA6"
+      tag: "#A02F6F"
+      regex: "#5E409D"
+      number: "{code.regex}"
+      variable: "{ink.primary}"
+      punctuation: "{ink.comment}"
+      comment: "{ink.comment}"
+    diff:
+      add: "{status.success}"
+      change: "{status.warning}"
+      delete: "{status.danger}"
+      untracked: "{status.info}"
+      ignored: "{ink.comment}"
+      conflict: "{code.tag}"
+      add_bg: "#D6D7B4"
+      change_bg: "#E7D0B4"
+      delete_bg: "#E6C9B9"
+    terminal:
+      ansi:
+        black: "#1C1B1A"
+        red: "#AF3029"
+        green: "#66800B"
+        yellow: "#AD8301"
+        blue: "#205EA6"
+        magenta: "#A02F6F"
+        cyan: "#24837B"
+        white: "#5C6A72"
+        bright_black: "#6F6E69"
+        bright_red: "#C03E1D"
+        bright_green: "#879A39"
+        bright_yellow: "#D0A215"
+        bright_blue: "#4385BE"
+        bright_magenta: "#CE5D97"
+        bright_cyan: "#3AA99F"
+        bright_white: "#FDF6E3"
 
-  # Selection & Focus
-  selection: "#3A5A40"
-  highlight-line: "#3D484D"
-
-  # Text — warm parchment/slate ink + faint/muted tones for landmarks
-  ink: "#D3C6AA"
-  muted: "#7A8478"
-  subtle: "#969E95"
-
-  # Syntax — calm, perceptually-calibrated accents. Same role mapping in both
-  # modes; only the value tier flips. Dark runs one tier brighter than light
-  # because the canvas is lighter than a true black, so syntax must lift to read.
-  #
-  # Hue logic (identical both modes):
-  #   red     → imports, errors, invalid syntax (alarm)
-  #   orange  → function & method calls (active/warm)
-  #   green   → keywords, control flow (structure/skeleton)
-  #   cyan    → string literals (cool, recedes)
-  #   blue    → type/class/interface names (external/structural)
-  #   purple  → constants, numbers, decorators (rare, draws the eye)
-  #   magenta → JSX components, language features, regex
-  syntax-keyword: "#A0AF54"
-  syntax-operator: "#878580" # same value both modes — recedes on every line
-  syntax-function: "#EC8B49"
-  syntax-string: "#5ABDAC"
-  syntax-type: "#66A0C8"
-  syntax-tag: "#E47DA8"
-  syntax-regex: "#A699D0"
-  syntax-number: "#A699D0" # shares purple with regex (rarely on one line)
-  syntax-variable: "#D3C6AA" # = ink — neutral resting tone, must not demand attention
-  syntax-punctuation: "#969E95" # = subtle
-  syntax-comment: "#969E95" # = subtle, italic where font supports
-
-  # Brand — the single chrome accent.
-  # primary is THE chrome identity: cursor, active-tab underline, branch name,
-  # active indent-guide, find-match border. primary-container is a chrome bg fill.
-  # Dark = warm gold (high-luminance, pops on the dark canvas);
-  # Light = deep forest green (deep enough to read on the cream canvas).
-  # Same rule both modes: the accent lives in chrome, never in syntax,
-  # rarely as a broad fill.
-  primary: "#FFC600" # warm gold (dark) — chrome accent
-  primary-container: "#403319" # dark amber — chrome bg fills
-
-  # find-match alpha tokens — accent at 25% / 12% over the match.
-  # Formerly literal hex in components; now token-driven by the accent.
-  find-match-bg: "#FFC60040" # primary @ 25%
-  find-match-hl-bg: "#FFC60020" # primary @ 12%
-
-  # Semantic — one tier louder than syntax so markers read as signal, not text.
-  # Dark lifts brighter than syntax; light deepens darker than syntax — the
-  # pattern inverts by substrate, but the hue vocabulary stays constant.
-  error: "#F89A8A"
-  warning: "#F9AE77"
-  success: "#BEC97E"
-  info: "#92BFDB"
-  hint: "#969E95" # = subtle
-
-  # Git — semantic mapped, no chrome leak
-  git-add: "#BEC97E" # success family
-  git-change: "#F9AE77" # warning family — active modification
-  git-delete: "#F89A8A" # error family
-  git-untracked: "#92BFDB" # info family
-  git-ignored: "#969E95" # subtle
-  git-conflict: "#E47DA8" # matches syntax-tag — urgent
-
-  # Terminal ANSI — standalone terminal slots; needn't match syntax one-to-one.
-  ansi-black: "#1D2226" # = surface-deep
-  ansi-red: "#D14D41"
-  ansi-green: "#879A39"
-  ansi-yellow: "#D0A215"
-  ansi-blue: "#4385BE"
-  ansi-magenta: "#CE5D97"
-  ansi-cyan: "#3AA99F"
-  ansi-white: "#D3C6AA" # = ink
-  ansi-bright-black: "#575653"
-  ansi-bright-red: "#E8705F"
-  ansi-bright-green: "#A0AF54"
-  ansi-bright-yellow: "#ECCB60"
-  ansi-bright-blue: "#66A0C8"
-  ansi-bright-magenta: "#E47DA8"
-  ansi-bright-cyan: "#5ABDAC"
-  ansi-bright-white: "#ffffff"
+constant:
+  - code.operator # "#878580" in both schemes
+  - none # "NONE" (Neovim "no colour")
 
 typography:
   editor:
@@ -116,10 +157,19 @@ typography:
     lineHeight: 1.65
     letterSpacing: 0.5px
   ui:
-    fontFamily: "Inter, system-ui, sans-serif"
+    fontFamily: "-apple-system, BlinkMacSystemFont, Inter, IBM Plex Sans, Segoe UI, Helvetica, Arial, sans-serif"
     fontSize: 13px
     fontWeight: 400
     lineHeight: 1.5
+  content:
+    fontFamily: "Fraunces, Newsreader, Source Serif 4, Georgia, Cambria, Times New Roman, serif"
+    fontSize: 18px
+    fontWeight: 400
+    lineHeight: 1.7
+  heading:
+    fontFamily: "Fraunces, Newsreader, Georgia, serif"
+    fontWeight: 800
+    fontStyle: italic
 
 rounded:
   none: 0px
@@ -134,7 +184,7 @@ spacing:
   md: 12px
   lg: 16px
   xl: 24px
-  2xl: 32px
+  xxl: 32px
 
 components:
   editor:
@@ -147,7 +197,7 @@ components:
 
   sidebar:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.muted}"
+    textColor: "{colors.muted-strong}"
 
   sidebar-file-active:
     backgroundColor: "{colors.surface-raised}"
@@ -324,7 +374,8 @@ block holds the **dark** values; the **Dark** column below repeats them and the
 | `selection`          | text selection background                     | `#CAD8E2`   | `#3A5A40`   |
 | `highlight-line`     | active line marker                            | `#E6E2CC`   | `#3D484D`   |
 | `ink`                | default foreground / UI text                  | `#5C6A72`   | `#D3C6AA`   |
-| `muted`              | line numbers, operators, headings             | `#A6B0A0`   | `#7A8478`   |
+| `muted-strong`       | sidebar filenames & headings (readable, AA)   | `#606D5C`   | `#A6B0A0`   |
+| `muted`              | line numbers, operators (decorative)          | `#A6B0A0`   | `#7A8478`   |
 | `subtle`             | comments, inactive labels                     | `#829181`   | `#969E95`   |
 | `syntax-keyword`     | control flow, imports, declarations           | `#66800B`   | `#A0AF54`   |
 | `syntax-operator`    | `=` `=>` `?` `:` `+` `&&`                     | `#878580`   | `#878580`   |
@@ -382,9 +433,14 @@ current line and hover use a touch of warm shadow (light) or a touch of light
 - **Ink** (`{colors.ink}`): the default foreground — Everforest parchment
   (dark) / Everforest Light slate-green (light). Not white/black, not grey;
   sits comfortably against the canvas without harsh contrast.
-- **Muted** (`{colors.muted}`): line numbers, operators, sidebar headings.
-  Decorative and positional — intentionally below WCAG AA text contrast because
-  these are visual landmarks, not prose.
+- **Muted-strong** (`{colors.muted-strong}`): quiet _text_ you still read —
+  sidebar filenames and section headings. A step below `ink` so the file tree
+  recedes under the code, but it meets WCAG AA (4.5:1) against `{colors.surface}`
+  in both modes because these are content you scan, not decoration.
+- **Muted** (`{colors.muted}`): line numbers and operators only. Decorative and
+  positional — intentionally below WCAG AA text contrast because these are
+  visual landmarks, not prose. The split from `muted-strong` is by _job_, not
+  shade: anything you read meets AA; anything you merely locate need not.
 - **Subtle** (`{colors.subtle}`): comments, inactive tab labels, status bar
   labels. The quietest readable tone that still meets WCAG AA (4.5:1). Comments
   render italic (with supporting fonts) and recede without disappearing.
@@ -613,7 +669,9 @@ making the current indentation level immediately legible.
   for comments. Comments must stay subordinate. If they feel too hard to read,
   increase the editor font size before touching the comment color.
 - Do validate all color pairs against WCAG AA (4.5:1 normal text, 3:1 large
-  text) when building derived UI. All readable text tokens (ink, subtle, syntax
-  tiers) meet or exceed AA against their respective canvas. `{colors.muted}` is
-  intentionally below AA — used for decorative/positional elements (line
-  numbers, operators) that don't require text-level contrast.
+  text) when building derived UI. All readable text tokens (ink, muted-strong,
+  subtle, syntax tiers) meet or exceed AA against their respective canvas. Only
+  `{colors.muted}` is intentionally below AA — reserved for decorative/positional
+  elements (line numbers, operators) that don't require text-level contrast. If
+  you need a quiet tone on text the user actually reads, use `{colors.muted-strong}`,
+  never `{colors.muted}`.

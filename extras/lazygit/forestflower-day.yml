@@ -1,8 +1,5 @@
 # Forest Flower (Day) — lazygit UI chrome theme
-# Source of truth: DESIGN.md
-# Chrome accent: deep forest green (#044123). Selected row: selection pale-navy
-# (#CAD8E2) — primary-container cream is invisible on the cream canvas, so the
-# selection token is used instead: clear separation + readable dark text.
+# GENERATED from DESIGN.md by scripts/generate.mjs — do not edit by hand.
 #
 # Theme-only layer — compose with your base config, never replaces it:
 #   lazygit -ucf ~/.config/lazygit/config.yml,~/.config/lazygit/forestflower-day.yml
@@ -12,25 +9,25 @@
 gui:
   theme:
     activeBorderColor:
-      - "#044123"
+      - "#6F5800"
       - bold
     inactiveBorderColor:
       - "#829181"
     searchingActiveBorderColor:
-      - "#044123"
+      - "#6F5800"
       - bold
     optionsTextColor:
       - "#205EA6"
     selectedLineBgColor:
-      - "#CAD8E2"
+      - "#E1E0C1"
     inactiveViewSelectedLineBgColor:
       - "#E6E2CC"
     cherryPickedCommitFgColor:
-      - "#044123"
+      - "#6F5800"
     cherryPickedCommitBgColor:
-      - "#CAD8E2"
+      - "#E1E0C1"
     markedBaseCommitFgColor:
-      - "#044123"
+      - "#6F5800"
     markedBaseCommitBgColor:
       - "#FBE8D3"
     unstagedChangesColor:

@@ -1,16 +1,15 @@
-# Forest Flower Day Powerline Preset for Starship
-# Source of truth: DESIGN.md
-# Chrome: deep forest green (#044123). Surfaces: Everforest Light Soft parchment tones.
+# Forest Flower Powerline Preset for Starship
+# GENERATED from this template by scripts/generate.mjs — edit the template, not the output.
 
 format = """
-[](#044123)\
+[](#6F5800)\
 $directory\
-[](fg:#044123 bg:#CAD8E2)\
+[](fg:#6F5800 bg:#E1E0C1)\
 $git_branch\
 $git_status\
-[](fg:#CAD8E2 bg:#F4F0D9)\
+[](fg:#E1E0C1 bg:#24837B)\
 $jobs\
-[](fg:#F4F0D9 bg:#FBE8D3)\
+[](fg:#24837B bg:#FBE8D3)\
 $bun\
 $nodejs\
 $python\
@@ -20,7 +19,7 @@ $golang\
 """
 
 [directory]
-style = "bg:#044123 fg:#FDF6E3"
+style = "bg:#6F5800 fg:#FDF6E3"
 format = "[ $path ]($style)"
 truncation_length = 0
 truncate_to_repo = false
@@ -35,42 +34,42 @@ truncate_to_repo = false
 
 [git_branch]
 symbol = ""
-style = "bg:#CAD8E2 fg:#044123"
+style = "bg:#E1E0C1 fg:#6F5800"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#CAD8E2 fg:#044123"
+style = "bg:#E1E0C1 fg:#6F5800"
 format = '[$all_status$ahead_behind ]($style)'
 
 [jobs]
 symbol = "✦"
-style = "bg:#F4F0D9 fg:#5C6A72"
+style = "bg:#24837B fg:#FDF6E3"
 format = "[ $symbol $number ]($style)"
 number_threshold = 1
 
 [bun]
 symbol = ""
-style = "bg:#FBE8D3 fg:#5C6A72"
+style = "bg:#FBE8D3 fg:#6F5800"
 format = '[ $symbol ($version) ]($style)'
 detect_files = ['bun.lockb', 'bunfig.toml']
 
 [nodejs]
 symbol = "󰎙"
-style = "bg:#FBE8D3 fg:#5C6A72"
+style = "bg:#FBE8D3 fg:#6F5800"
 format = '[ $symbol ($version) ]($style)'
 detect_files = ['package.json', '.node-version', '.nvmrc']
 
 [python]
 symbol = " "
-style = "bg:#FBE8D3 fg:#5C6A72"
+style = "bg:#FBE8D3 fg:#6F5800"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#FBE8D3 fg:#5C6A72"
+style = "bg:#FBE8D3 fg:#6F5800"
 format = '[ $symbol ($version) ]($style)'
 
 [golang]
 symbol = " "
-style = "bg:#FBE8D3 fg:#5C6A72"
+style = "bg:#FBE8D3 fg:#6F5800"
 format = '[ $symbol ($version) ]($style)'

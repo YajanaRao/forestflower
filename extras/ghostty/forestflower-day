@@ -1,8 +1,6 @@
-# Forest Flower (Day) — Ghostty Theme
-# Source of truth: DESIGN.md
-# Surfaces: Everforest Light Soft. Chrome: Cobalt 2 deep navy. Syntax: Flexoki.
+# Forest Flower (Day) — Ghostty
+# GENERATED from DESIGN.md by scripts/generate.mjs — do not edit by hand.
 
-# Base ANSI — Flexoki light mapping (500-series for normal, 400-series bright)
 palette = 0=#1C1B1A
 palette = 1=#AF3029
 palette = 2=#66800B
@@ -11,8 +9,6 @@ palette = 4=#205EA6
 palette = 5=#A02F6F
 palette = 6=#24837B
 palette = 7=#5C6A72
-
-# Bright ANSI — Flexoki 400-series + canvas white
 palette = 8=#6F6E69
 palette = 9=#C03E1D
 palette = 10=#879A39
@@ -22,9 +18,8 @@ palette = 13=#CE5D97
 palette = 14=#3AA99F
 palette = 15=#FDF6E3
 
-# UI
 background = #FDF6E3
 foreground = #5C6A72
-cursor-color = #044123
-selection-background = #CAD8E2
+cursor-color = #6F5800
+selection-background = #E1E0C1
 selection-foreground = #5C6A72

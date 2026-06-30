@@ -33,9 +33,9 @@
     "git_untracked": "#92BFDB",
     "git_ignored": "#969E95",
     "git_conflict": "#E47DA8",
-    "diff_add_bg": "#3A5A40",
-    "diff_change_bg": "#4D4231",
-    "diff_delete_bg": "#4D2D3A",
+    "diff_add_bg": "#4D564A",
+    "diff_change_bg": "#5A5048",
+    "diff_delete_bg": "#5A4B4C",
     "ansi_black": "#1D2226",
     "ansi_red": "#D14D41",
     "ansi_green": "#879A39",
@@ -51,7 +51,7 @@
     "ansi_bright_blue": "#66A0C8",
     "ansi_bright_magenta": "#E47DA8",
     "ansi_bright_cyan": "#5ABDAC",
-    "ansi_bright_white": "#ffffff"
+    "ansi_bright_white": "#FFFFFF"
   },
   "theme": {
     "primary": {

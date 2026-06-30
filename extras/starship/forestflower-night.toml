@@ -1,6 +1,5 @@
-# Forest Flower Powerline Preset for Starship — Night
-# Source of truth: DESIGN.md
-# Chrome: Cobalt 2 gold. Surfaces: Everforest tonal steps.
+# Forest Flower Powerline Preset for Starship
+# GENERATED from this template by scripts/generate.mjs — edit the template, not the output.
 
 format = """
 [](#FFC600)\
@@ -8,9 +7,9 @@ $directory\
 [](fg:#FFC600 bg:#3A5A40)\
 $git_branch\
 $git_status\
-[](fg:#3A5A40 bg:#7FBBB3)\
+[](fg:#3A5A40 bg:#5ABDAC)\
 $jobs\
-[](fg:#7FBBB3 bg:#403319)\
+[](fg:#5ABDAC bg:#403319)\
 $bun\
 $nodejs\
 $python\
@@ -44,7 +43,7 @@ format = '[$all_status$ahead_behind ]($style)'
 
 [jobs]
 symbol = "✦"
-style = "bg:#7FBBB3 fg:#1D2226"
+style = "bg:#5ABDAC fg:#1D2226"
 format = "[ $symbol $number ]($style)"
 number_threshold = 1
 

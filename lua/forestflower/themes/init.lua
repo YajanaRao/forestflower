@@ -5,14 +5,20 @@
 ---time and refuses to mount a theme that drops any required role — so missing
 ---values fail loudly at startup, not at first paint.
 
+local util = require("forestflower.util")
+
 local M = {}
+
+-- State-colour derivation alphas. State tokens are blended from base palette
+-- values so they always sit inside the palette instead of being hand-picked.
+local SELECTION_ALPHA = 0.24 -- secondary wash behind selected text
+local SEARCH_ALPHA = 0.25 -- gold wash behind all search matches
 
 local REQUIRED_ROLES = {
   "name", "background",
   "canvas", "surface", "surface_deep", "surface_raised",
-  "selection", "highlight_line",
   "ink", "muted", "subtle",
-  "primary", "primary_container",
+  "primary", "primary_container", "secondary", "secondary_container",
   "syntax_keyword", "syntax_operator", "syntax_function",
   "syntax_string", "syntax_type", "syntax_tag",
   "syntax_regex", "syntax_number", "syntax_variable",
@@ -91,6 +97,18 @@ function M.resolve(config, vim_background)
   end
 
   return vim.deepcopy(M.load("night"))
+end
+
+---Compute derived "state" tokens (selection, search_match) from base palette
+---values. Run after colours_override so user overrides of base tokens flow into
+---the derived values; respects any state token already set so an explicit
+---override of `selection`/`search_match` still wins.
+---@param p table palette (mutated in place)
+---@return table p
+function M.derive(p)
+  p.selection = p.selection or util.blend(p.secondary, SELECTION_ALPHA, p.canvas)
+  p.search_match = p.search_match or util.blend(p.primary, SEARCH_ALPHA, p.canvas)
+  return p
 end
 
 return M
