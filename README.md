@@ -1,4 +1,4 @@
-# Forest Flower 🌺
+# 🌺 Forest Flower 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Neovim](https://img.shields.io/badge/Neovim-0.9+-green.svg)](https://neovim.io)
@@ -23,7 +23,7 @@ A Neovim colorscheme combining three pedigrees:
 
 ---
 
-## Quick Start
+## ✨ Quick Start
 
 ```lua
 vim.cmd.colorscheme("forestflower")
@@ -44,7 +44,7 @@ With lazy.nvim:
 }
 ```
 
-## Configuration
+## ⚙️ Configuration
 
 ```lua
 require("forestflower").setup({
@@ -131,7 +131,7 @@ The validator rejects any theme that drops a required role at load time — miss
 
 Then select it via `setup({ theme = "my-theme" })` or by setting `vim.o.background` to a value matching the theme's `background` field.
 
-## Plugin support
+## 🎨 Plugin support
 
 ALE, Barbar, BufferLine, Coc.nvim, Dashboard, Flash, gitsigns, Hop, Incline, Indent Blankline, LSP Diagnostics, LspSaga, Leap, Lualine, Mini, Neo-tree, Neogit, Noice, NvimTree, Scrollbar, Snacks (explorer, picker, indent), Telescope, Treesitter, Trouble, WhichKey, aerial, blamer, fzf, nvim-cmp, nvim-dap-ui, nvim-navic, nvim-notify, nvim-ts-rainbow, yanky, and others.
 
