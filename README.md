@@ -14,7 +14,12 @@ A Neovim colorscheme combining three pedigrees:
 
 ### Night
 
-<img width="1918" height="1050" alt="Forest Flower night preview" src="https://github.com/user-attachments/assets/f4325305-5e9b-4688-aa4b-ae5995cd4b8e" />
+<img width="1470" height="881" alt="image" src="https://github.com/user-attachments/assets/2b896f98-0367-47b4-b5c5-c4ff6d637c7a" />
+
+### Day
+
+<img width="1470" height="886" alt="image" src="https://github.com/user-attachments/assets/8b926028-98ae-4d34-9f65-8360f7a2980c" />
+
 
 ---
 
