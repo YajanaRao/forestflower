@@ -23,14 +23,15 @@ usage() {
     echo "  --dry-run    Show what would be installed without making changes"
     echo "  -h, --help   Show this help message"
     echo ""
-    echo "This installs:"
-    echo "  - OpenCode themes (forestflower, forestflower-day, forestflower-night)"
-    echo "  - Starship prompt themes (forestflower-day, forestflower-night)"
-    echo "  - Delta diff themes (forestflower-day, forestflower-night)"
-    echo "  - Lazygit UI themes (forestflower-day, forestflower-night)"
-    echo "  - Ghostty terminal themes (referenced, not copied)"
-    echo "  - Slack sidebar themes (referenced, not copied)"
-    echo "  - Brave (Chromium) chrome theme via managed policy"
+  echo "This installs:"
+  echo "  - OpenCode themes (forestflower, forestflower-day, forestflower-night)"
+  echo "  - Starship prompt themes (forestflower-day, forestflower-night)"
+  echo "  - Delta diff themes (forestflower-day, forestflower-night)"
+  echo "  - Lazygit UI themes (forestflower-day, forestflower-night)"
+  echo "  - Nushell color theme (forestflower.nu)"
+  echo "  - Ghostty terminal themes (referenced, not copied)"
+  echo "  - Slack sidebar themes (referenced, not copied)"
+  echo "  - Brave (Chromium) chrome theme via managed policy"
     echo ""
     echo "Environment:"
     echo "  FF_BRAVE_VARIANT   Brave theme variant: night (default) or day"
@@ -175,6 +176,26 @@ install_lazygit_configs() {
     log_info "Diffs are rendered by delta — install the delta theme too."
 }
 
+install_nushell_configs() {
+    echo ""
+    log_info "Installing Nushell color config..."
+
+    local target_dir="$HOME/.config/nushell"
+
+    if [ "$DRY_RUN" = false ]; then
+        mkdir -p "$target_dir"
+    fi
+
+    if [ -f "$EXTRAS_DIR/nushell/forestflower.nu" ]; then
+        copy_file "$EXTRAS_DIR/nushell/forestflower.nu" "$target_dir/forestflower.nu"
+    fi
+
+    log_success "Nushell config installed"
+    log_info "To use, add to ~/.config/nushell/config.nu:"
+    log_info "  use ~/.config/nushell/forestflower.nu *"
+    log_info "  \$env.config.color_config = (forestflower-night)  # or (forestflower-day)"
+}
+
 show_ghostty_info() {
     echo ""
     log_info "Ghostty terminal theme"
@@ -254,6 +275,7 @@ print_summary() {
     echo "  • Starship prompt → ~/.config/starship-forestflower-{day,night}.toml"
     echo "  • Delta diff themes → ~/.config/delta/forestflower.gitconfig (day+night features)"
     echo "  • Lazygit UI themes → ~/.config/lazygit/forestflower-{day,night}.yml"
+    echo "  • Nushell color theme → ~/.config/nushell/forestflower.nu"
     echo "  • Brave theme → com.brave.Browser policy (macOS) / see notes (Linux)"
     echo ""
     echo "Referenced (not copied - use directly from repo):"
@@ -266,6 +288,7 @@ print_summary() {
     echo "  3. Reload Starship config: eval \$(starship init \$SHELL)"
     echo "  4. Add delta [include] to ~/.gitconfig (see ~/.config/delta/)"
     echo "  5. Launch lazygit with -ucf base,theme (see extras/lazygit/README.md)"
+    echo "  6. Reload Nushell config: exec nu (or start a new shell)"
     echo ""
 }
 
@@ -299,6 +322,7 @@ main() {
     install_starship_configs
     install_delta_configs
     install_lazygit_configs
+    install_nushell_configs
     show_ghostty_info
     show_slack_info
     install_brave_theme
