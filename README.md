@@ -133,7 +133,7 @@ Then select it via `setup({ theme = "my-theme" })` or by setting `vim.o.backgrou
 
 ## 🎨 Plugin support
 
-ALE, Barbar, BufferLine, Coc.nvim, Dashboard, Flash, gitsigns, Hop, Incline, Indent Blankline, LSP Diagnostics, LspSaga, Leap, Lualine, Mini, Neo-tree, Neogit, Noice, NvimTree, Scrollbar, Snacks (explorer, picker, indent), Telescope, Treesitter, Trouble, WhichKey, aerial, blamer, fzf, nvim-cmp, nvim-dap-ui, nvim-navic, nvim-notify, nvim-ts-rainbow, yanky, and others.
+ALE, Barbar, BufferLine, Coc.nvim, Dashboard, Flash, gitsigns, Hop, Incline, Indent Blankline, LSP Diagnostics, LspSaga, Leap, Lualine, Mini, Neo-tree, Neogit, Noice, NvimTree, Scrollbar, Snacks (explorer, picker, indent), Telescope, Treesitter, Trouble, WhichKey, aerial, blamer, fzf, nvim-cmp, nvim-dap-ui, nvim-navic, nvim-notify, nvim-ts-rainbow, render-markdown, yanky, and others.
 
 ## License
 

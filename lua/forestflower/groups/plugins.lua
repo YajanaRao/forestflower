@@ -123,5 +123,66 @@ return function(p, config)
     -- Quick scope
     QuickScopePrimary = create(p.syntax_string, p.none, { styles.underline }),
     QuickScopeSecondary = create(p.info, p.none, { styles.underline }),
+
+    -- render-markdown.nvim
+    -- Headings route to syntax_keyword (consistent with Title); backgrounds stay
+    -- on surface tiers so the chrome accent never becomes a broad fill.
+    RenderMarkdownH1 = create(p.syntax_keyword, p.none, { styles.bold }),
+    RenderMarkdownH2 = create(p.syntax_keyword, p.none, { styles.bold }),
+    RenderMarkdownH3 = create(p.syntax_keyword, p.none, { styles.bold }),
+    RenderMarkdownH4 = create(p.syntax_keyword, p.none, { styles.bold }),
+    RenderMarkdownH5 = create(p.syntax_keyword, p.none, { styles.bold }),
+    RenderMarkdownH6 = create(p.syntax_keyword, p.none, { styles.bold }),
+    RenderMarkdownH1Bg = create(p.none, p.surface_raised),
+    RenderMarkdownH2Bg = create(p.none, p.surface),
+    RenderMarkdownH3Bg = create(p.none, p.surface),
+    RenderMarkdownH4Bg = create(p.none, p.surface),
+    RenderMarkdownH5Bg = create(p.none, p.surface),
+    RenderMarkdownH6Bg = create(p.none, p.surface),
+
+    -- Code: recessed surface for blocks, raised surface for inline.
+    RenderMarkdownCode = create(p.ink, p.surface),
+    RenderMarkdownCodeInfo = create(p.subtle, p.surface),
+    RenderMarkdownCodeBorder = create(p.surface_raised, p.surface),
+    RenderMarkdownCodeFallback = create(p.subtle, p.surface),
+    RenderMarkdownCodeInline = create(p.ink, p.surface_raised),
+
+    -- Thematic break / bullet / checkbox
+    RenderMarkdownDash = create(p.surface_raised, p.none),
+    RenderMarkdownBullet = create(p.syntax_type, p.none),
+    RenderMarkdownUnchecked = create(p.muted, p.none),
+    RenderMarkdownChecked = create(p.success, p.none),
+    RenderMarkdownTodo = create(p.warning, p.none),
+
+    -- Block quotes: accent as marker, not fill.
+    RenderMarkdownQuote1 = create(p.primary, p.none),
+    RenderMarkdownQuote2 = create(p.primary, p.none),
+    RenderMarkdownQuote3 = create(p.primary, p.none),
+    RenderMarkdownQuote4 = create(p.primary, p.none),
+    RenderMarkdownQuote5 = create(p.primary, p.none),
+    RenderMarkdownQuote6 = create(p.primary, p.none),
+
+    -- Tables
+    RenderMarkdownTableHead = create(p.syntax_type, p.surface_raised),
+    RenderMarkdownTableRow = create(p.subtle, p.none),
+
+    -- Callouts map to status family.
+    RenderMarkdownInfo = create(p.info, p.none),
+    RenderMarkdownSuccess = create(p.success, p.none),
+    RenderMarkdownHint = create(p.hint, p.none),
+    RenderMarkdownWarn = create(p.warning, p.none),
+    RenderMarkdownError = create(p.error, p.none),
+
+    -- Links: accent allowed inline in prose.
+    RenderMarkdownLink = create(p.primary, p.none, { styles.underline }),
+    RenderMarkdownLinkTitle = create(p.primary, p.none, { styles.underline }),
+    RenderMarkdownWikiLink = create(p.primary, p.none, { styles.underline }),
+
+    -- Sign / inline highlight / indent / html comment / math
+    RenderMarkdownSign = create(p.none, sign_bg),
+    RenderMarkdownInlineHighlight = create(p.none, p.search_match),
+    RenderMarkdownIndent = create(p.surface_raised, p.none, { styles.nocombine }),
+    RenderMarkdownHtmlComment = create(p.syntax_comment, p.none, { styles.italic }),
+    RenderMarkdownMath = create(p.syntax_regex, p.none),
   }
 end
